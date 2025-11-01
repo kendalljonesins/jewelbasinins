@@ -1,16 +1,67 @@
+/* ==========================
+   COLOR VARIABLES
+   ========================== */
 :root {
-  --color-primary: #0D3B66;    /* Deep Teal Blue */
-  --color-accent: #1E6091;     /* Lake Blue */
-  --color-warm: #F4A261;       /* Sunset Gold */
-  --color-secondary: #6C63FF;  /* Mountain Purple */
-  --color-text: #264653;       /* Pine Green */
-  --color-bg: #F9FAFB;         /* Background */
+  --color-primary: #0D3B66;
+  --color-accent: #1E6091;
+  --color-warm: #F4A261;
+  --color-secondary: #6C63FF;
+  --color-text: #264653;
+  --color-bg: #F9FAFB;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* ==========================
+   BASE STYLES
+   ========================== */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ==========================
+   TYPOGRAPHY & LINKS
+   ========================== */
+h1, h2, h3 {
+  color: var(--color-primary);
+}
+
+a {
+  color: var(--color-accent);
+}
+a:hover {
+  color: var(--color-warm);
+}
+
+/* ==========================
+   BUTTONS
+   ========================== */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  transition: background-color 0.25s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent);
+}
+
+/* ==========================
+   SECTION BACKGROUND & FOOTER
+   ========================== */
+.section--muted {
+  background-color: #EAF1F6;
+}
+
+.footer {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
 }
 
 body {
@@ -327,6 +378,7 @@ textarea {
     flex-direction: column;
   }
 }
+
 
 
 
