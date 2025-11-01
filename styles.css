@@ -1,15 +1,10 @@
 :root {
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --muted: #f3f5f7;
-  --text: #1f2933;
-  --subtle: #5a6a7b;
-  --primary: #0f5fbb;
-  --primary-soft: rgba(15, 95, 187, 0.08);
-  --radius: 14px;
-  --shadow: 0 16px 35px rgba(15, 95, 187, 0.08);
-  --container: min(1120px, 100% - 2.5rem);
-  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-primary: #0D3B66;    /* Deep Teal Blue */
+  --color-accent: #1E6091;     /* Lake Blue */
+  --color-warm: #F4A261;       /* Sunset Gold */
+  --color-secondary: #6C63FF;  /* Mountain Purple */
+  --color-text: #264653;       /* Pine Green */
+  --color-bg: #F9FAFB;         /* Background */
 }
 
 *,
@@ -332,5 +327,6 @@ textarea {
     flex-direction: column;
   }
 }
+
 
 
