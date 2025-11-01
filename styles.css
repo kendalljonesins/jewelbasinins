@@ -141,7 +141,7 @@ a:hover {
 }
 
 .section--muted {
-  background: #EAF1F6;
+  background: #f7fafc;
 }
 
 .container {
@@ -443,7 +443,7 @@ textarea {
 }
 
 .section--muted {
-  background: var(--muted);
+  background: #f7fafc;
 }
 .spotlight-grid {
   display: grid;
@@ -558,6 +558,7 @@ textarea {
     flex-direction: column;
   }
 }
+
 
 
 
