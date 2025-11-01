@@ -71,37 +71,25 @@ body {
   font-size: 0.875rem;
 }
 
-.btn {
-  background: var(--primary);
+.btn-primary {
+  background-color: #2563eb; /* your blue */
   color: #fff;
-  text-decoration: none;
   border: none;
-  border-radius: 999px;
-  padding: 0.55rem 1.15rem;
-  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  display: inline-block;
-  font-size: 0.85rem;
+  transition: background-color 0.25s ease;
 }
 
-.btn:hover {
-  opacity: 0.9;
+.btn-primary:hover {
+  background-color: #1e4fbe;
 }
 
-.btn--outline {
-  background: #fff;
-  border: 1px solid rgba(15, 95, 187, 0.18);
-  color: var(--primary);
-}
-
-.btn--ghost {
-  background: rgba(15, 95, 187, 0.08);
-  color: #0f5fbb;
-}
-
-.btn--full {
-  width: 100%;
-  text-align: center;
+.form-actions {
+  margin-top: 1rem;
+  text-align: right;
 }
 
 .hero {
@@ -344,4 +332,5 @@ textarea {
     flex-direction: column;
   }
 }
+
 
