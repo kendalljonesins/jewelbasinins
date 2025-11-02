@@ -39,6 +39,69 @@ a:hover {
 /* ==========================
    HEADER / TOP BAR
    ========================== */
+
+/* ==== HEADER / TOP BAR ==== */
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.topbar__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  max-height: 78px;     /* keep it nice */
+  width: auto;
+  object-fit: contain;
+}
+
+/* nav links in a row */
+.nav {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* top-right button */
+.btn-call {
+  background: linear-gradient(135deg, #0d3b66 0%, #106995 100%);
+  color: #fff;
+  padding: 0.55rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 6px 12px rgba(13, 59, 102, 0.175);
+  white-space: nowrap;
+}
+
+/* mobile: stack neatly */
+@media (max-width: 880px) {
+  .topbar__inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+}
+
 .topbar {
   background: linear-gradient(135deg, #edf3f6, #ffffff);
   border-bottom: 1px solid #dbe4ea;
@@ -289,6 +352,7 @@ a:hover {
     margin: 0 auto;
   }
 }
+
 
 
 
