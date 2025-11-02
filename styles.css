@@ -462,3 +462,19 @@ form.quote-form {
     text-align: left;
   }
 }
+
+/* === FORCE commercial hero image to normal size === */
+.hero img[src*="commercial"],
+img[src$="commercial.jpg"],
+.commercial-hero,
+.commercial-hero img {
+  width: 100%;
+  max-width: 560px;
+  max-height: 360px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
