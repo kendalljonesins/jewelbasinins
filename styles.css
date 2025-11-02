@@ -278,6 +278,94 @@ img[src$="commercial.jpg"],
   max-width: 520px;
 }
 
+/* ===== Flood page extras ===== */
+.hurricane-alert {
+  background: rgba(13, 59, 102, 0.04);
+  border: 1px solid rgba(13, 59, 102, 0.08);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.hurricane-title {
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+  color: #0d3b66;
+}
+
+.hurricane-note {
+  font-size: 0.72rem;
+  color: rgba(11, 37, 63, 0.6);
+  margin-top: 0.7rem;
+}
+
+/* button pulse dot */
+.btn-hurricane {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.wave-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #fff;
+  position: relative;
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.35);
+  animation: wave-pulse 1.7s ease-out infinite;
+}
+
+@keyframes wave-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(255, 255, 255, 0);
+  }
+}
+
+/* divider between hurricane and fact */
+.section-divider {
+  height: 1px;
+  background: rgba(13, 59, 102, 0.08);
+  margin: 1.6rem 0 1.4rem;
+  border-radius: 999px;
+}
+
+/* did you know box */
+.flood-fact {
+  background: #ffffff;
+  border: 1px solid rgba(13, 59, 102, 0.05);
+  border-left: 5px solid #0d3b66;
+  border-radius: 14px;
+  padding: 1.1rem 1.4rem 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+}
+
+.flood-fact h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: #0d3b66;
+}
+
+.flood-fact p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: rgba(10, 22, 35, 0.85);
+}
+
+/* mobile */
+@media (max-width: 700px) {
+  .hurricane-alert {
+    padding: 1rem 1rem 0.9rem;
+  }
+  .flood-fact {
+    margin-bottom: 1.25rem;
+  }
+}
+
 /* =========================
    GRIDS (services / industries)
 ========================= */
@@ -478,3 +566,4 @@ form.quote-form {
     text-align: left;
   }
 }
+
