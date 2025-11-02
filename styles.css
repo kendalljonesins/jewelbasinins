@@ -169,6 +169,49 @@ header img[alt*="JBIS"] {
   transform: translateY(1px);
 }
 
+/* ==============================
+   Alpine Glow Buttons ✨
+   (Lake Reflection Edition)
+   ============================== */
+
+.btn {
+  background: linear-gradient(90deg, #f8d67f, #ffb347, #ff9966);
+  color: #0d3b66; /* deep lake blue text */
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(255, 160, 70, 0.5);
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0));
+  transition: left 0.6s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  background: linear-gradient(90deg, #ffcc80, #ffb347, #ffa366);
+  box-shadow: 0 0 12px rgba(255, 185, 100, 0.8),
+              0 0 25px rgba(255, 160, 70, 0.5);
+  transform: translateY(-1px);
+}
+
 /* =========================
    HERO (SHARED FOR ALL PAGES)
 ========================= */
@@ -717,5 +760,6 @@ form.quote-form {
   font-size: 0.9rem;
   color: rgba(13, 59, 102, 0.75);
 }
+
 
 
