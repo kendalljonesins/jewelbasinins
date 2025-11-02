@@ -65,9 +65,20 @@ body {
   gap: 0.75rem;
 }
 
+/* main logo wrapper (home page) */
 .logo {
   max-width: 140px;
   height: auto;
+  display: block;
+}
+
+/* catch-all for other pages that just drop the img in the header */
+header img[src*="logo"],
+header img[alt*="Jewel Basin"],
+header img[alt*="JBIS"] {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -88,6 +99,19 @@ body {
 
 .nav a:hover {
   color: var(--jewel);
+}
+
+/* mobile tweak so logo + nav don’t squish */
+@media (max-width: 720px) {
+  header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
 }
 
 /* CALL BUTTON (top right) */
@@ -765,6 +789,7 @@ section img:first-of-type {
     margin: 0 auto;
   }
 }
+
 
 
 
