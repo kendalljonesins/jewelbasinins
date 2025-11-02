@@ -204,9 +204,9 @@ header.topbar {
   font-size: 0.8rem;
 }
 
-/* ==========================
+/* ================================
    FORMS
-   ========================== */
+================================ */
 .form-card {
   background: #fff;
   border-radius: 14px;
@@ -232,18 +232,67 @@ header.topbar {
   background: #fff;
 }
 
+/* Buttons aligned to the right if needed elsewhere */
 .form-actions {
   text-align: right;
 }
 
-/* consent text */
-.form-consent {
+/* === Agreement + Consent Section === */
+.form-agreement {
   display: flex;
-  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.agreement {
+  display: flex;
   align-items: flex-start;
-  font-size: 0.7rem;
-  color: rgba(38, 70, 83, 0.75);
-  margin-top: 0.3rem;
+  max-width: 700px;
+  background: #f7f9fc;
+  border: 1px solid #d0d8e0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #222;
+}
+
+.agreement input[type="checkbox"] {
+  margin-right: 0.6rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.agreement a {
+  color: #1e4d6d;
+  text-decoration: underline;
+}
+
+/* === Submit Button === */
+.form-submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-submit {
+  background-color: #0b3652;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #145f8a;
+}
+
+/* === Older consent styling cleaned out === */
+.form-consent {
+  display: none;
 }
 
 /* ==========================
@@ -577,6 +626,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
