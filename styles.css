@@ -327,6 +327,7 @@ header.topbar {
     flex-direction: row;
     max-width: 100%;
   }
+}
 
 /* ==========================
    FOOTER
@@ -659,6 +660,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
