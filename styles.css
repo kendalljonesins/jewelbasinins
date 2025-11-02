@@ -57,6 +57,11 @@ a:hover {
 }
 
 header.topbar {
+   .logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+   }
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -575,6 +580,7 @@ textarea {
     flex-direction: column;
   }
 }
+
 
 
 
