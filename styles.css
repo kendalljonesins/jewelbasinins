@@ -94,6 +94,30 @@ header.topbar {
   font-size: 0.85rem;
 }
 
+/* === Header Call/Text Button with Gradient === */
+.btn--ghost {
+  background: linear-gradient(135deg, #0d3b66, #1d5f9e);
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn--ghost:hover {
+  background: linear-gradient(135deg, #1d5f9e, #fca311);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(252, 163, 17, 0.35);
+}
+
+.btn--ghost:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
 /* ==========================
    HERO
    ========================== */
@@ -676,6 +700,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
