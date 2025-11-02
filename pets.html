@@ -74,48 +74,76 @@
     </div>
   </section>
 
-  <!-- QUOTE FORM -->
-  <section class="section container">
-    <h2>Request a Pet Insurance Quote</h2>
-    <form class="quote-form">
-      <label>
-        Your Name
-        <input type="text" name="name" required>
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Phone
-        <input type="tel" name="phone" required>
-      </label>
-      <label>
-        Pet Type (Dog, Cat, etc.)
-        <input type="text" name="pet_type" required>
-      </label>
-      <label>
-        Pet’s Age
-        <input type="number" name="pet_age" min="0">
-      </label>
+<!-- PET QUOTE FORM -->
+<section class="section container" id="quote">
+  <h2>Request a Pet Insurance Quote</h2>
+  <p class="section__lead">
+    Tell me a bit about your pet and I’ll reach out with personalized options.
+  </p>
 
-      <div class="form-agreement">
-        <label class="agreement">
-          <input type="checkbox" name="consent" required>
-          <span>
-            By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products and services (message/data rates may apply), and that you’ve read our
-            <a href="privacy.html" target="_blank">Privacy Policy</a>
-            and
-            <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
-          </span>
-        </label>
-      </div>
+  <form
+    target="_blank"
+    action="https://formsubmit.co/kendalljonesins@outlook.com"
+    method="POST"
+  >
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
+    </div>
 
-      <div class="form-submit">
-        <button type="submit" class="btn-submit">Submit Request</button>
-      </div>
-    </form>
-  </section>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" />
+    </div>
+
+    <div class="form-group">
+      <label for="pet">Pet Name & Type</label>
+      <input type="text" id="pet" name="pet" placeholder="Newt – cat, 4 y/o" />
+    </div>
+
+    <div class="form-group">
+      <label for="coverage">Coverage Type</label>
+      <select id="coverage" name="coverage">
+        <option value="">Choose one...</option>
+        <option value="accident">Accident-only</option>
+        <option value="illness">Accident & Illness</option>
+        <option value="wellness">Wellness Add-on</option>
+        <option value="unsure">Not sure — please advise</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Additional Notes</label>
+      <textarea id="notes" name="notes" rows="3" placeholder="Breed, pre-existing conditions, etc."></textarea>
+    </div>
+
+    <div class="form-agreement">
+      <label class="agreement">
+        <input type="checkbox" name="consent" required />
+        <span>
+          By checking this box, you agree that Jewel Basin Insurance Solutions LLC
+          may contact you by phone, text, or email regarding insurance products
+          and services (message/data rates may apply). You acknowledge that you
+          have read and agree to our
+          <a href="privacy.html" target="_blank">Privacy Policy</a> and
+          <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+        </span>
+      </label>
+    </div>
+
+    <div class="form-submit">
+      <button type="submit" class="btn-submit">Submit Request</button>
+    </div>
+
+    <!-- optional confirmation redirect -->
+    <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thankyou.html" />
+  </form>
+</section>
 
   <!-- FOOTER -->
   <footer>
