@@ -52,43 +52,86 @@
     </ul>
   </section>
 
-  <section class="section container">
+<section id="quote" class="section section-muted">
+  <div class="container narrow">
     <h2>Request a Life Insurance Quote</h2>
-    <form class="quote-form" action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST">
-      <input type="hidden" name="_next" value="https://jewelbasinins.com/thankyou.html">
-      <input type="hidden" name="_subject" value="New Life Insurance Inquiry">
-      
-      <label>Full Name</label>
-      <input type="text" name="name" required>
+    <p class="section_lead">
+      Whether you’re protecting family, covering a mortgage, or planning final expenses, tell me what you need and I’ll match you with the right option.
+    </p>
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+    <form action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST" class="quote-form">
+      <!-- where to go after submit -->
+      <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thank-you.html">
+      <!-- stop captcha -->
+      <input type="hidden" name="_captcha" value="false">
+      <!-- subject line -->
+      <input type="hidden" name="_subject" value="New Life Insurance Quote Request">
 
-      <label>Phone</label>
-      <input type="tel" name="phone" required>
-
-      <label>Preferred Contact Time</label>
-      <select name="time">
-        <option>9-12 MT</option>
-        <option>12-3 MT</option>
-        <option>3-5 MT</option>
-        <option>After 5 MT (by appt)</option>
-      </select>
-
-      <div class="form-agreement">
-        <input type="checkbox" required>
-        <span>
-          By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products and services (message/data rates may apply). You acknowledge that you have read and agree to our 
-          <a href="privacy.html" target="_blank">Privacy Policy</a> and 
-          <a href="terms.html" target="_blank">Terms & Conditions</a>.
-        </span>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="Full name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="Email" required>
+        </div>
       </div>
 
-      <div class="form-submit">
-        <button type="submit" class="btn-submit">Submit Request</button>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="Phone">
+        </div>
+        <div class="form-group">
+          <label for="life-type">Type of life coverage</label>
+          <select id="life-type" name="Life coverage type">
+            <option value="">Choose one…</option>
+            <option>Term Life</option>
+            <option>Whole Life / Permanent</option>
+            <option>Final Expense / Burial</option>
+            <option>Mortgage Protection</option>
+            <option>Not sure — please recommend</option>
+          </select>
+        </div>
       </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="time">Preferred contact time</label>
+          <select id="time" name="Preferred contact time">
+            <option>9–12 MT</option>
+            <option>12–3 MT</option>
+            <option>3–5 MT</option>
+            <option>After 5 MT (by appt)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Notes (beneficiary, health notes, current policy, mortgage amount, etc.)</label>
+        <textarea id="notes" name="Notes" rows="4"></textarea>
+      </div>
+
+      <div class="consent-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" name="Consent" value="Yes" required>
+          By checking this box, you agree that Jewel Basin Insurance Solutions LLC
+          may contact you by phone, text, or email regarding insurance products
+          and services (message/data rates may apply). You may opt out at any time.
+          Your information will not be sold or shared outside of Jewel Basin Insurance Solutions LLC
+          and is collected solely for insurance quoting and policy servicing purposes.
+          You acknowledge that you have read and agree to our
+          <a href="privacy.html" target="_blank">Privacy Policy</a> and
+          <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Request My Quote</button>
     </form>
-  </section>
+  </div>
+</section>
+
 
   <footer class="footer">
     <p>&copy; 2025 Jewel Basin Insurance Solutions LLC. All rights reserved.
