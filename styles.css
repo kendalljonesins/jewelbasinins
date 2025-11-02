@@ -529,28 +529,29 @@ textarea {
   flex: 1 1 240px;
 }
 
-.footer {
-  background: #0e1520;
-  color: rgba(255, 255, 255, 0.7);
-  padding: 2.5rem 0 3rem;
+/* === Footer === */
+footer.footer {
+  background-color: #0b1622; /* deep navy blue, consistent with your theme */
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 1.25rem 0;
+  font-size: 0.9rem;
   margin-top: 2.5rem;
 }
 
-.footer__inner {
-  text-align: center;
+footer.footer a {
+  color: #c3d3e0;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.footer a {
-  color: inherit;
-}
-
-.footer-links {
-  margin-top: 0.75rem;
-  font-size: 0.75rem;
-}
-
-.footer-links a {
+footer.footer a:hover {
+  color: #ffffff;
   text-decoration: underline;
+}
+
+footer.footer p {
+  margin: 0.5rem 0;
 }
 
 .disclaimer {
@@ -576,6 +577,7 @@ textarea {
     flex-direction: column;
   }
 }
+
 
 
 
