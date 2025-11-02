@@ -237,30 +237,37 @@ header.topbar {
   text-align: right;
 }
 
-/* === Agreement + Consent Section === */
+/* === Agreement + Consent Section (Fixed Layout) === */
 .form-agreement {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .agreement {
   display: flex;
   align-items: flex-start;
-  max-width: 700px;
+  max-width: 750px;
   background: #f7f9fc;
   border: 1px solid #d0d8e0;
   border-radius: 8px;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   font-size: 0.85rem;
-  line-height: 1.4;
+  line-height: 1.5;
   color: #222;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .agreement input[type="checkbox"] {
-  margin-right: 0.6rem;
-  margin-top: 0.2rem;
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
   flex-shrink: 0;
+  transform: scale(1.2);
+}
+
+.agreement span {
+  display: inline-block;
+  text-align: left;
 }
 
 .agreement a {
@@ -272,7 +279,7 @@ header.topbar {
 .form-submit {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .btn-submit {
@@ -281,7 +288,7 @@ header.topbar {
   font-weight: 600;
   border: none;
   border-radius: 6px;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -626,6 +633,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
