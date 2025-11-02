@@ -653,3 +653,30 @@ form.quote-form {
   }
 }
 
+.license-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.license-list li {
+  margin: 0.6rem 0;
+  font-size: 1rem;
+}
+
+.license-list a {
+  color: #0d3b66;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.license-list a:hover {
+  color: #f4a261;
+}
+
+.license-note {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: rgba(13, 59, 102, 0.75);
+}
