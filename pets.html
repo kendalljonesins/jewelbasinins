@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Insurance | Jewel Basin Insurance Solutions</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <img src="img/logo.png" alt="Jewel Basin Insurance Solutions Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="life.html">Life</a>
+      <a href="commercial.html">Commercial</a>
+      <a href="pets.html" class="active">Pets</a>
+      <a href="index.html#quote">Get a Quote</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img src="img/pet.jpg" alt="Pet Insurance" class="hero-img">
+    <div class="hero-text">
+      <h1>Protect Their Paws and Your Peace of Mind</h1>
+      <p>
+        Our pets are family — and just like any loved one, they deserve protection.
+        Whether it’s an unexpected vet visit, surgery, or lifelong care plan,
+        Jewel Basin Insurance Solutions helps you find affordable, dependable coverage
+        that keeps tails wagging and hearts happy.
+      </p>
+    </div>
+  </section>
+
+  <!-- COVERAGE TYPES -->
+  <section class="section container">
+    <h2>Why Choose Pet Insurance?</h2>
+    <p class="section_lead">
+      Veterinary costs can rise quickly — a single emergency visit can cost thousands.
+      With pet insurance, you can focus on care, not cost.
+    </p>
+
+    <div class="service-grid">
+      <article class="service-card">
+        <h3>Accident Coverage</h3>
+        <p>
+          From swallowed toys to broken bones, your coverage can help with emergency treatment costs so your furry friend gets care fast.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <h3>Illness Coverage</h3>
+        <p>
+          Covers diagnostics, medications, and treatment for illnesses, including hereditary and chronic conditions, depending on your plan.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <h3>Wellness Add-Ons</h3>
+        <p>
+          Optional preventive coverage for routine visits, vaccines, dental cleanings, and more — perfect for proactive pet parents.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="section container">
+    <h2>Request a Pet Insurance Quote</h2>
+    <form class="quote-form">
+      <label>
+        Your Name
+        <input type="text" name="name" required>
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Phone
+        <input type="tel" name="phone" required>
+      </label>
+      <label>
+        Pet Type (Dog, Cat, etc.)
+        <input type="text" name="pet_type" required>
+      </label>
+      <label>
+        Pet’s Age
+        <input type="number" name="pet_age" min="0">
+      </label>
+
+      <div class="form-agreement">
+        <label class="agreement">
+          <input type="checkbox" name="consent" required>
+          <span>
+            By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products and services (message/data rates may apply), and that you’ve read our
+            <a href="privacy.html" target="_blank">Privacy Policy</a>
+            and
+            <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+          </span>
+        </label>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">Submit Request</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Jewel Basin Insurance Solutions LLC. All rights reserved.</p>
+  </footer>
+</body>
+</html>
