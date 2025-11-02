@@ -61,6 +61,13 @@ a:hover {
   border-radius: 6px;
 }
 
+/* ===== Fix giant logo ===== */
+.logo img {
+  max-height: 80px;     /* Keeps it a nice professional size */
+  width: auto;          /* Maintain proportions */
+  object-fit: contain;  /* Prevents squishing */
+}
+
 .branding .title {
   font-weight: 700;
   color: var(--color-primary);
@@ -244,4 +251,5 @@ a:hover {
     margin: 0 auto;
   }
 }
+
 
