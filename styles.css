@@ -49,6 +49,23 @@ a:hover {
   padding: 1.15rem 1.5rem;
 }
 
+/* Logo styling */
+.logo img {
+  height: 70px; /* Adjust this number to fit your header nicely */
+  width: auto;
+  display: block;
+}
+
+header.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, #edf3f6, #ffffff);
+  border-bottom: 1px solid #dbe4ea;
+}
+
 .branding {
   display: flex;
   align-items: center;
@@ -558,6 +575,7 @@ textarea {
     flex-direction: column;
   }
 }
+
 
 
 
