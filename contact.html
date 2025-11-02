@@ -3,38 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Jewel Basin Insurance Solutions</title>
+  <title>Contact | Jewel Basin Insurance Solutions LLC</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
   <!-- HEADER -->
-  <header class="topbar">
-    <div class="container topbar__inner">
+  <header class="site-header">
+    <div class="topbar container">
       <div class="brand">
-        <a href="index.html" class="logo">
-          <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+        <a href="index.html">
+          <img src="img/jbis-logo.png" alt="JBIS - Jewel Basin Insurance Solutions" class="logo" />
         </a>
       </div>
-      
-          <nav class="nav">
-  <a href="index.html#services">Services</a>
-  <a href="life.html">Life</a>
-  <a href="commercial.html">Commercial</a>
-  <a href="pets.html">Pets</a>
-  <a href="flood.html">Flood</a>
-  <a href="about.html">About</a>
-</nav>
+      <nav class="nav">
+        <a href="index.html#services">Services</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="tel:14063147878" class="btn-call">406-314-7878</a>
+      </div>
+    </div>
+  </header>
 
   <main>
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero hero--page">
       <div class="container hero_inner">
-        <div class="hero_text">
+        <div class="hero-text">
           <h1>Contact Me</h1>
-          <p>Let’s protect what you love. Reach out any time — I’m here to help with quotes, policy questions, or just friendly advice.</p>
+          <p>
+            Let’s protect what you love. Reach out any time — I’m here to help with quotes,
+            policy questions, or just friendly advice.
+          </p>
+        </div>
+        <div class="hero-img">
+          <img src="img/hero-home.jpg" alt="Local insurance help" class="hero-img" />
         </div>
       </div>
     </section>
+
+    <!-- CONTACT INFO -->
+    <section class="section container narrow">
+      <h2>Get in Touch</h2>
+      <p>
+        You can reach me by phone, email, or text. I’m available Monday–Friday, 9–5 MT, with
+        flexible after-hours scheduling by request.
+      </p>
+
+      <ul class="contact-list">
+        <li><strong>Email:</strong> <a href="mailto:kendalljonesins@outlook.com">kendalljonesins@outlook.com</a></li>
+        <li><strong>Phone/Text:</strong> <a href="tel:14063147878">406-314-7878</a></li>
+        <li><strong>Business:</strong> Jewel Basin Insurance Solutions LLC</li>
+        <li><em>“Let’s protect what you love.”</em></li>
+      </ul>
+    </section>
+
+    <!-- QUICK FORM (same routing as other pages) -->
+    <section class="section container">
+      <h2>Send a quick message</h2>
+      <p>Tell me what you need and I’ll follow up.</p>
+
+      <form
+        class="quote-form"
+        action="https://formsubmit.co/kendalljonesins@outlook.com"
+        method="POST"
+      >
+        <!-- formsubmit settings -->
+        <input type="hidden" name="_subject" value="New message from Contact page" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thank-you.html" />
+
+        <label>
+          Full name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" />
+        </label>
+        <label>
+          How can I help?
+          <textarea name="message" rows="4" placeholder="Quote, policy review, billing, etc."></textarea>
+        </label>
+
+        <label class="consent-box">
+          <input type="checkbox" name="consent" required />
+          I agree that Jewel Basin Insurance Solutions LLC may contact me about insurance products and
+          services. Message/data rates may apply. I’ve read the
+          <a href="privacy.html" target="_blank">Privacy Policy</a> and
+          <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+        </label>
+
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Jewel Basin Insurance Solutions LLC · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a></p>
+    </div>
+  </footer>
+</body>
+</html>    </section>
 
     <section class="section section-muted">
       <div class="container narrow">
