@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commercial Insurance | Jewel Basin Insurance Solutions</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container topbar_inner">
+      <div class="brand">
+        <a href="/" class="logo">
+          <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC Logo" />
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="index.html#services">Services</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html" class="active">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="btn btn-gradient" href="tel:4063147878">406-314-7878</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section hero">
+      <div class="container hero_inner">
+        <div class="hero_text">
+          <h1>Commercial Insurance</h1>
+          <p>
+            Protecting your business means more than just a policy — it means partnership. 
+            Whether you’re an independent contractor, small business owner, or growing enterprise, 
+            Jewel Basin Insurance Solutions helps secure your company’s future with tailored coverage.
+          </p>
+          <a href="#quote" class="btn">Get a Commercial Quote</a>
+        </div>
+        <div class="hero_img">
+          <img src="img/commercial.jpg" alt="Commercial Insurance Coverage" />
+        </div>
+      </div>
+    </section>
+
+    <!-- COVERAGE TYPES -->
+    <section class="section container">
+      <h2>Types of Commercial Coverage</h2>
+      <ul>
+        <li><strong>General Liability</strong> — Protection from accidents, injuries, and claims.</li>
+        <li><strong>Business Owner’s Policy (BOP)</strong> — Combines property and liability for simplicity.</li>
+        <li><strong>Commercial Auto</strong> — Covers vehicles used for business purposes.</li>
+        <li><strong>Workers’ Compensation</strong> — Safeguards your employees and your business.</li>
+        <li><strong>Professional Liability</strong> — Covers errors, omissions, and service-related claims.</li>
+      </ul>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section container">
+      <h2>Why Work With Jewel Basin</h2>
+      <p>
+        As an independent agency, I shop multiple carriers to ensure you get the best protection 
+        for your business at the right price. My mission is to simplify the insurance experience 
+        — with honest guidance, fast response, and clear communication every step of the way.
+      </p>
+      <ul>
+        <li>Access to top-rated carriers and competitive rates</li>
+        <li>Customized policies that fit your exact operations</li>
+        <li>Dedicated claims support and ongoing service</li>
+        <li>Flexible coverage as your business grows</li>
+      </ul>
+    </section>
+
+    <!-- QUOTE FORM -->
+    <section class="section container" id="quote">
+      <h2>Request a Commercial Quote</h2>
+      <form action="https://formsubmit.co/YOUR-EMAIL-HERE" method="POST" id="quote-form">
+        <input type="hidden" name="_subject" value="New JBIS Commercial Lead">
+        <input type="hidden" name="site_source" value="jewelbasinins.com">
+        <input type="hidden" name="page" id="page-field" value="Commercial">
+        <input type="hidden" name="status" value="New Lead">
+        <input type="hidden" name="assigned_to" value="Kendall">
+
+        <label>Full name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone</label>
+        <input type="text" name="phone" required>
+
+        <label>Business type</label>
+        <input type="text" name="business_type" placeholder="e.g. Contractor, Retail, Cleaning, etc.">
+
+        <label>Preferred contact time</label>
+        <select name="time">
+          <option>9–12 MT</option>
+          <option>12–3 MT</option>
+          <option>3–5 MT</option>
+          <option>After 5 MT (by appt)</option>
+        </select>
+
+        <div class="form-agreement">
+          <label class="agreement">
+            <input type="checkbox" name="consent" required />
+            <span>
+              By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you 
+              regarding business insurance services. You acknowledge that you’ve read and agree to our 
+              <a href="privacy.html" target="_blank">Privacy Policy</a> and 
+              <a href="terms.html" target="_blank">Terms & Conditions</a>.
+            </span>
+          </label>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-submit">Submit Request</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      © 2025 Jewel Basin Insurance Solutions LLC. All rights reserved. · 
+      <a href="privacy.html">Privacy Policy</a> · 
+      <a href="terms.html">Terms & Conditions</a>
+    </p>
+  </footer>
+</body>
+</html>
