@@ -2,6 +2,7 @@
    JEWEL BASIN THEME
    pulled from your logo
    ========================== */
+
 :root {
   --color-primary: #0D3B66;    /* deep teal/navy */
   --color-accent: #1E6091;     /* lake blue */
@@ -741,6 +742,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
