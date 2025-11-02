@@ -232,11 +232,6 @@ header.topbar {
   background: #fff;
 }
 
-/* Buttons aligned to the right if needed elsewhere */
-.form-actions {
-  text-align: right;
-}
-
 /* === Agreement + Consent Section (Fixed Layout) === */
 .form-agreement {
   display: flex;
@@ -633,6 +628,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
