@@ -74,6 +74,44 @@ a:hover {
   font-size: 1.05rem;
 }
 
+/* === Service / Spotlight Grids (force 2–4 per row) === */
+.spotlight-grid,
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+/* === Keep images from blowing up === */
+.spotlight img,
+.service-card img,
+.about-photo img {
+  width: 100%;
+  height: auto;
+  max-width: 480px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .spotlight img,
+  .service-card img,
+  .about-photo img {
+    max-width: 340px;
+  }
+}
+
+/* === Logo sizing === */
+.logo img {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
 /* === Phone Call Button with Gradient === */
 .btn--ghost {
   background: linear-gradient(135deg, #0d3b66, #1d5f9e);
@@ -251,5 +289,6 @@ a:hover {
     margin: 0 auto;
   }
 }
+
 
 
