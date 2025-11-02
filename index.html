@@ -113,67 +113,82 @@
   </article>
 </div>
 
-<form 
-  target="_blank" 
-  action="https://formsubmit.co/kendalljonesins@outlook.com" 
-  method="POST"
-  id="quote-form"
->
-  <!-- FormSubmit settings -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thankyou.html">
+<!-- QUOTE / CONTACT -->
+<section id="quote" class="section section-muted">
+  <div class="container narrow">
+    <h2>Request a quote</h2>
+    <p class="section_lead">
+      Tell me what you’re trying to protect — home, auto, life, commercial, or pets — and I’ll shop carriers to find the best fit.
+    </p>
 
-  <label>
-    Full name
-    <input type="text" name="name" required />
-  </label>
-  <label>
-    Email
-    <input type="email" name="email" required />
-  </label>
-  <label>
-    Phone
-    <input type="tel" name="phone" required />
-  </label>
+    <form action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST" class="quote-form">
+      <!-- where to go after submit -->
+      <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thank-you.html">
+      <!-- stop captcha -->
+      <input type="hidden" name="_captcha" value="false">
+      <!-- subject line -->
+      <input type="hidden" name="_subject" value="New website quote request">
 
-  <label>
-    Line of business
-    <select name="lob" required>
-      <option value="">Choose one...</option>
-      <option>Personal Auto</option>
-      <option>Home / Renters</option>
-      <option>Mobile / Manufactured</option>
-      <option>Commercial / Contractor</option>
-      <option>Life / Financial</option>
-    </select>
-  </label>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="Full name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="Email" required>
+        </div>
+      </div>
 
-  <label>
-    Preferred contact time
-    <select name="time">
-      <option>9–12 MT</option>
-      <option>12–3 MT</option>
-      <option>3–5 MT</option>
-      <option>After 5 MT (by appt)</option>
-    </select>
-  </label>
-  
-<!-- LEGAL CONSENT -->
-<div class="form-agreement">
-  <label class="agreement">
-    <input type="checkbox" name="consent" required />
-    <span>
-      By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products and services (message/data rates may apply). You acknowledge that you have read and agree to our
-      <a href="privacy.html" target="_blank">Privacy Policy</a> and
-      <a href="terms.html" target="_blank">Terms & Conditions</a>.
-    </span>
-  </label>
-</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="Phone">
+        </div>
+        <div class="form-group">
+          <label for="line">Line of business</label>
+          <select id="line" name="Line of business">
+            <option value="" selected>Choose one…</option>
+            <option>Home</option>
+            <option>Auto</option>
+            <option>Home + Auto</option>
+            <option>Life / Mortgage protection</option>
+            <option>Commercial</option>
+            <option>Pets</option>
+            <option>Flood</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
 
-<div class="form-submit">
-  <button type="submit" class="btn-submit">Submit Request</button>
-</div>
-</form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="time">Preferred contact time</label>
+          <select id="time" name="Preferred contact time">
+            <option>9–12 MT</option>
+            <option>12–3 MT</option>
+            <option>3–5 MT</option>
+            <option>After 5 MT (by appt)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Notes (drivers, property address, business type, pets, anything helpful)</label>
+        <textarea id="notes" name="Notes" rows="4"></textarea>
+      </div>
+
+      <div class="consent-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" name="Consent" value="Yes">
+          I agree that Jewel Basin Insurance Solutions LLC may contact me about insurance products and services. Message &amp; data rates may apply. I’ve read the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+  </div>
+</section>
 
 <footer class="footer">
   <p>© 2025 Jewel Basin Insurance Solutions LLC. All rights reserved. · 
@@ -181,17 +196,3 @@
     <a href="terms.html">Terms & Conditions</a>
   </p>
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
