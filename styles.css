@@ -232,64 +232,55 @@ header.topbar {
   background: #fff;
 }
 
-/* === Agreement + Consent Section (Fixed Layout) === */
+/* === Agreement + Consent Section === */
 .form-agreement {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin: 1rem auto;
+  max-width: 700px;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .agreement {
   display: flex;
   align-items: flex-start;
-  max-width: 750px;
+  gap: 0.6rem;
   background: #f7f9fc;
-  border: 1px solid #d0d8e0;
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #222;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .agreement input[type="checkbox"] {
-  margin-right: 0.75rem;
   margin-top: 0.25rem;
-  flex-shrink: 0;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
-.agreement span {
-  display: inline-block;
-  text-align: left;
-}
-
-.agreement a {
-  color: #1e4d6d;
-  text-decoration: underline;
-}
-
-/* === Submit Button === */
 .form-submit {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.25rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .btn-submit {
-  background-color: #0b3652;
-  color: #fff;
-  font-weight: 600;
+  background-color: #0d3b66;
+  color: white;
   border: none;
   border-radius: 6px;
-  padding: 0.75rem 1.75rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-  background-color: #145f8a;
+  background-color: #0b3258;
 }
 
 /* === Older consent styling cleaned out === */
@@ -660,6 +651,7 @@ footer.footer p {
     flex-direction: column;
   }
 }
+
 
 
 
