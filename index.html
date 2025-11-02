@@ -80,42 +80,58 @@
   </article>
 </div>
 
-        <!-- FORM PANEL -->
-        <div class="hero__panel">
-          <h2>Quick quote request</h2>
-          <form id="quote-form">
-            <label>
-              Full name
-              <input type="text" name="name" required />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" required />
-            </label>
-            <label>
-              Phone
-              <input type="tel" name="phone" required />
-            </label>
-            <label>
-              Line of business
-              <select name="lob" required>
-                <option value="">Choose one…</option>
-                <option>Personal Auto</option>
-                <option>Home / Renters</option>
-                <option>Mobile / Manufactured</option>
-                <option>Commercial / Contractor</option>
-                <option>Life / Financial</option>
-              </select>
-            </label>
-            <label>
-              Preferred contact time
-              <select name="time">
-                <option>9–12 MT</option>
-                <option>12–3 MT</option>
-                <option>3–5 MT</option>
-                <option>After 5 MT (by appt)</option>
-              </select>
-            </label>
+<form 
+  target="_blank" 
+  action="https://formsubmit.co/kendalljonesins@outlook.com" 
+  method="POST"
+  id="quote-form"
+>
+  <!-- FormSubmit settings -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thankyou.html">
+
+  <label>
+    Full name
+    <input type="text" name="name" required />
+  </label>
+  <label>
+    Email
+    <input type="email" name="email" required />
+  </label>
+  <label>
+    Phone
+    <input type="tel" name="phone" required />
+  </label>
+
+  <label>
+    Line of business
+    <select name="lob" required>
+      <option value="">Choose one...</option>
+      <option>Personal Auto</option>
+      <option>Home / Renters</option>
+      <option>Mobile / Manufactured</option>
+      <option>Commercial / Contractor</option>
+      <option>Life / Financial</option>
+    </select>
+  </label>
+
+  <label>
+    Preferred contact time
+    <select name="time">
+      <option>9–12 MT</option>
+      <option>12–3 MT</option>
+      <option>3–5 MT</option>
+      <option>After 5 MT (by appt)</option>
+    </select>
+  </label>
+
+  <label>
+    <input type="checkbox" required>
+    By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products and services.
+  </label>
+
+  <button type="submit" class="btn">Submit Request</button>
+</form>
 
             <!-- LEGAL CONSENT -->
             <label class="consent">
@@ -128,6 +144,7 @@
             <div class="form-actions">
   <button type="submit" class="btn btn-primary">Submit Request</button>
 </div>
+
 
 
 
