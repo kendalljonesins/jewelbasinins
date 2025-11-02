@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flood Insurance | Jewel Basin Insurance Solutions LLC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <a href="index.html" class="logo">
+          <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="index.html#services">Services</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html" class="active">Flood</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="tel:14063147878" class="btn-call">406-314-7878</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__inner container">
+        <div class="hero-text">
+          <h1>Flood Insurance That Actually Fits Your Property</h1>
+          <p>
+            Flooding isn’t just a coastal problem — snowmelt, heavy rain, drainage issues, and nearby creeks can all cause costly damage.
+            I can shop NFIP-style options and private flood markets to help you meet lender requirements or just protect your home’s equity.
+          </p>
+          <a href="#quote" class="btn btn-primary">Get a Flood Quote</a>
+        </div>
+        <div class="hero-photo">
+          <img src="img/flood.jpg" alt="Flooded street and home" class="hero-img" />
+        </div>
+      </div>
+    </section>
+
+<!-- FLOOD INFO -->
+<section class="section section-muted">
+  <div class="container narrow">
+    <h2>Why Flood Insurance Matters</h2>
+    <p>
+      Standard home and renters policies don’t cover flood. Even “not in a flood zone” doesn’t mean “no risk” —
+      it often just means the mortgage company doesn’t <em>require</em> it. One bad spring and you could be staring
+      at foundation, flooring, and contents damage.
+    </p>
+
+    <div class="hurricane-alert">
+      <p>Stay informed about active storms and hurricane updates:</p>
+      <a href="https://www.nhc.noaa.gov/?atl" target="_blank" class="btn btn-primary">
+        Check Hurricane Updates
+      </a>
+    </div>
+  </div>
+</section>
+
+    <!-- COVERAGE CARDS -->
+    <section class="section">
+      <div class="container">
+        <div class="spotlight-grid">
+          <article class="spotlight">
+            <h3>Primary / NFIP-style coverage</h3>
+            <p>
+              Designed to satisfy lender requirements and protect the structure. Great for homes in mapped flood areas or near water.
+            </p>
+            <ul>
+              <li>Building coverage</li>
+              <li>Some contents options</li>
+              <li>Can pair with your home policy</li>
+            </ul>
+          </article>
+
+          <article class="spotlight">
+            <h3>Private flood markets</h3>
+            <p>
+              Sometimes private carriers can offer better limits, faster underwriting, or lower deductibles — I’ll quote both so you can compare.
+            </p>
+            <ul>
+              <li>Higher coverage limits</li>
+              <li>Possible lower deductibles</li>
+              <li>Great for higher-value homes</li>
+            </ul>
+          </article>
+
+          <article class="spotlight">
+            <h3>Montana & surrounding areas</h3>
+            <p>
+              Snow runoff, backed-up drainage, and river/creek rise are real here. Even if you’re “low risk,” it’s worth getting a number.
+            </p>
+            <ul>
+              <li>Homes on/near water</li>
+              <li>Cabins & seasonal homes</li>
+              <li>Investment / rental property</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / WHY ME -->
+    <section class="section section-muted">
+      <div class="container narrow">
+        <h2>Why Work With Jewel Basin</h2>
+        <p>
+          I’m independent — which means I’m not stuck with one flood carrier or one price. I can quote, compare, and explain the difference
+          between “what the bank needs” and “what actually protects you.”
+        </p>
+        <ul>
+          <li>Fast quotes — I only need a few details</li>
+          <li>Lender-friendly documentation</li>
+          <li>Bundle with home for even better protection</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- QUOTE FORM -->
+    <section class="section" id="quote">
+      <div class="container narrow">
+        <h2>Request a Flood Insurance Quote</h2>
+        <p class="section_lead">
+          Tell me about the property and how it’s used — I’ll shop multiple options and get back to you.
+        </p>
+
+        <form class="quote-form" action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST">
+          <!-- formsubmit settings -->
+          <input type="hidden" name="_subject" value="New Flood Quote Request from JBIS website" />
+          <input type="hidden" name="_redirect" value="https://jewelbasinins.com/thankyou.html" />
+          <input type="text" name="_honey" style="display:none" />
+
+          <label>
+            Full name
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+
+          <label>
+            Property address
+            <input type="text" name="property_address" placeholder="Street, city, state" />
+          </label>
+
+          <label>
+            Is this your primary residence?
+            <select name="occupancy">
+              <option value="Primary residence">Yes – primary residence</option>
+              <option value="Secondary / seasonal">No – secondary / seasonal</option>
+              <option value="Rental / investment">Rental / investment</option>
+            </select>
+          </label>
+
+          <label>
+            Current home insurer (optional)
+            <input type="text" name="current_insurer" />
+          </label>
+
+          <!-- consent box -->
+          <div class="form-agreement">
+            <label class="agreement">
+              <input type="checkbox" name="consent" required />
+              <span>
+                By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding
+                insurance products and services (message/data rates may apply), and you acknowledge that you have read and agree to our
+                <a href="privacy.html" target="_blank">Privacy Policy</a> and
+                <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+              </span>
+            </label>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit">Submit Request</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      © 2025 Jewel Basin Insurance Solutions LLC. All rights reserved. ·
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </p>
+  </footer>
+</body>
+</html>
