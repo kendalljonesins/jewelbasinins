@@ -105,14 +105,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const bot = (t) => { const d=document.createElement('div'); d.className='bubble bot'; d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; };
   const user= (t) => { const d=document.createElement('div'); d.className='bubble user'; d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; };
 
-  function openChat(){
-    launcher.setAttribute('aria-expanded','true');
-    launcher.hidden = true;
-    panel.classList.remove('is-hidden','fade-out');
-    panel.setAttribute('aria-hidden','false');
-    if (!messages.dataset.greeted){
-      
+function openChat() {
+  launcher.setAttribute('aria-expanded', 'true');
+  launcher.hidden = true;
+
+  panel.classList.remove('is-hidden', 'hidden', 'fade-out');
+  panel.setAttribute('aria-hidden', 'false');
+
+  // Always start a fresh flow on open
+  startFlow();
+}
+
+      function startFlow() {
+  // reset step index + answers
+  i = 0;
+  if (typeof answers === 'object') {
+    Object.keys(answers).forEach(k => delete answers[k]);
+  }
+
+  // clear UI
+  messages.innerHTML = '';
+  inputWrap.innerHTML = '';
+  backBtn.disabled = true;
+  nextBtn.disabled = false;
+  nextBtn.textContent = 'Next';
+
+  // greet + render first question
 bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions.');
+ setTimeout(() => renderStep(), 300); // <-- always render first step
+}
 setTimeout(() => bot('Let’s go through a few quick questions to get your quote started.'), 900);
 
       messages.dataset.greeted = '1';
@@ -210,10 +231,14 @@ function resetChatSoft() {
 
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
+    if (!inputWrap.querySelector('[name]')) {
     const v = currentValue();
     if (!isValid(v)){ bot('Oops — please enter a valid response.'); return; }
     user(typeof v==='string' ? v : '✓');
     data[steps[idx].key] = v;
+  renderStep();
+  return;
+}
 
     if (idx < steps.length-1){ idx++; renderStep(); }
     else { submitLead(); }
