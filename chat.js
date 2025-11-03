@@ -136,13 +136,7 @@ function openChat() {
 bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions.');
  setTimeout(() => renderStep(), 300); // <-- always render first step
 }
-setTimeout(() => bot('Let’s go through a few quick questions to get your quote started.'), 900);
 
-      messages.dataset.greeted = '1';
-    } else {
-      renderStep();
-    }
-  }
   function closeChat(){
     panel.classList.add('fade-out');
     panel.addEventListener('transitionend', () => {
@@ -152,10 +146,6 @@ setTimeout(() => bot('Let’s go through a few quick questions to get your quote
       launcher.setAttribute('aria-expanded','false');
     }, { once:true });
   }
-
-  launcher.addEventListener('click', openChat);
-  closeBtn.addEventListener('click', closeChat);
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('is-hidden')) closeChat(); });
 
 function resetChatSoft() {
   // clear state & UI
@@ -289,4 +279,10 @@ setTimeout(resetChatSoft, 5000);
 return;
 
   }
+
+// --- Hook up launcher and close button ---
+launcher.addEventListener('click', openChat);
+closeBtn.addEventListener('click', closeChat);
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape' && !panel.classList.contains('is-hidden')) closeChat();
 });
