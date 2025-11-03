@@ -112,13 +112,14 @@ function openChat() {
   panel.classList.remove('is-hidden', 'hidden', 'fade-out');
   panel.setAttribute('aria-hidden', 'false');
 
-  // tiny delay ensures everything is rendered before starting
-  setTimeout(() => {
-    startFlow();
-  }, 200);
-}
+bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions.');
+setTimeout(() => {
+  bot('Let’s go through a few quick questions to get your quote started.');
+  // after greeting, show the first field
+  renderStep();
+}, 900);
+messages.dataset.greeted = '1';
 
-function startFlow() {
   // reset step index + answers
   idx = 0;
   Object.keys(data).forEach(k => delete data[k]);
@@ -183,17 +184,29 @@ function resetChatSoft() {
   function renderStep(){
     const s = steps[idx];
     backBtn.disabled = (idx===0);
-    nextBtn.textContent = (idx===steps.length-1) ? 'Send' : 'Next';
-    inputWrap.innerHTML = '';
-    bot(s.label);
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-    let el;
-    if (s.type==='select'){
-      el=document.createElement('select'); el.name=s.key; el.className='field';
-      el.innerHTML = `<option value="" disabled selected>Choose one…</option>` + s.options.map(o=>`<option>${o}</option>`).join('');
-    } else if (s.type==='textarea'){
-      el=document.createElement('textarea'); el.name=s.key; el.className='field'; el.rows=3; el.placeholder=s.placeholder||'';
-    } else if (s.type==='checkbox'){
+  // If no input for the current step has been rendered yet, render it.
+  if (!inputWrap.querySelector('[name]')) {
+    renderStep();
+    return;
+  }
+
+  const v = currentValue();
+  if (!isValid(v)) {
+    bot('Oops — please enter a valid response.');
+    return;
+  }
+
+  user(typeof v === 'string' ? v : '✓');
+  data[steps[idx].key] = v;
+
+  if (idx < steps.length - 1) { idx++; renderStep(); }
+  else { submitLead(); }
+});
+
+  } else if (s.type==='checkbox'){
       el=document.createElement('label'); el.className='check';
       el.innerHTML = `<input type="checkbox" name="${s.key}"> <span>I agree</span>`;
     } else {
