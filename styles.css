@@ -847,3 +847,14 @@ form.quote-form {
 }
 #jb-chat .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 22px rgba(255,153,102,.45); }
 
+#chat-widget {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#chat-widget.is-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
