@@ -298,6 +298,17 @@ img[src$="commercial.jpg"],
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
 }
 
+.coverage-card img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 /* =========================
    GENERIC SECTION
 ========================= */
@@ -760,6 +771,7 @@ form.quote-form {
   font-size: 0.9rem;
   color: rgba(13, 59, 102, 0.75);
 }
+
 
 
 
