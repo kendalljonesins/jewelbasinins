@@ -118,12 +118,10 @@ function openChat() {
   }, 200);
 }
 
-      function startFlow() {
+function startFlow() {
   // reset step index + answers
-  i = 0;
-  if (typeof answers === 'object') {
-    Object.keys(answers).forEach(k => delete answers[k]);
-  }
+  idx = 0;
+  Object.keys(data).forEach(k => delete data[k]);
 
   // clear UI
   messages.innerHTML = '';
@@ -133,8 +131,8 @@ function openChat() {
   nextBtn.textContent = 'Next';
 
   // greet + render first question
-bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions.');
- setTimeout(() => renderStep(), 300); // <-- always render first step
+  bot("Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions. Let’s get your quote started.");
+  setTimeout(() => renderStep(), 300); // always render first step
 }
 
   function closeChat(){
@@ -148,25 +146,23 @@ bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Soluti
   }
 
 function resetChatSoft() {
-  // clear state & UI
-  i = 0;
-  Object.keys(answers).forEach(k => delete answers[k]);
+  idx = 0;
+  Object.keys(data).forEach(k => delete data[k]);
   messages.innerHTML = '';
   inputWrap.innerHTML = '';
   nextBtn.disabled = false;
   backBtn.disabled = false;
+  nextBtn.textContent = 'Next';
 
-  // Sage reintroduces herself in a natural, human tone
   bot("Hi again! Sage here — looks like we’ve already chatted a bit. Would you like to start another quote or explore a different coverage option?");
-  
   const restart = document.createElement('button');
   restart.type = 'button';
-  restart.className = 'btn btn-primary';
+  restart.className = 'btn';
   restart.textContent = 'Start a new quote';
   restart.addEventListener('click', () => {
     messages.innerHTML = '';
     inputWrap.innerHTML = '';
-    nextStep(); // kicks off the first question again
+    renderStep(); // kick off the first question again
   });
   inputWrap.appendChild(restart);
 }
@@ -221,16 +217,31 @@ function resetChatSoft() {
     return v.trim().length>0;
   }
 
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    if (!inputWrap.querySelector('[name]')) {
-    const v = currentValue();
-    if (!isValid(v)){ bot('Oops — please enter a valid response.'); return; }
-    user(typeof v==='string' ? v : '✓');
-    data[steps[idx].key] = v;
-  renderStep();
-  return;
-}
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // make sure the current step's field exists
+  if (!inputWrap.querySelector('[name]')) { 
+    renderStep(); 
+    return; 
+  }
+
+  const v = currentValue();
+  if (!isValid(v)) { 
+    bot('Oops — please enter a valid response.'); 
+    return; 
+  }
+
+  user(typeof v === 'string' ? v : '✓');
+  data[steps[idx].key] = v;
+
+  if (idx < steps.length - 1) { 
+    idx++; 
+    renderStep(); 
+  } else { 
+    submitLead(); 
+  }
+});
 
     if (idx < steps.length-1){ idx++; renderStep(); }
     else { submitLead(); }
