@@ -134,10 +134,8 @@ setTimeout(() => bot('Let’s go through a few quick questions to get your quote
   closeBtn.addEventListener('click', closeChat);
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('is-hidden')) closeChat(); });
 
-//  After thank you no redirect
-  function resetChatSoft() {
-
-    // clear state & UI
+function resetChatSoft() {
+  // clear state & UI
   i = 0;
   Object.keys(answers).forEach(k => delete answers[k]);
   messages.innerHTML = '';
@@ -145,8 +143,9 @@ setTimeout(() => bot('Let’s go through a few quick questions to get your quote
   nextBtn.disabled = false;
   backBtn.disabled = false;
 
-  // greet again and re-start flow
-  bot("Hi again — I’m Sage. Want to start a new quote?");
+  // Sage reintroduces herself in a natural, human tone
+  bot("Hi again! Sage here — looks like we’ve already chatted a bit. Would you like to start another quote or explore a different coverage option?");
+  
   const restart = document.createElement('button');
   restart.type = 'button';
   restart.className = 'btn btn-primary';
@@ -154,7 +153,7 @@ setTimeout(() => bot('Let’s go through a few quick questions to get your quote
   restart.addEventListener('click', () => {
     messages.innerHTML = '';
     inputWrap.innerHTML = '';
-    nextStep();      // kicks off the first question again
+    nextStep(); // kicks off the first question again
   });
   inputWrap.appendChild(restart);
 }
