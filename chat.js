@@ -1,184 +1,138 @@
-(() => {
-  const launcher = document.getElementById('jb-chat-launcher');
-  const panel    = document.getElementById('jb-chat');
-  const closeBtn = panel?.querySelector('.jb-chat__close');
-  const messages = document.getElementById('jb-chat-messages');
-  const form     = document.getElementById('jb-chat-form');
-  const inputWrap= document.getElementById('jb-chat-input');
-  const backBtn  = document.getElementById('jb-chat-back');
-  const nextBtn  = document.getElementById('jb-chat-next');
+// --- ensure DOM is ready even if defer is missing ---
+(function () {
+  function ready(fn){ document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
 
-  if (!launcher || !panel || !messages || !form || !inputWrap) return;
+  ready(function () {
+    const launcher   = document.getElementById('jb-chat-launcher');
+    const panel      = document.getElementById('jb-chat');
+    const closeBtn   = panel ? panel.querySelector('.jb-chat__close') : null;
+    const messages   = document.getElementById('jb-chat-messages');
+    const inputWrap  = document.getElementById('jb-chat-input');
 
-  // Step-by-step prompts
-  const steps = [
-    { key:'name',   label:'What’s your name?',                       type:'text',     placeholder:'Full name',            validate: v => v.trim().length > 1 },
-    { key:'email',  label:'Great — what’s the best email?',          type:'email',    placeholder:'you@email.com',        validate: v => /^\S+@\S+\.\S+$/.test(v) },
-    { key:'phone',  label:'And a phone number for quick follow-up?', type:'tel',      placeholder:'406-555-1234',         validate: v => v.replace(/\D/g,'').length >= 10 },
-    { key:'line',   label:'Which line are you interested in?',       type:'select',   options:['Auto','Home','Renters','Life','Commercial','Flood','Pets','Other'] },
-    { key:'zip',    label:'What ZIP code is this for?',              type:'text',     placeholder:'e.g., 59901',          validate: v => /^\d{5}$/.test(v) },
-    { key:'notes',  label:'Anything else I should know?',            type:'textarea', placeholder:'Optional notes' },
-    { key:'consent',label:'Please confirm you consent to be contacted. You can opt out anytime.', type:'checkbox', required:true }
-  ];
-
-  let i = 0;
-  const data = {};
-
-  function bot(txt) {
-    const d = document.createElement('div');
-    d.className = 'bubble bot';
-    d.textContent = txt;
-    messages.appendChild(d);
-    messages.scrollTop = messages.scrollHeight;
-  }
-  function user(txt) {
-    const d = document.createElement('div');
-    d.className = 'bubble user';
-    d.textContent = txt;
-    messages.appendChild(d);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  function openChat() {
-    panel.classList.remove('is-hidden');
-    panel.setAttribute('aria-hidden', 'false');
-    launcher.hidden = true;
-
-    if (!messages.children.length) {
-    bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions.');
-    setTimeout(() => bot('Let’s go through a few quick questions to get your quote started.'), 900);
-    } else {
-      renderStep();
-    }
-  }
-  function closeChat() {
-    panel.classList.add('is-hidden');
-    panel.setAttribute('aria-hidden', 'true');
-    launcher.hidden = false;
-  }
-
-  function renderStep() {
-    const s = steps[i];
-    backBtn.disabled = (i === 0);
-    inputWrap.innerHTML = '';
-    nextBtn.textContent = (i === steps.length - 1) ? 'Send' : 'Next';
-
-    bot(s.label);
-
-    let el;
-    if (s.type === 'select') {
-      el = document.createElement('select');
-      el.name = s.key;
-      el.className = 'field';
-      el.innerHTML = `<option value="" disabled selected>Choose one…</option>` +
-        s.options.map(o => `<option>${o}</option>`).join('');
-    } else if (s.type === 'textarea') {
-      el = document.createElement('textarea');
-      el.name = s.key;
-      el.placeholder = s.placeholder || '';
-      el.rows = 3;
-      el.className = 'field';
-    } else if (s.type === 'checkbox') {
-      el = document.createElement('label');
-      el.className = 'check';
-      el.innerHTML = `<input type="checkbox" name="${s.key}"> <span>I agree</span>`;
-    } else {
-      el = document.createElement('input');
-      el.type = s.type;
-      el.name = s.key;
-      el.placeholder = s.placeholder || '';
-      el.className = 'field';
-    }
-    inputWrap.appendChild(el);
-
-    const focusEl = el.tagName === 'LABEL' ? el.querySelector('input') : el;
-    focusEl && focusEl.focus();
-  }
-
-  function currentValue() {
-    const s = steps[i];
-    if (s.type === 'checkbox') {
-      return inputWrap.querySelector('input').checked ? 'Yes' : '';
-    }
-    const el = inputWrap.querySelector('.field');
-    return el ? el.value : '';
-  }
-
-  function valid(v) {
-    const s = steps[i];
-    if (s.type === 'checkbox') return inputWrap.querySelector('input').checked || !s.required;
-    if (s.validate) return s.validate(v);
-    return v.trim().length > 0;
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const v = currentValue();
-    if (!valid(v)) {
-      bot('Oops — please enter a valid response.');
+    if (!launcher || !panel || !closeBtn || !messages || !inputWrap) {
+      console.warn('[JBIS Chat] Missing required elements/ids.');
       return;
     }
-    user(typeof v === 'string' ? v : '✓');
-    data[steps[i].key] = v;
 
-    if (i < steps.length - 1) {
-      i++;
-      renderStep();
-    } else {
-      submitLead();
+    // Basic bubbles
+    const bot  = (t)=>{ const p=document.createElement('p'); p.className='jb-bot';  p.textContent=t; messages.appendChild(p); messages.scrollTop=messages.scrollHeight; };
+    const user = (t)=>{ const p=document.createElement('p'); p.className='jb-user'; p.textContent=t; messages.appendChild(p); messages.scrollTop=messages.scrollHeight; };
+
+    // Simple “typing” effect
+    const say = (t, delay=500)=> new Promise(res=> setTimeout(()=>{ bot(t); res(); }, delay));
+
+    // Form state captured through the flow
+    const answers = { };
+
+    // Build inputs per step
+    function askName() {
+      inputWrap.innerHTML = `
+        <label>What’s your name?
+          <input type="text" id="jb-name" placeholder="Full name" required />
+        </label>
+        <button class="btn" id="jb-next">Next</button>
+      `;
+      document.getElementById('jb-next').onclick = () => {
+        const v = document.getElementById('jb-name').value.trim();
+        if (!v) return;
+        answers.name = v; user(v); askEmail();
+      };
     }
+
+    function askEmail() {
+      inputWrap.innerHTML = `
+        <label>Email
+          <input type="email" id="jb-email" placeholder="you@example.com" required />
+        </label>
+        <button class="btn" id="jb-next">Next</button>
+      `;
+      document.getElementById('jb-next').onclick = () => {
+        const v = document.getElementById('jb-email').value.trim();
+        if (!v) return;
+        answers.email = v; user(v); askPhone();
+      };
+    }
+
+    function askPhone() {
+      inputWrap.innerHTML = `
+        <label>Phone
+          <input type="tel" id="jb-phone" placeholder="406-555-1234" required />
+        </label>
+        <button class="btn" id="jb-next">Next</button>
+      `;
+      document.getElementById('jb-next').onclick = () => {
+        const v = document.getElementById('jb-phone').value.trim();
+        if (!v) return;
+        answers.phone = v; user(v); askLine();
+      };
+    }
+
+    function askLine() {
+      inputWrap.innerHTML = `
+        <label>What do you need?
+          <select id="jb-line">
+            <option>Home</option>
+            <option>Auto</option>
+            <option>Renters</option>
+            <option>Life</option>
+            <option>Commercial</option>
+            <option>Flood</option>
+            <option>Pets</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <button class="btn" id="jb-next">Submit</button>
+      `;
+      document.getElementById('jb-next').onclick = () => {
+        const v = document.getElementById('jb-line').value;
+        answers.line = v; user(v); submitLead();
+      };
+    }
+
+    function submitLead() {
+      // Build form for FormSubmit
+      const f = document.createElement('form');
+      f.style.display = 'none';
+      f.method = 'POST';
+      f.action = 'https://formsubmit.co/ajax/kendalljonesins@outlook.com';
+
+      // Add captured fields
+      const add = (k,v)=>{ const i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=v; f.appendChild(i); };
+      Object.entries(answers).forEach(([k,v])=> add(k,v));
+
+      // Helpful extras (no redirect)
+      add('source', location.href);
+      add('_subject', 'New Web chat lead');
+
+      document.body.appendChild(f);
+
+      // Send async; keep user in chat
+      fetch(f.action, { method:'POST', body: new FormData(f) })
+        .then(()=> {
+          messages.innerHTML = '';
+          say('Thank you! I’ve sent your info to Kendall — he’ll follow up soon. It’s been a pleasure assisting you. — Sage 🌿', 400);
+          inputWrap.innerHTML = '';
+        })
+        .catch(()=> {
+          bot('Hm, something hiccuped sending that. You can also call/text 406-314-7878 and I’ll log this try for Kendall. — Sage 🌿');
+        });
+    }
+
+    // Open/close logic
+    function openChat() {
+      launcher.setAttribute('aria-expanded','true');
+      panel.classList.remove('hidden');
+      messages.innerHTML = '';
+      inputWrap.innerHTML = '';
+      say('Hi! I’m Sage, Kendall’s digital assistant. I can grab the basics for a quote and send them straight to him. Ready?', 150)
+        .then(askName);
+    }
+    function closeChat() {
+      panel.classList.add('hidden');
+      launcher.setAttribute('aria-expanded','false');
+    }
+
+    launcher.addEventListener('click', openChat);
+    closeBtn.addEventListener('click', closeChat);
   });
-
-  backBtn.addEventListener('click', () => {
-    if (i === 0) return;
-    i--;
-    renderStep();
-  });
-
-  launcher.addEventListener('click', openChat);
-  closeBtn.addEventListener('click', closeChat);
-
-  function submitLead() {
-    bot('Sending your info…');
-
-    // Build a hidden form and post to FormSubmit
-    const f = document.createElement('form');
-    f.method = 'POST';
-    
-    // TODO: replace with your FormSubmit endpoint (email or unique URL)
-    f.action = 'https://formsubmit.co/ajax/kendalljonesins@outlook.com';
-
-    Object.entries(data).forEach(([k, v]) => {
-      const inp = document.createElement('input');
-      inp.type = 'hidden';
-      inp.name = k;
-      inp.value = v;
-      f.appendChild(inp);
-    });
-
-// Optimistic UI
-const extras = {
-  source: location.href,
-  _subject: 'New Web chat lead'
-};
-    
-Object.entries(extras).forEach(([k, v]) => {
-  const inp = document.createElement('input');
-  inp.type = 'hidden';
-  inp.name = k;
-  inp.value = v;
-  f.appendChild(inp);
-});
-
-// Send via AJAX to stay on-page
-fetch('https://formsubmit.co/ajax/kendalljonesins@outlook.com', {
-  method: "POST",
-  body: new FormData(f)
-}).then(() => {
-  messages.innerHTML = '';
-  bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon. It’s been a pleasure assisting you. — Sage 🌿');
-  inputWrap.innerHTML = '';
-  nextBtn.disabled = true;
-  backBtn.disabled = true;
-});
-return;
+})();
