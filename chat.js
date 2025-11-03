@@ -134,6 +134,31 @@ setTimeout(() => bot('Let’s go through a few quick questions to get your quote
   closeBtn.addEventListener('click', closeChat);
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !panel.classList.contains('is-hidden')) closeChat(); });
 
+//  After thank you no redirect
+  function resetChatSoft() {
+
+    // clear state & UI
+  i = 0;
+  Object.keys(answers).forEach(k => delete answers[k]);
+  messages.innerHTML = '';
+  inputWrap.innerHTML = '';
+  nextBtn.disabled = false;
+  backBtn.disabled = false;
+
+  // greet again and re-start flow
+  bot("Hi again — I’m Sage. Want to start a new quote?");
+  const restart = document.createElement('button');
+  restart.type = 'button';
+  restart.className = 'btn btn-primary';
+  restart.textContent = 'Start a new quote';
+  restart.addEventListener('click', () => {
+    messages.innerHTML = '';
+    inputWrap.innerHTML = '';
+    nextStep();      // kicks off the first question again
+  });
+  inputWrap.appendChild(restart);
+}
+
   // --- conversational flow
   const steps = [
     { key:'name',   label:'What’s your name?',                       type:'text',     placeholder:'Full name',            validate:v=>v.trim().length>1 },
@@ -229,11 +254,11 @@ fetch(f.action, {
   body: new FormData(f)
 }).then(() => {
   messages.innerHTML = '';
-bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon. It’s been a pleasure assisting you. — Sage 🌿');
+bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply to you. It’s been a pleasure assisting you. — Sage 🌿');
   inputWrap.innerHTML = '';
   nextBtn.disabled = true;
   backBtn.disabled = true;
-  setTimeout(closeChat, 900);
+setTimeout(resetChatSoft, 5000);
 });
 return;
 
