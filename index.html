@@ -12,6 +12,12 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
+<div id="chat-widget" class="chat-widget" role="dialog" aria-label="Chat with Kendall">
+  <!-- your chat header … -->
+  <button class="chat-close" aria-label="Close chat">×</button>
+  <!-- your chat body … -->
+</div>
+ 
 <!-- ===== JBIS Chat Lead Widget ===== -->
 <button id="jb-chat-launcher" aria-label="Open chat">Let’s chat</button>
 
@@ -206,12 +212,26 @@
     addBubble("Hi! I’m Kendall at JBIS. Let’s get you set up for a quick quote.");
     setTimeout(nextStep, 400);
   }
-  function closeChat() { panel.setAttribute('hidden', ''); }
+  
+function closeChat() {
+  panel.classList.add('is-hidden'); // smooth fade/slide out
+  setTimeout(() => {
+    panel.setAttribute('hidden', '');
+    launcher.hidden = false; // show “Let’s Chat” button again
+    launcher.setAttribute('aria-expanded', 'false');
+  }, 300); // matches your CSS transition duration
+}
 
   launcher.addEventListener('click', openChat);
   closeBtn.addEventListener('click', closeChat);
 })();
 </script>
+
+<!-- Chat launcher (hidden until chat is closed) -->
+<button id="chat-launcher" class="chat-launcher" aria-haspopup="dialog" aria-controls="chat-widget" aria-expanded="false" hidden>
+  Let’s Chat
+</button>
+
   
 <body>
 <header class="topbar">
@@ -412,5 +432,6 @@
   </footer>
 </body>
 </html>
+
 
 
