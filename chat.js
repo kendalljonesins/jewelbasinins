@@ -45,8 +45,8 @@
     launcher.hidden = true;
 
     if (!messages.children.length) {
-      bot('Hi! I’m Kendall at JBIS. Let’s get you a quick quote.');
-      setTimeout(renderStep, 400);
+    bot('Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions.');
+    setTimeout(() => bot('Let’s go through a few quick questions to get your quote started.'), 900);
     } else {
       renderStep();
     }
@@ -144,8 +144,9 @@
     // Build a hidden form and post to FormSubmit
     const f = document.createElement('form');
     f.method = 'POST';
+    
     // TODO: replace with your FormSubmit endpoint (email or unique URL)
-    f.action = 'https://formsubmit.co/YOUR_EMAIL_OR_ENDPOINT';
+    f.action = 'https://formsubmit.co/ajax/kendalljonesins@outlook.com';
 
     Object.entries(data).forEach(([k, v]) => {
       const inp = document.createElement('input');
@@ -155,28 +156,29 @@
       f.appendChild(inp);
     });
 
-    // Helpful extras
-    const extras = {
-      source: location.href,
-      _subject: 'New website chat lead',
-      _next: location.origin + '/thanks.html'
-    };
-    Object.entries(extras).forEach(([k, v]) => {
-      const inp = document.createElement('input');
-      inp.type = 'hidden';
-      inp.name = k;
-      inp.value = v;
-      f.appendChild(inp);
-    });
+// Optimistic UI
+const extras = {
+  source: location.href,
+  _subject: 'New Web chat lead'
+};
+    
+Object.entries(extras).forEach(([k, v]) => {
+  const inp = document.createElement('input');
+  inp.type = 'hidden';
+  inp.name = k;
+  inp.value = v;
+  f.appendChild(inp);
+});
 
-    document.body.appendChild(f);
-    f.submit();
-
-    // Optimistic UI
-    messages.innerHTML = '';
-    bot('Got it! I’ll reach out shortly. You can close this window.');
-    inputWrap.innerHTML = '';
-    nextBtn.disabled = true;
-    backBtn.disabled = true;
-  }
-})();
+// Send via AJAX to stay on-page
+fetch('https://formsubmit.co/ajax/kendalljonesins@outlook.com', {
+  method: "POST",
+  body: new FormData(f)
+}).then(() => {
+  messages.innerHTML = '';
+  bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon. It’s been a pleasure assisting you. — Sage 🌿');
+  inputWrap.innerHTML = '';
+  nextBtn.disabled = true;
+  backBtn.disabled = true;
+});
+return;
