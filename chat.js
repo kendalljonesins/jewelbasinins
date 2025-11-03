@@ -131,9 +131,6 @@ messages.dataset.greeted = '1';
   nextBtn.disabled = false;
   nextBtn.textContent = 'Next';
 
-  // greet + render first question
-  bot("Hello! I’m Sage, your digital assistant with Jewel Basin Insurance Solutions. Let’s get your quote started.");
-  setTimeout(() => renderStep(), 300); // always render first step
 }
 
   function closeChat(){
@@ -184,8 +181,6 @@ function resetChatSoft() {
   function renderStep(){
     const s = steps[idx];
     backBtn.disabled = (idx===0);
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
 
   // If no input for the current step has been rendered yet, render it.
   if (!inputWrap.querySelector('[name]')) {
@@ -201,10 +196,6 @@ form.addEventListener('submit', (e) => {
 
   user(typeof v === 'string' ? v : '✓');
   data[steps[idx].key] = v;
-
-  if (idx < steps.length - 1) { idx++; renderStep(); }
-  else { submitLead(); }
-});
 
   } else if (s.type==='checkbox'){
       el=document.createElement('label'); el.className='check';
@@ -260,7 +251,6 @@ form.addEventListener('submit', (e) => {
     else { submitLead(); }
   });
 
-  backBtn.addEventListener('click', ()=>{
     if (idx===0) return;
     idx--; renderStep();
   });
