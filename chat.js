@@ -4,7 +4,7 @@
   const cfg = Object.assign({
     injectStyles: true,
     agency: 'JBIS',
-    formEndpoint: 'https://formsubmit.co/your@email.com', // <-- CHANGE THIS
+    formEndpoint: 'https://formsubmit.co/kendalljonesins@outlook.com',
     brandColors: {
       headerFrom: '#0e3a5b',
       headerTo:   '#1a5b87'
