@@ -143,5 +143,40 @@
       <a href="terms.html">Terms & Conditions</a>
     </p>
   </footer>
+
+  <script src="chat.js" defer></script>
+
+<!-- Chat Launcher -->
+<button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">
+  Let’s Chat
+</button>
+
+<!-- Chat Panel -->
+<div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
+  <div class="jb-chat__header">
+    <strong>JBIS</strong>
+    <button class="jb-chat__close" aria-label="Close chat">&times;</button>
+  </div>
+
+  <div id="jb-chat-messages" class="jb-chat__messages"></div>
+
+  <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
+    <div id="jb-chat-input"></div>
+    <div class="jb-chat__actions">
+      <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
+      <button type="submit" id="jb-chat-next" class="btn">Next</button>
+    </div>
+  </form>
+
+  <div class="jb-chat__footer">
+    <small>
+      By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply).
+      You can opt out anytime. We don’t sell your data; it’s used only to provide quotes.
+      See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and
+      <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+    </small>
+  </div>
+</div>
+  
 </body>
 </html>
