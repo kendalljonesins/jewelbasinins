@@ -7,27 +7,42 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <!-- HEADER -->
-  <header class="site-header">
-    <div class="topbar container">
-      <div class="brand">
-        <a href="index.html">
-          <img src="img/jbis-logo.png" alt="JBIS - Jewel Basin Insurance Solutions" class="logo" />
-        </a>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jewel Basin Insurance Solutions LLC</title>
+  <meta name="description" content="Independent insurance agency providing personal and commercial coverage across Montana and beyond." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar_inner">
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpg" alt="Jewel Basin Insurance Solutions LLC logo">
+      </a>
+
       <nav class="nav">
         <a href="index.html#services">Services</a>
         <a href="life.html">Life</a>
         <a href="commercial.html">Commercial</a>
         <a href="pets.html">Pets</a>
         <a href="flood.html">Flood</a>
+        <a href="other.html">Other</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="other.html" class="active">Other</a>
+        <a href="licenses.html">Licenses</a>
       </nav>
-      <div class="header-actions">
-        <a href="tel:14063147878" class="btn btn-call">406-314-7878</a>
-      </div>
+
+      <a href="tel:14063147878" class="btn-call">406-314-7878</a>
     </div>
   </header>
 
