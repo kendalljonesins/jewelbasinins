@@ -112,8 +112,10 @@ function openChat() {
   panel.classList.remove('is-hidden', 'hidden', 'fade-out');
   panel.setAttribute('aria-hidden', 'false');
 
-  // Always start a fresh flow on open
-  startFlow();
+  // tiny delay ensures everything is rendered before starting
+  setTimeout(() => {
+    startFlow();
+  }, 200);
 }
 
       function startFlow() {
