@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <strong>JBIS</strong>
       <button class="jb-chat__close" aria-label="Close chat">&times;</button>
     </div>
-    <div id="jb-chat-messages" class="jb-chat__messages"></div>
+    <div id="jb-chat-messages" class="jb-chat__messages" aria-live="polite"></div>
     <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
       <div id="jb-chat-input"></div>
       <div class="jb-chat__actions">
@@ -63,7 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
     { k:['commercial','business','llc','contractor'], a:'For small business, I can help directly or you can use NEXT/Coterie quick-quote links. I’ll review if you prefer.' },
     { k:['pet','pets','dog','cat','vet'], a:'For pets, Fetch Pet Insurance is a great option — I can share the link when you’re ready.' },
     { k:['flood','hurricane','nhc','map'], a:'Flood is separate from homeowners. For Atlantic updates, you can check the NHC site from my Flood page.' },
-    { k:['life','mortgage','term','final expense'], a:'I can help with term life, mortgage protection, and more. A few details will let me tailor options.' }
+    { k:['life','mortgage','term','final expense'], a:'I can help with term life, mortgage protection, and more. A few details will let me tailor options.' },
+    // Tend / Home Warranty quick reply
+    { k:['tend','home warranty','warranty','home protection'], 
+      a:'If you’re exploring Home Warranty, here’s my Tend referral link: https://partner.mytend.com/first-connect?subproducerID=FC47881' },
+    // Arkay / Auto Warranty quick reply
+    { k:['arkay','auto warranty','vehicle service contract','vsc','extended warranty'],
+      a:'For Auto Warranty (Vehicle Service Contracts), here’s my Arkay referral link: https://arkay.info/FC47881' }
   ];
   function isQuestion(txt){ return /[?]|^(who|what|when|where|why|how)\b/i.test((txt||'').trim()); }
   function answerKB(q){
@@ -135,6 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
       { title:'Fetch Pet Insurance', body:'Comprehensive coverage for dogs and cats — emergencies, illnesses, more.', actions:[{label:'Explore Fetch',href:LINKS.FETCH},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
     ]);
   }
+  // Other Coverage (Home Warranty via Tend + Auto Warranty via Arkay)
+  function showOtherOffers(){
+    bot('Here are specialty options under Other Coverage. You can explore them now or continue with me.');
+    botCarousel([
+      { title:'Other Coverage — Home Warranty (Tend)', body:'Tend offers Home Warranty options to help protect key systems and appliances, complementing your homeowners policy.', actions:[{label:'Open Tend — Home Warranty',href:LINKS.TEND},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] },
+      { title:'Other Coverage — Auto Warranty (Arkay)', body:'Arkay offers Auto Warranty (Vehicle Service Contracts) to cover major mechanical breakdowns beyond your standard auto policy.', actions:[{label:'Open Arkay — Auto Warranty',href:LINKS.ARKAY},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
+    ]);
+  }
 
   // =========================
   // Self-serve links
@@ -143,7 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
     NEXT_BIND:   'https://track.nextinsurance.com/links?agent_affiliation=dVEVbUfFPrNPRrRM&serial=992855993&channel=affiliation',
     NEXT_REVIEW: 'https://track.nextinsurance.com/links?agent_affiliation=xX3E6j8HoQF3aATU&serial=992855993&channel=affiliation',
     COTERIE:     'https://app.coterieinsurance.com/quote?p=nussygobyebye%40gmail.com',
-    FETCH:       'https://www.fetchpet.com/mypet?a=KendallJonesIns&utm_source=firstconnect&utm_medium=brokerportal&utm_campaign=firstconnect_email&c=firstconnect&p=firstconnect'
+    FETCH:       'https://www.fetchpet.com/mypet?a=KendallJonesIns&utm_source=firstconnect&utm_medium=brokerportal&utm_campaign=firstconnect_email&c=firstconnect&p=firstconnect',
+    // Other coverage referrals
+    TEND:        'https://partner.mytend.com/first-connect?subproducerID=FC47881',
+    ARKAY:       'https://arkay.info/FC47881'
   };
 
   // =========================
@@ -219,6 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bot(a);
         if (/commercial|business|contractor/i.test(v)) showCommercialOffers();
         if (/pet|dog|cat/i.test(v)) showPetOffers();
+        if (/home\s*warranty|tend/i.test(v)) showOtherOffers();
+        if (/auto\s*warranty|arkay|vehicle\s*service\s*contract|vsc|extended\s*warranty/i.test(v)) showOtherOffers();
       } else {
         bot('I don’t want to guess. I can have Kendall follow up with a precise answer—shall we finish the quick details?');
       }
@@ -232,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(steps[idx].key==='line'){
       if(v==='Commercial'){ showCommercialOffers(); return; }
       if(v==='Pets'){ showPetOffers(); return; }
+      if(v==='Other'){ showOtherOffers(); return; } // Tend + Arkay appear here
     }
 
     if(idx<steps.length-1){ idx++; renderStep(); } else { submitLead(); }
