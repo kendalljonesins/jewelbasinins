@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // OPTIONAL: set this when you deploy your serverless endpoint (e.g., Vercel)
   // Example: const BRAIN_API_URL = 'https://your-project.vercel.app/api/brain';
 
-  const BRAIN_API_URL = '';
+  const BRAIN_API_URL = 'https://jewelbasinins.vercel.app/api/brain';
 
   // ============ STYLES (scoped to #jb-chat) ============
   const style=document.createElement('style');
