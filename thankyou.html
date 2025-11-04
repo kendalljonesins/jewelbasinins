@@ -1,38 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thank You | Jewel Basin Insurance Solutions</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Thanks for reaching out to JBIS. I’ll review your details and follow up with any questions and discount opportunities." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <header>
-    <img src="img/logo.png" alt="Jewel Basin Insurance Solutions Logo" class="logo">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="life.html">Life</a>
-      <a href="commercial.html">Commercial</a>
-      <a href="pets.html">Pets</a>
-      <a href="index.html#quote">Contact</a>
-    </nav>
+  <!-- =========================
+       HEADER / NAV
+  ========================= -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo" aria-label="Jewel Basin Insurance Solutions LLC">
+        <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#services">Home</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="other.html">Other</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Call/Text chooser button -->
+      <button id="callTextBtn" class="btn-call" type="button">Call/Text Now</button>
+    </div>
   </header>
 
-  <section class="thankyou-section">
-    <div class="thankyou-container">
-      <h1>Thank You for Reaching Out!</h1>
-      <p>Your information has been successfully submitted.</p>
-      <p>A licensed broker from <strong>Jewel Basin Insurance Solutions LLC</strong> will contact you shortly to assist with your coverage needs.</p>
-      <p>We appreciate your trust — our mission is simple: <em>to protect what you love most.</em></p>
+  <main>
+    <!-- =========================
+         HERO
+    ========================= -->
+    <section class="hero hero--page">
+      <div class="hero-inner container">
+        <div class="hero-text">
+          <h1>Thank you — I’ve got your request.</h1>
+          <p>
+            I’ll review your information shortly. <strong>Upon review, I may contact you for additional details and to
+            go over more discounts that may be available to you.</strong>
+          </p>
+          <div class="btn-row">
+            <a href="index.html" class="btn">Return Home</a>
+            <a href="contact.html" class="btn btn-ghost">Send another message</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <a href="index.html" class="btn-submit">Return Home</a>
-    </div>
-  </section>
+    <!-- =========================
+         WHAT HAPPENS NEXT
+    ========================= -->
+    <section class="section section--muted">
+      <div class="container narrow">
+        <h2>What happens next</h2>
+        <ul class="checklist">
+          <li>I compare plans and pricing across multiple carriers for your situation.</li>
+          <li>I’ll reach out if I need clarifications (drivers, property details, prior coverage, etc.).</li>
+          <li>We’ll review options together — including any extra savings you might qualify for.</li>
+        </ul>
+        <p>If you prefer to talk now, use the button in the header to <strong>Call/Text</strong> me.</p>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Jewel Basin Insurance Solutions LLC. All rights reserved.</p>
+    <!-- =========================
+         QUICK LINKS
+    ========================= -->
+    <section class="section">
+      <div class="container">
+        <h2>Explore more</h2>
+        <div class="service-grid">
+          <article class="service-card">
+            <a href="life.html" class="service-card__link" aria-label="Life Insurance">
+              <img src="img/life.jpg" alt="Life Insurance" />
+              <div class="service-card__body">
+                <h3>Life Insurance</h3>
+                <p>Term, whole, and universal life with clear guidance.</p>
+              </div>
+            </a>
+          </article>
+          <article class="service-card">
+            <a href="commercial.html" class="service-card__link" aria-label="Commercial Insurance">
+              <img src="img/commercial.jpg" alt="Commercial Insurance" />
+              <div class="service-card__body">
+                <h3>Commercial Insurance</h3>
+                <p>GL, property, inland marine, workers comp, and more.</p>
+              </div>
+            </a>
+          </article>
+          <article class="service-card">
+            <a href="pets.html" class="service-card__link" aria-label="Pet Insurance">
+              <img src="img/pet.jpg" alt="Pet Insurance" />
+              <div class="service-card__body">
+                <h3>Pet Insurance</h3>
+                <p>Accident, illness, and wellness options for cats & dogs.</p>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+  <footer class="footer">
+    <p>
+      &copy; <span id="year"></span> Jewel Basin Insurance Solutions LLC. All rights reserved.
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </p>
   </footer>
+
+  <!-- =========================
+       CHAT (unchanged IDs/classes)
+  ========================= -->
+  <script src="chat.js" defer></script>
+  <button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">Let’s Chat</button>
+  <div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
+    <div class="jb-chat__header">
+      <strong>JBIS</strong>
+      <button class="jb-chat__close" aria-label="Close chat">&times;</button>
+    </div>
+    <div id="jb-chat-messages" class="jb-chat__messages"></div>
+    <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
+      <div id="jb-chat-input"></div>
+      <div class="jb-chat__actions">
+        <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
+        <button type="submit" id="jb-chat-next" class="btn">Next</button>
+      </div>
+    </form>
+    <div class="jb-chat__footer">
+      <small>
+        By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply). You can opt out anytime.
+        We don’t sell your data; it’s used only to provide quotes. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        and <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+      </small>
+    </div>
+  </div>
+
+  <!-- =========================
+       JS: Call/Text chooser + year script
+  ========================= -->
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Call/Text popup
+    (function(){
+      const btn = document.getElementById('callTextBtn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,.35)';
+        overlay.style.zIndex = '9999';
+
+        const box = document.createElement('div');
+        box.style.position = 'fixed';
+        box.style.top = '50%';
+        box.style.left = '50%';
+        box.style.transform = 'translate(-50%, -50%)';
+        box.style.background = '#fff';
+        box.style.border = '2px solid #0d3b66';
+        box.style.borderRadius = '14px';
+        box.style.padding = '1.25rem 1.5rem';
+        box.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25)';
+        box.style.textAlign = 'center';
+        box.style.zIndex = '10000';
+
+        box.innerHTML = `
+          <p style="font-weight:700;color:#0d3b66;margin-bottom:1rem;">How would you like to connect?</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:4063147878" class="btn" style="text-decoration:none;">📞 Call</a>
+            <a href="sms:4063147878" class="btn" style="text-decoration:none;">💬 Text</a>
+          </div>
+          <button id="closeChoiceBox" style="margin-top:1.1rem;background:none;border:none;color:#555;font-size:.9rem;cursor:pointer;">Cancel</button>
+        `;
+
+        overlay.addEventListener('click', () => { overlay.remove(); box.remove(); });
+        document.body.appendChild(overlay);
+        document.body.appendChild(box);
+        document.getElementById('closeChoiceBox').addEventListener('click', () => { overlay.remove(); box.remove(); });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -2,134 +2,144 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>About | Jewel Basin Insurance Solutions LLC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Jewel Basin Insurance Solutions</title>
+  <meta name="description" content="Independent insurance broker in Montana focused on clarity, options, and real service. Meet Kendall Jones and the story behind JBIS." />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pet-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .pet {
+      text-align: center;
+      max-width: 280px;
+    }
+
+    .pet img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #0d3b66;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 0.75rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pet img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header class="topbar">
     <div class="container topbar__inner">
-      <div class="brand">
-        <a href="index.html" class="logo">
-          <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
-        </a>
-      </div>
-      
-  <nav class="nav">
-  <a href="index.html#services">Services</a>
-  <a href="life.html">Life</a>
-  <a href="commercial.html">Commercial</a>
-  <a href="pets.html">Pets</a>
-  <a href="flood.html">Flood</a>
-  <a href="other.html" class="active">Other</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="licenses.html">Licenses</a>
-</nav>
-      
-    <a class="btn btn--ghost" href="tel:14063147878">406-314-7878</a>
+      <a href="index.html" class="logo" aria-label="Jewel Basin Insurance Solutions LLC">
+        <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#services">Home</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="other.html">Other</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+	<a href="licenses.html">Licenses</a>
+      </nav>
+      <button id="callTextBtn" class="btn-call" type="button">Call/Text Now</button>
     </div>
   </header>
 
   <main>
-    <!-- HERO / INTRO -->
     <section class="hero hero--about">
-      <div class="container hero-inner">
+      <div class="hero-inner container">
         <div class="hero-text">
           <h1>Hi, I’m Kendall Jones.</h1>
-          <p>
-            I run Jewel Basin Insurance Solutions LLC because I believe people deserve options, straight answers,
-            and someone who actually cares about their life — not just the product they try to fit you into.
-          </p>
+          <p>I run Jewel Basin Insurance Solutions LLC because people deserve options, straight answers, and a broker who actually shops for <em>your</em> situation — not a one-size-fits-all box.</p>
+          <a href="#values" class="btn btn-primary">What to expect</a>
         </div>
         <div class="hero-photo about-photo">
-          <!-- swap this for your real photo -->
-          <img src="img/about-photo.jpg"
-               alt="Photo of Kendall Jones"
-               class="about-img" />
+          <img src="img/about-photo.jpg" alt="Photo of Kendall Jones" class="about-img" />
         </div>
       </div>
     </section>
 
-    <!-- STORY -->
     <section class="section">
       <div class="container narrow about-text-block">
         <h2>Why I do this</h2>
-        <p>
-          Insurance can feel confusing, bossy, or just… exhausting. I’ve worked with enough people to know that most of
-          the time, folks don’t actually want 20 pages of legal jargon — they want to know: <em>“Am I covered?”</em> and
-          <em>“Can I afford it?”</em> That’s where I come in.
-        </p>
-        <p>
-          I started JBIS to bring more <strong>integrity and options</strong> into the process. I’m independent, which
-          means I can actually shop around for you. If something doesn’t make sense, I’ll explain it. If I wouldn’t
-          buy it myself, I won’t recommend it to you. No pushing you into a box you don't even want.
-        </p>
+        <p>Insurance can feel confusing, bossy, or just… exhausting. Most folks don’t want 20 pages of jargon — they want to know <em>“Am I covered?”</em> and <em>“Can I afford it?”</em> That’s where I come in.</p>
+        <p>I started JBIS to bring more <strong>integrity and options</strong> into the process. As an independent broker I can actually shop multiple carriers, explain the differences in plain language, and recommend the path I’d take myself.</p>
       </div>
     </section>
 
-    <!-- PERSONAL / HOBBIES -->
-    <section class="section section-muted">
+    <section class="section section--muted">
       <div class="container narrow">
         <h2>Beyond insurance</h2>
-        <p>
-          I’m not just a broker — I cook, I sing, I game, I write, and I have an ongoing love affair with being creative in the kitchen,
-          no matter how chaotic it may get at times.
-        </p>
-        <p>
-          When I’m not working with clients, I’m usually:
-        </p>
+        <p>I’m not just a broker — I cook, I sing, I game, and I write. Creative projects (and a little kitchen chaos) keep me grounded.</p>
         <ul class="about-list">
-          <li>making chaotic-but-delicious dishes in the kitchen (yes, <em>Alfredognese™</em> is real)</li>
+          <li>making chaotic-but-delicious dishes (yes, <em>Alfredognese™</em> is real)</li>
           <li>enjoying Montana scenery</li>
           <li>singing and making music with friends</li>
           <li>building things — communities, traditions, and businesses</li>
         </ul>
-        <p>
-          I care a lot because I’ve had to rebuild, pivot, and stand up for myself more than once. Helping other people
-          protect what they love is part business, part calling.
+        <p>I care a lot because I’ve had to rebuild, pivot, and stand up for myself more than once. Helping people protect what they love is part business, part calling.</p>
+      </div>
+    </section>
+
+<section class="section">
+  <div class="container narrow">
+    <h2>Meet my coworkers</h2>
+    <p>They supervise. Loudly.</p>
+    <div class="pet-gallery">
+
+      <div class="pet">
+        <img src="img/Screenshot_20180430-214456_Drive.jpg" alt="Artemis, gray tabby" />
+        <p><strong>Artemis</strong><br>
+          13-year-old gray tabby, gentle, regal, unbothered. She taps my arm when she wants attention.
         </p>
       </div>
-    </section>
-
-    <!-- CATS 🐾 -->
-    <section class="section">
-      <div class="container narrow">
-        <h2>Meet my furry coworkers</h2>
-        <p>They supervise. Loudly.</p>
-
-        <div class="pet-gallery">
-          <div class="pet">
-            <img src="img/Screenshot_20180430-214456_Drive.jpg" alt="Artemis, gray tabby" />
-            <p><strong>Artemis</strong><br />13-year-old gray tabby, gentle, regal, unbothered. 
-              She taps my arm when she wants my attention.</p>
-          </div>
-          <div class="pet">
-            <img src="img/newt.jpg" alt="Newt, tuxedo tabby" />
-            <p><strong>Newt</strong><br />5-year-old tuxedo tabby, vocal, chaotic, 
-              occasionally fetches and lays on my arm while I'm trying to type.</p>
-          </div>
-        </div>
+      <div class="pet">
+        <img src="img/newt.jpg" alt="Newt, tuxedo tabby" />
+        <p><strong>Newt</strong><br>
+          5-year-old tuxedo tabby, vocal and chaotic; sometimes fetches, often sits on my arm while I type.
+        </p>
       </div>
-    </section>
+      <div class="pet">
+        <img src="img/sage.jpg" alt="Sage, digital assistant" />
+        <p><strong>Sage</strong><br>
+          Digital assistant currently designed to help organize client information and guide visitors toward
+          self-quoting options when available. She’s still in training — but one day, she’ll officially become the
+          JBIS Insurance Agency AI.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- VALUES -->
-    <section class="section section-muted">
+
+    <section id="values" class="section section--muted">
       <div class="container narrow">
         <h2>What you can expect from me</h2>
         <div class="values-grid">
           <div class="value-card">
             <h3>Integrity</h3>
-            <p>I will tell you what you need, not what’s easiest to sell.</p>
+            <p>I’ll only sell you what you need — not push what you don't.</p>
           </div>
           <div class="value-card">
             <h3>Education</h3>
-            <p>We go at your pace — I explain things in plain language.</p>
+            <p>We go at your pace, in plain language.</p>
           </div>
           <div class="value-card">
             <h3>Accessibility</h3>
-            <p>I work 9–5, but I’ll schedule after-hours when you need it.</p>
+            <p>I work 9–5 MT and schedule after hours when needed.</p>
           </div>
         </div>
       </div>
@@ -137,45 +147,69 @@
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 Jewel Basin Insurance Solutions LLC. All rights reserved.
-      <a href="privacy.html">Privacy Policy</a> ·
-      <a href="terms.html">Terms & Conditions</a>
+    <p>&copy; <span id="year"></span> Jewel Basin Insurance Solutions LLC. All rights reserved.
+      <a href="privacy.html">Privacy Policy</a> 
+      <a href="terms.html">Terms &amp; Conditions</a>
     </p>
   </footer>
 
   <script src="chat.js" defer></script>
-
-<!-- Chat Launcher -->
-<button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">
-  Let’s Chat
-</button>
-
-<!-- Chat Panel -->
-<div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
-  <div class="jb-chat__header">
-    <strong>JBIS</strong>
-    <button class="jb-chat__close" aria-label="Close chat">&times;</button>
-  </div>
-
-  <div id="jb-chat-messages" class="jb-chat__messages"></div>
-
-  <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
-    <div id="jb-chat-input"></div>
-    <div class="jb-chat__actions">
-      <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
-      <button type="submit" id="jb-chat-next" class="btn">Next</button>
+  <button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">Let’s Chat</button>
+  <div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
+    <div class="jb-chat__header">
+      <strong>JBIS</strong>
+      <button class="jb-chat__close" aria-label="Close chat">&times;</button>
     </div>
-  </form>
-
-  <div class="jb-chat__footer">
-    <small>
-      By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply).
-      You can opt out anytime. We don’t sell your data; it’s used only to provide quotes.
-      See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and
-      <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
-    </small>
+    <div id="jb-chat-messages" class="jb-chat__messages"></div>
+    <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
+      <div id="jb-chat-input"></div>
+      <div class="jb-chat__actions">
+        <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
+        <button type="submit" id="jb-chat-next" class="btn">Next</button>
+      </div>
+    </form>
+    <div class="jb-chat__footer">
+      <small>By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply). You can opt out anytime. We don’t sell your data; it’s used only to provide quotes. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</small>
+    </div>
   </div>
-</div>
-  
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      const btn = document.getElementById('callTextBtn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,.35)';
+        overlay.style.zIndex = '9999';
+        const box = document.createElement('div');
+        box.style.position = 'fixed';
+        box.style.top = '50%';
+        box.style.left = '50%';
+        box.style.transform = 'translate(-50%, -50%)';
+        box.style.background = '#fff';
+        box.style.border = '2px solid #0d3b66';
+        box.style.borderRadius = '14px';
+        box.style.padding = '1.25rem 1.5rem';
+        box.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25)';
+        box.style.textAlign = 'center';
+        box.style.zIndex = '10000';
+        box.innerHTML = `
+          <p style="font-weight:700;color:#0d3b66;margin-bottom:1rem;">How would you like to connect?</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:4063147878" class="btn" style="text-decoration:none;">📞 Call</a>
+            <a href="sms:4063147878" class="btn" style="text-decoration:none;">💬 Text</a>
+          </div>
+          <button id="closeChoiceBox" style="margin-top:1.1rem;background:none;border:none;color:#555;font-size:.9rem;cursor:pointer;">Cancel</button>
+        `;
+        overlay.addEventListener('click', () => { overlay.remove(); box.remove(); });
+        document.body.appendChild(overlay);
+        document.body.appendChild(box);
+        document.getElementById('closeChoiceBox').addEventListener('click', () => { overlay.remove(); box.remove(); });
+      });
+    })();
+  </script>
 </body>
 </html>

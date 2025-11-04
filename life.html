@@ -2,131 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Life Insurance | Jewel Basin Insurance Solutions</title>
+  <meta name="description" content="Term, Whole, and Universal Life. Mortgage protection, income replacement, and final expense options with clear guidance and fast quotes." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- =========================
+       HEADER / NAV
+  ========================= -->
   <header class="topbar">
-    <div class="topbar__inner container">
-      <div class="brand">
-        <a href="index.html">
-          <img src="img/logo.png" alt="Jewel Basin Insurance Solutions" class="logo">
-        </a>
-      </div>
-      
-    <nav class="nav">
-  <a href="index.html#services">Services</a>
-  <a href="life.html">Life</a>
-  <a href="commercial.html">Commercial</a>
-  <a href="pets.html">Pets</a>
-  <a href="flood.html">Flood</a>
-  <a href="other.html" class="active">Other</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
-      
-    <a class="btn btn--ghost" href="tel:14063147878">406-314-7878</a>
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo" aria-label="Jewel Basin Insurance Solutions LLC">
+        <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#services">Home</a>
+        <a href="life.html" class="active">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="other.html">Other</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Call/Text chooser button -->
+      <button id="callTextBtn" class="btn-call" type="button">Call/Text Now</button>
     </div>
   </header>
 
-  <section class="hero container">
-    <div class="hero__inner">
-      <div class="hero-text">
-        <h1>Life Insurance & Mortgage Protection</h1>
-        <p>Protect what matters most with coverage that supports your loved ones when they need it most. From mortgage protection to final expense, I’ll help you find a plan that gives your family peace of mind.</p>
-        <a href="index.html#quote" class="btn">Get a Quote</a>
-      </div>
-      <img src="img/life2.jpg" alt="Life Insurance Family" class="hero-img">
-    </div>
-  </section>
-
-  <section class="section container">
-    <h2>What I Offer</h2>
-    <p>Whether you’re seeking term, whole, or universal coverage, I’ll compare carriers and tailor your policy to your life stage, goals, and budget. As an independent agent, I’m not tied to one company — my loyalty is to you.</p>
-
-    <ul>
-      <li>Mortgage Protection — safeguard your home for your loved ones</li>
-      <li>Final Expense — ensure end-of-life costs don’t become a burden</li>
-      <li>Whole & Universal Life — lifelong protection with cash value growth</li>
-      <li>Term Life — simple, affordable protection for a set period</li>
-    </ul>
-  </section>
-
-<section id="quote" class="section section-muted">
-  <div class="container narrow">
-    <h2>Request a Life Insurance Quote</h2>
-    <p class="section_lead">
-      Whether you’re protecting family, covering a mortgage, or planning final expenses, tell me what you need and I’ll match you with the right option.
-    </p>
-
-    <form action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST" class="quote-form">
-      <!-- where to go after submit -->
-      <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thank-you.html">
-      <!-- stop captcha -->
-      <input type="hidden" name="_captcha" value="false">
-      <!-- subject line -->
-      <input type="hidden" name="_subject" value="New Life Insurance Quote Request">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Full name</label>
-          <input type="text" id="name" name="Full name" required>
+  <main>
+    <!-- =========================
+         HERO
+    ========================= -->
+    <section class="hero hero-life">
+      <div class="hero-inner container">
+        <div class="hero-text">
+          <h1>Life Insurance, Built Around Your Life</h1>
+          <p>
+            Whether you’re protecting family income, covering a mortgage, or planning legacy value, I’ll help you
+            compare multiple carriers and choose coverage that fits your goals and budget.
+          </p>
+          <a href="#quote" class="btn btn-primary">Get Life Quote</a>
         </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" id="email" name="Email" required>
+        <div class="hero-photo">
+          <img src="img/life.jpg" alt="Family enjoying time together" />
         </div>
       </div>
+    </section>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="Phone">
-        </div>
-        <div class="form-group">
-          <label for="life-type">Type of life coverage</label>
-          <select id="life-type" name="Life coverage type">
-            <option value="">Choose one…</option>
-            <option>Term Life</option>
-            <option>Whole Life / Permanent</option>
-            <option>Final Expense / Burial</option>
-            <option>Mortgage Protection</option>
-            <option>Not sure — please recommend</option>
-          </select>
+    <!-- =========================
+         PLAN TYPES / BENEFITS
+    ========================= -->
+    <section class="section">
+      <div class="container">
+        <h2>Coverage Options</h2>
+        <p class="section__lead">Clear choices with flexible riders and competitive pricing.</p>
+
+        <div class="spotlight-grid">
+          <article class="spotlight">
+            <img src="img/life5.jpg" alt="Term Life" />
+            <div class="spotlight__body">
+              <h3>Term Life</h3>
+              <p>Affordable protection for a set period (10–30 years).</p>
+              <ul>
+                <li>Great for income replacement &amp; mortgage protection</li>
+                <li>Level term and convertible options</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="spotlight">
+            <img src="img/life3.jpg" alt="Whole Life" />
+            <div class="spotlight__body">
+              <h3>Whole Life</h3>
+              <p>Lifetime coverage with guaranteed cash value growth.</p>
+              <ul>
+                <li>Stable premiums, living benefits</li>
+                <li>Estate planning &amp; legacy strategies</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="spotlight">
+            <img src="img/life4.jpg" alt="Universal Life" />
+            <div class="spotlight__body">
+              <h3>Universal Life</h3>
+              <p>Flexible premiums with cash value potential.</p>
+              <ul>
+                <li>Indexed &amp; guaranteed options</li>
+                <li>Customizable riders for chronic/critical illness</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="time">Preferred contact time</label>
-          <select id="time" name="Preferred contact time">
-            <option>9–12 MT</option>
-            <option>12–3 MT</option>
-            <option>3–5 MT</option>
-            <option>After 5 MT (by appt)</option>
-          </select>
-        </div>
-      </div>
+    <!-- =========================
+         QUOTE FORM
+    ========================= -->
+    <section id="quote" class="section section--muted">
+      <div class="container narrow">
+        <h2>Request a Life Insurance Quote</h2>
+        <p class="section__lead">Share a few details and I’ll shop the carriers for you.</p>
 
-      <div class="form-group">
-        <label for="notes">Notes (beneficiary, health notes, current policy, mortgage amount, etc.)</label>
-        <textarea id="notes" name="Notes" rows="4"></textarea>
-      </div>
+        <form class="quote-form" action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST">
+          <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thank-you.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="New Life Insurance Request" />
 
-      <div class="consent-box">
-        <label class="checkbox-inline">
-          <input type="checkbox" name="Consent" value="Yes" required>
-          By checking this box, you agree that Jewel Basin Insurance Solutions LLC
-          may contact you by phone, text, or email regarding insurance products
-          and services (message/data rates may apply). You may opt out at any time.
-          Your information will not be sold or shared outside of Jewel Basin Insurance Solutions LLC
-          and is collected solely for insurance quoting and policy servicing purposes.
-          You acknowledge that you have read and agree to our
-          <a href="privacy.html" target="_blank">Privacy Policy</a> and
-          <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
-        </label>
-        
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input id="name" name="Full name" type="text" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="Email" type="email" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input id="phone" name="Phone" type="tel" />
+            </div>
+            <div class="form-group">
+              <label for="goal">Primary goal</label>
+              <select id="goal" name="Primary goal">
+                <option value="" selected>Choose one…</option>
+                <option>Income replacement</option>
+                <option>Mortgage protection</option>
+                <option>Final expense</option>
+                <option>Legacy / estate planning</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes (age, tobacco, coverage amount, health notes)</label>
+            <textarea id="notes" name="Notes" rows="4"></textarea>
+          </div>
+
+          <div class="form-agreement">
+            <label class="checkbox-inline">
+              <input type="checkbox" name="Consent" value="Yes" required />
+              By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding
+              insurance products and services (message/data rates may apply). You may opt out of these communications at any time. Your
+              information will never be sold or shared outside of Jewel Basin Insurance Solutions LLC and is obtained solely for insurance
+              quoting and policy servicing purposes. You acknowledge that you have read and agree to our <a href="privacy.html" target="_blank">Privacy Policy</a>
+              and <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+            </label>
           </div>
 
           <div class="form-submit">
@@ -137,46 +166,90 @@
     </section>
   </main>
 
+  <!-- =========================
+       FOOTER
+  ========================= -->
   <footer class="footer">
-    <p>&copy; 2025 Jewel Basin Insurance Solutions LLC. All rights reserved.
-      <a href="privacy.html">Privacy Policy</a> ·
-      <a href="terms.html">Terms & Conditions</a>
+    <p>
+      &copy; <span id="year"></span> Jewel Basin Insurance Solutions LLC. All rights reserved.
+      <a href="privacy.html">Privacy Policy</a> 
+      <a href="terms.html">Terms &amp; Conditions</a>
     </p>
   </footer>
 
+  <!-- =========================
+       CHAT (unchanged IDs/classes)
+  ========================= -->
   <script src="chat.js" defer></script>
-
-<!-- Chat Launcher -->
-<button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">
-  Let’s Chat
-</button>
-
-<!-- Chat Panel -->
-<div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
-  <div class="jb-chat__header">
-    <strong>JBIS</strong>
-    <button class="jb-chat__close" aria-label="Close chat">&times;</button>
-  </div>
-
-  <div id="jb-chat-messages" class="jb-chat__messages"></div>
-
-  <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
-    <div id="jb-chat-input"></div>
-    <div class="jb-chat__actions">
-      <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
-      <button type="submit" id="jb-chat-next" class="btn">Next</button>
+  <button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">Let’s Chat</button>
+  <div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
+    <div class="jb-chat__header">
+      <strong>JBIS</strong>
+      <button class="jb-chat__close" aria-label="Close chat">&times;</button>
     </div>
-  </form>
-
-  <div class="jb-chat__footer">
-    <small>
-      By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply).
-      You can opt out anytime. We don’t sell your data; it’s used only to provide quotes.
-      See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and
-      <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
-    </small>
+    <div id="jb-chat-messages" class="jb-chat__messages"></div>
+    <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
+      <div id="jb-chat-input"></div>
+      <div class="jb-chat__actions">
+        <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
+        <button type="submit" id="jb-chat-next" class="btn">Next</button>
+      </div>
+    </form>
+    <div class="jb-chat__footer">
+      <small>
+        By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply). You can opt out anytime.
+        We don’t sell your data; it’s used only to provide quotes. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        and <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+      </small>
+    </div>
   </div>
-</div>
-  
+
+  <!-- =========================
+       JS: Call/Text chooser + year script
+  ========================= -->
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Call/Text popup
+    (function(){
+      const btn = document.getElementById('callTextBtn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,.35)';
+        overlay.style.zIndex = '9999';
+
+        const box = document.createElement('div');
+        box.style.position = 'fixed';
+        box.style.top = '50%';
+        box.style.left = '50%';
+        box.style.transform = 'translate(-50%, -50%)';
+        box.style.background = '#fff';
+        box.style.border = '2px solid #0d3b66';
+        box.style.borderRadius = '14px';
+        box.style.padding = '1.25rem 1.5rem';
+        box.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25)';
+        box.style.textAlign = 'center';
+        box.style.zIndex = '10000';
+
+        box.innerHTML = `
+          <p style="font-weight:700;color:#0d3b66;margin-bottom:1rem;">How would you like to connect?</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:4063147878" class="btn" style="text-decoration:none;">📞 Call</a>
+            <a href="sms:4063147878" class="btn" style="text-decoration:none;">💬 Text</a>
+          </div>
+          <button id="closeChoiceBox" style="margin-top:1.1rem;background:none;border:none;color:#555;font-size:.9rem;cursor:pointer;">Cancel</button>
+        `;
+
+        overlay.addEventListener('click', () => { overlay.remove(); box.remove(); });
+        document.body.appendChild(overlay);
+        document.body.appendChild(box);
+        document.getElementById('closeChoiceBox').addEventListener('click', () => { overlay.remove(); box.remove(); });
+      });
+    })();
+  </script>
 </body>
 </html>
