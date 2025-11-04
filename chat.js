@@ -169,39 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(()=>{ bot('We’ll go through a few quick items to start your quote. If you have a question at any time, just type it with a “?” and I’ll answer.'); renderStep(); },700);
   }
 
-// ===== Auto-welcome on home page (once per 24h) =====
-(function autoWelcomeIfNeeded(){
-  const WELCOME_KEY = 'jb_welcome_seen_at';
-  const ONE_DAY = 24 * 60 * 60 * 1000;
-
-  // Only on the home page (index.html or root)
-  const onHome =
-    /(^|\/)index\.html?$/.test(location.pathname) ||
-    location.pathname === '/' || location.pathname === '';
-
-  if (!onHome) return;
-
-  const last = Number(localStorage.getItem(WELCOME_KEY) || 0);
-  if (Date.now() - last < ONE_DAY) return; // cooldown
-
-  // Give the page a beat to paint, then open & greet
-  setTimeout(() => {
-    openChat();
-    bot("Hello there, welcome to JBIS! It’s great to meet you. I’m Sage, your helpful Digital Assistant.");
-    bot("If you need any help, please ask me and I will answer to the best of my knowledge. If I don’t have an answer for you, I can have Kendall call, text, or email you — your preference.");
-    bot("My best,\nSage");
-    localStorage.setItem(WELCOME_KEY, String(Date.now()));
-  }, 5000);
-
-  // If the user closes the chat, keep the cooldown so we don't re-open immediately
-  const closeBtn = document.querySelector('.jb-chat__close');
-  if (closeBtn) closeBtn.addEventListener('click', () => {
-    if (!localStorage.getItem(WELCOME_KEY)) {
-      localStorage.setItem(WELCOME_KEY, String(Date.now()));
-    }
-  });
-})();
-
   function closeChat(){
     panel.classList.add('is-hidden');
     panel.setAttribute('aria-hidden','true');
