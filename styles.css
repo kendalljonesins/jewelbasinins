@@ -1,0 +1,427 @@
+/* =========================
+   GLOBAL RESET + TOKENS
+========================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root{
+  --bg:#f4f6f9;
+  --page:#fff;
+  --ink:#1f2933;
+  --muted:rgba(38,70,83,.75);
+  --jewel:#0d3b66;
+  --jewel-2:#14518a;
+  --accent:#f4a261;
+  --radius:18px;
+  --shadow-card:0 12px 22px rgba(0,0,0,.06);
+  --max:1180px;
+  --gap:1.5rem;
+  --form-border:rgba(13,59,102,.15);
+}
+
+html,body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--bg);
+}
+
+img{max-width:100%;height:auto;display:block;}
+.container{width:min(100% - 2rem,var(--max));margin:0 auto;}
+
+/* =========================
+   HEADER / TOPBAR
+========================= */
+.topbar{
+  position:sticky; top:0; z-index:999;
+  background:linear-gradient(135deg,#edf3f6,#fff);
+  border-bottom:1px solid #dbe4ea;
+}
+.topbar__inner{
+  min-height:78px;
+  display:flex;align-items:center;justify-content:space-between;gap:1.25rem;
+  width:min(100% - 2rem,var(--max)); margin:0 auto;
+}
+
+/* universal logo rule */
+.logo, .logo img,
+header img[alt*="Jewel Basin"], header img[alt*="JBIS"]{
+  max-height:78px; width:auto; object-fit:contain;
+}
+
+/* nav */
+.nav{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;}
+.nav a{
+  text-decoration:none; color:var(--ink);
+  font-weight:600; font-size:.92rem; white-space:nowrap;
+  padding:.35rem .4rem; border-radius:8px; transition:color .2s ease, background .2s ease;
+}
+.nav a:hover{color:var(--jewel);}
+.nav a.active{color:#fff;background:linear-gradient(135deg,var(--jewel),var(--jewel-2));}
+
+/* call button (separate from generic .btn so it never conflicts) */
+.btn-call{
+  background:linear-gradient(135deg,#0d3b66 0%,#14518a 45%,#0d3b66 100%);
+  color:#fff; padding:.6rem 1.4rem; border-radius:9999px; font-weight:700;
+  text-decoration:none; display:inline-flex; gap:.35rem; align-items:center;
+  box-shadow:0 8px 18px rgba(13,59,102,.3); transition:transform .12s ease-out; white-space:nowrap;
+}
+.btn-call:hover{transform:translateY(-1px);}
+
+/* header mobile */
+@media (max-width:880px){
+  .topbar__inner{flex-wrap:wrap;justify-content:center;}
+  .nav{justify-content:center;}
+  .btn-call{width:100%;justify-content:center;}
+}
+
+/* =========================
+   BUTTONS — Alpine Glow ✨
+   (authoritative single source)
+========================= */
+.btn, .btn-primary, .btn-submit{
+  background:linear-gradient(90deg,#f8d67f,#ffb347,#ff9966);
+  color:#0d3b66!important;
+  border:none; border-radius:10px;
+  padding:.7rem 1.5rem; font-weight:700; cursor:pointer;
+  box-shadow:0 0 8px rgba(255,160,70,.5);
+  position:relative; overflow:hidden; transition:all .35s ease;
+  text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:.35rem;
+}
+.btn::after{
+  content:""; position:absolute; inset:0; left:-100%;
+  background:linear-gradient(90deg,rgba(255,255,255,.25),rgba(255,255,255,0));
+  transition:left .6s ease;
+}
+.btn:hover::after{left:100%;}
+.btn:hover, .btn:focus{
+  color:#fff!important;
+  background:linear-gradient(90deg,#ffcc80,#ffb347,#ffa366);
+  box-shadow:0 0 12px rgba(255,185,100,.8), 0 0 25px rgba(255,160,70,.5);
+  transform:translateY(-1px);
+}
+.btn:active{transform:translateY(1px);}
+
+/* =========================
+   HERO
+========================= */
+.hero,
+.hero--home,
+.hero-life,
+.hero-commercial,
+.hero-pets{
+  background:radial-gradient(circle at top,#f4a261 0%,#0d3b66 55%,#0d3b66 100%);
+  color:#fff; padding:4.5rem 0 3.5rem;
+}
+.hero-inner, .hero__inner{
+  width:min(100% - 2rem,var(--max));
+  margin:0 auto; display:grid; gap:3rem; align-items:center;
+  grid-template-columns:1.1fr .9fr;
+}
+.hero h1, .hero h2, .hero-text h1, .hero-text h2{
+  color:#fff; font-size:clamp(2.2rem,4vw,3rem); margin:0 0 1rem; letter-spacing:-.01em;
+}
+.hero p, .hero-text p{
+  color:rgba(255,255,255,.85); max-width:40rem; margin:0 0 1.6rem;
+}
+.hero-photo img{
+  width:100%; max-width:540px; height:auto; border-radius:18px; object-fit:cover;
+  box-shadow:0 12px 30px rgba(0,0,0,.25); margin-left:auto;
+}
+
+/* hero mobile */
+@media (max-width:920px){
+  .hero-inner,.hero__inner{grid-template-columns:1fr;text-align:left;}
+  .hero-photo{order:-1;max-width:420px;margin:0 auto 1.5rem;}
+}
+
+/* commercial hero sizing guard */
+.hero img[src*="commercial"], img[src$="commercial.jpg"],
+.commercial-hero, .commercial-hero img{
+  width:100%; max-width:560px; max-height:360px; height:auto; object-fit:cover;
+  border-radius:16px; margin:0 auto 1.5rem; box-shadow:0 10px 28px rgba(0,0,0,.15);
+}
+
+/* =========================
+   GENERIC SECTIONS
+========================= */
+.section{padding:3rem 0;}
+/* support BOTH spellings used in index */
+.section--muted, .section-muted{background:#f0f4f8;}
+.section h2{margin:0 0 1.1rem; font-size:1.6rem; color:var(--jewel);}
+/* support BOTH lead class names used in index */
+.section__lead, .section_lead{color:var(--muted); max-width:520px;}
+
+/* =========================
+   GRIDS & CARDS
+========================= */
+.spotlight-grid, .service-grid, .industries-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.25rem; align-items:stretch; margin-top:1.4rem;
+}
+.spotlight, .industry-card, .service-card{
+  background:#fff; border-radius:16px; box-shadow:var(--shadow-card);
+  overflow:hidden; display:flex; flex-direction:column; min-height:260px;
+  transition:transform .2s ease, box-shadow .3s ease;
+}
+.spotlight:hover, .industry-card:hover, .service-card:hover{
+  transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.spotlight img, .industry-card img, .service-card img{
+  width:100%; height:180px; object-fit:cover;
+}
+.spotlight__body, .industry-card__body, .service-card__body{padding:1.1rem 1.1rem 1.25rem;}
+.spotlight__body h3{margin:.1rem 0 .35rem; font-size:1rem; color:var(--jewel);}
+.spotlight__body ul{margin:.5rem 0 0; padding-left:1.1rem; color:rgba(38,70,83,.85); font-size:.85rem;}
+
+/* generic standalone card (used on Flood page too) */
+.coverage-card{
+  text-align:center; background:#fff; border-radius:16px; padding:1.5rem;
+  box-shadow:0 4px 12px rgba(0,0,0,.1); transition:transform .2s ease, box-shadow .3s ease;
+}
+.coverage-card:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.15);}
+.coverage-card img{width:100%; max-width:320px; height:200px; object-fit:cover; border-radius:12px; margin:0 auto 1rem;}
+
+/* =========================
+   FORMS (unified)
+========================= */
+.quote-form{
+  background:#fff; border-radius:18px; box-shadow:var(--shadow-card);
+  padding:1.4rem 1.4rem 1.8rem; margin-top:1.3rem; border:1px solid rgba(13,59,102,.05);
+}
+.quote-form label{
+  display:block; font-weight:600; color:var(--jewel); margin-bottom:.35rem; font-size:.85rem;
+}
+.quote-form input, .quote-form select, .quote-form textarea{
+  width:100%; border:1px solid var(--form-border); border-radius:6px;
+  padding:.55rem .6rem; margin-bottom:.75rem; font-size:.95rem; background:#fff;
+}
+.form-submit{text-align:center;margin-top:1.2rem;}
+
+/* consent/notice box */
+.form-agreement, .consent-box{
+  display:flex; align-items:flex-start; gap:.75rem;
+  background:#f7f9fc; border:1px solid rgba(13,59,102,.08);
+  border-radius:10px; padding:1rem 1.25rem; margin-top:1.1rem;
+  font-size:.85rem; color:rgba(38,70,83,.85);
+}
+.form-agreement a, .consent-box a{color:var(--jewel);font-weight:700;text-decoration:underline;}
+
+/* =========================
+   FLOOD PAGE EXTRAS
+========================= */
+.hurricane-alert{
+  background:rgba(13,59,102,.04); border:1px solid rgba(13,59,102,.08);
+  border-radius:14px; padding:1.25rem 1.5rem 1.1rem; margin-top:1.5rem;
+}
+.hurricane-title{font-weight:700;margin-bottom:.65rem;color:var(--jewel);}
+.hurricane-note{font-size:.78rem;color:rgba(11,37,63,.65);margin-top:.7rem;}
+.section-divider{height:1px;background:rgba(13,59,102,.08);margin:1.6rem 0 1.4rem;border-radius:999px;}
+.flood-fact{
+  background:#fff; border:1px solid rgba(13,59,102,.05); border-left:5px solid var(--jewel);
+  border-radius:14px; padding:1.1rem 1.4rem 1.2rem; box-shadow:0 10px 25px rgba(0,0,0,.03);
+}
+.flood-fact h3{margin:0 0 .4rem; font-size:1rem; color:var(--jewel);}
+.flood-fact p{margin:0; font-size:.9rem; line-height:1.55; color:rgba(10,22,35,.85);}
+
+/* Make the whole button pulse with blue glow */
+.btn-hurricane {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  animation: hurricane-pulse 3s ease-in-out infinite;
+  box-shadow: 0 0 0 rgba(13, 59, 102, 0);
+}
+
+/* Big, soft beacon glow */
+@keyframes hurricane-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 59, 102, 0.55);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 45px 18px rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 59, 102, 0);
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer{
+  background:var(--jewel); color:rgba(255,255,255,.85);
+  text-align:center; padding:2.3rem 1rem 2.6rem; margin-top:2.5rem;
+}
+.footer p{margin:0;font-size:.85rem;}
+.footer a{color:#fff;text-decoration:underline;margin-left:.75rem;font-size:.9rem;}
+
+/* optional pretty underline glow */
+.footer-links a{
+  color:#d8e9ff; text-decoration:none; position:relative; transition:color .3s ease, text-shadow .3s ease;
+}
+.footer-links a::after{
+  content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+  background:linear-gradient(90deg,#f8d67f,#ffb347,#ff9966);
+  box-shadow:0 0 6px rgba(255,160,70,.4); transition:width .4s ease; border-radius:2px;
+}
+.footer-links a:hover{color:#fff;text-shadow:0 0 10px rgba(255,190,110,.9), 0 0 20px rgba(255,160,70,.5);}
+.footer-links a:hover::after{width:100%;}
+
+/* =========================
+   ABOUT HELPERS
+========================= */
+.about-wrap,.about-grid{
+  display:grid; grid-template-columns:1fr .7fr; gap:2rem; align-items:center;
+}
+.about-text-block p, .about-list{color:rgba(13,59,102,.85);}
+.about-list{margin:.75rem 0 0; padding-left:1.2rem;}
+.about-photo img{width:100%;max-width:360px;border-radius:18px;box-shadow:0 10px 24px rgba(0,0,0,.25);object-fit:cover;margin-left:auto;}
+@media (max-width:960px){
+  .about-wrap,.about-grid{grid-template-columns:1fr;}
+  .about-photo img{max-width:100%;margin:1rem auto 0;}
+}
+
+/* =========================
+   JBIS CHAT — preserves your look
+========================= */
+#jb-chat.is-hidden{display:none;}
+#jb-chat-launcher{
+  position:fixed; right:24px; bottom:24px; z-index:9999;
+  padding:.8rem 1.1rem; border:0; border-radius:999px; font-weight:700; cursor:pointer;
+  background:linear-gradient(90deg,#ffb562,#ff8c60); color:#fff;
+  box-shadow:0 10px 28px rgba(0,0,0,.18); transition:transform .2s ease, box-shadow .2s ease;
+}
+#jb-chat-launcher:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.22);}
+
+#jb-chat{
+  position:fixed; right:24px; bottom:24px; width:min(360px,92vw); max-height:70vh;
+  display:grid; grid-template-rows:auto 1fr auto auto; gap:.5rem;
+  background:#fff; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.22); z-index:10000;
+}
+.jb-chat__header{
+  position:relative; padding:12px 44px 12px 16px;
+  background:linear-gradient(135deg,#0e3a5b,#1a5b87); color:#fff; font-weight:700;
+}
+.jb-chat__close{
+  position:absolute; top:8px; right:8px; width:32px; height:32px;
+  border:0; border-radius:999px; background:rgba(255,255,255,.16);
+  color:#fff; font-size:18px; line-height:1; cursor:pointer;
+}
+.jb-chat__messages{padding:.5rem .75rem; overflow:auto; max-height:50vh;}
+.bubble{max-width:80%; padding:.7rem .9rem; border-radius:16px; margin:.35rem 0; line-height:1.35; box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.bubble.bot{background:#f4f6f8; color:#16324f;}
+.bubble.user{background:#1d5a98; color:#fff; margin-left:auto;}
+.jb-chat__input{padding:0 .75rem .75rem;}
+#jb-chat-input .field, #jb-chat-input textarea, #jb-chat-input select,
+#jb-chat-input input[type="text"], #jb-chat-input input[type="email"], #jb-chat-input input[type="tel"]{
+  width:100%; padding:.65rem .75rem; border:1px solid #d9e2ea; border-radius:10px; font:inherit; outline:none;
+}
+#jb-chat-input :is(.field,textarea,select,input):focus{border-color:#9cc1e0; box-shadow:0 0 0 3px rgba(31,121,194,.15);}
+.jb-chat__actions{display:flex; gap:.5rem; justify-content:flex-end; margin-top:.6rem;}
+#jb-chat .btn{background:linear-gradient(90deg,#ffcc80,#ff9966); color:#fff; border:none; border-radius:12px; padding:.6rem .95rem; font-weight:700; box-shadow:0 10px 26px rgba(255,140,96,.35);}
+#jb-chat .btn:hover{transform:translateY(-1px); box-shadow:0 14px 30px rgba(255,140,96,.45);}
+#jb-chat .btn-ghost{background:#eef3f8; color:#123; box-shadow:none;}
+
+/* ===== JBIS CHAT – avatar + carousel add-ons (adjusted with slower glow) ===== */
+.sage-avatar{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;margin-right:8px;flex-shrink:0;}
+.sage-avatar img{width:32px;height:32px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(255,255,255,.3);animation:sageGlow 6s ease-in-out infinite alternate;}
+.sage-name{font-size:.65rem;color:#16324f;margin-top:2px;font-weight:600;text-align:center;}
+@keyframes sageGlow{from{box-shadow:0 0 5px rgba(255,255,255,.2);}to{box-shadow:0 0 15px rgba(255,255,255,.5);}}
+
+.bubble.bot{display:flex;align-items:flex-start;gap:8px;}
+.bubble.bot > div:last-child{flex:1;}
+
+/* Carousel container + transitions */
+.jb-carousel{position:relative;width:100%;max-width:560px;}
+.jb-slide{display:none;}
+.jb-slide.active{display:block;animation:jbFade .25s ease;}
+@keyframes jbFade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+/* Carousel nav + dots */
+.jb-nav{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.jb-arrow{border:0;border-radius:10px;padding:.45rem .7rem;cursor:pointer;background:#eef3f8;color:#16324f;font-weight:700;}
+.jb-dots{display:flex;gap:6px;align-items:center;justify-content:center;flex:1;}
+.jb-dot{width:8px;height:8px;border-radius:50%;background:#d3dde7;border:0;}
+.jb-dot.active{background:#1d5a98;}
+
+/* Carousel card */
+.jb-card{border:1px solid #e6eef6;border-radius:12px;padding:10px;margin:.25rem 0 .5rem;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.06);}
+.jb-card h4{margin:0 0 4px;font-size:1rem;color:#0e3a5b;}
+.jb-card p{margin:0 0 8px;color:#3d5368;font-size:.9rem;line-height:1.35;}
+.jb-card .actions{display:flex;gap:8px;flex-wrap:wrap;}
+.jb-card .btn{padding:.45rem .7rem;border-radius:10px;}
+.jb-card .btn-ghost{background:#eef3f8;color:#123;}
+
+/* Footer text tone in chat */
+.jb-chat__footer small{color:#5b6e7f;display:block;}
+
+/* Center the Prev & Next buttons beneath chat input */
+.jb-chat__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.jb-chat__actions .btn {
+  min-width: 100px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .jb-chat__actions {
+    flex-direction: column;
+  }
+  .jb-chat__actions .btn {
+    width: 100%;
+  }
+}
+
+/* Align and balance the acknowledgment text */
+.jb-chat__footer {
+  text-align: center;
+  padding: 10px 14px 12px;
+  background: #f8fafc;
+  border-top: 1px solid #dfe6ed;
+  border-radius: 0 0 14px 14px;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.05);
+}
+
+.jb-chat__footer small {
+  color: #4b5b6a;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  display: inline-block;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.jb-chat__footer a {
+  color: #1d5a98;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.jb-chat__footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   SMALL SCREENS
+========================= */
+@media (max-width:640px){
+  .nav{gap:.75rem;}
+  .quote-form{padding:1rem;}
+  .btn, .btn-submit{width:100%;}
+  .hero, .hero--home{text-align:left;}
+}
