@@ -1,6 +1,5 @@
 // chat.js — Sage the digital assistant
 document.addEventListener('DOMContentLoaded', () => {
-  // remove duplicates if any
   ['jb-chat-launcher','jb-chat'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.remove();
@@ -40,8 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     .jb-chat__messages { padding:.5rem .75rem; overflow:auto; max-height:50vh; }
     .bubble { max-width:80%; padding:.7rem .9rem; border-radius:16px; margin:.35rem 0; line-height:1.35; box-shadow:0 2px 10px rgba(0,0,0,.05); }
-    .bubble.bot { background:#f4f6f8; color:#16324f; }
+    .bubble.bot { background:#f4f6f8; color:#16324f; display:flex; align-items:flex-start; }
     .bubble.user { background:#1d5a98; color:#fff; margin-left:auto; }
+    .sage-avatar {
+      width:32px; height:32px; border-radius:50%; overflow:hidden;
+      margin-right:8px; flex-shrink:0;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    .sage-avatar img { width:100%; height:100%; object-fit:cover; }
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+      to { box-shadow: 0 0 15px rgba(255,255,255,0.5); }
+    }
     .jb-chat__input { padding:0 .75rem .75rem; }
     .field, .jb-chat__input textarea, .jb-chat__input select, .jb-chat__input input {
       width:100%; padding:.65rem .75rem; border:1px solid #d9e2ea; border-radius:10px; font:inherit; outline:none;
@@ -102,8 +112,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = panel.querySelector('#jb-chat-next');
 
   // --- Helpers ---
-  const bot = t => { const d=document.createElement('div'); d.className='bubble bot'; d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; };
-  const user = t => { const d=document.createElement('div'); d.className='bubble user'; d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; };
+  const bot = t => {
+    const wrap = document.createElement('div');
+    wrap.className = 'bubble bot';
+    const avatar = document.createElement('div');
+    avatar.className = 'sage-avatar';
+    avatar.innerHTML = '<img src="img/sage.jpg" alt="Sage">';
+    const msg = document.createElement('div');
+    msg.textContent = t;
+    wrap.appendChild(avatar);
+    wrap.appendChild(msg);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  };
+
+  const user = t => {
+    const d=document.createElement('div');
+    d.className='bubble user';
+    d.textContent=t;
+    messages.appendChild(d);
+    messages.scrollTop=messages.scrollHeight;
+  };
 
   const steps = [
     { key:'name', label:'What’s your name?', type:'text', placeholder:'Full name', validate:v=>v.trim().length>1 },
