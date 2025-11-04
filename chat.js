@@ -1,8 +1,11 @@
-// chat.js — Sage (namespaced to avoid CSS collisions)
+// chat.js — Sage with inline KB, avatar + name, carousels, full flow (no external API)
 document.addEventListener('DOMContentLoaded', () => {
+  // Clean up if reloaded on a page with an older instance
   ['jb-chat-launcher','jb-chat'].forEach(id => { const el=document.getElementById(id); if(el) el.remove(); });
 
-  // --- Scoped styles (ALL under #jb-chat; chat-only class names) ---
+  // =========================
+  // Styles (scoped to #jb-chat)
+  // =========================
   const style=document.createElement('style');
   style.textContent = `
     #jb-chat.is-hidden { display:none; }
@@ -42,11 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     #jb-chat .jb-bot { background:#f4f6f8; color:#16324f; display:flex; align-items:flex-start; }
     #jb-chat .jb-user { background:#1d5a98; color:#fff; margin-left:auto; }
 
+    /* Avatar + name */
     #jb-chat .sage-avatar {
-      width:32px; height:32px; border-radius:50%; overflow:hidden; margin-right:8px; flex-shrink:0;
-      box-shadow: 0 0 10px rgba(255,255,255,0.3); animation: sageGlow 3s ease-in-out infinite alternate;
+      display:flex; flex-direction:column; align-items:center; margin-right:8px; flex-shrink:0;
     }
-    #jb-chat .sage-avatar img { width:100%; height:100%; object-fit:cover; }
+    #jb-chat .sage-avatar img {
+      width:32px; height:32px; border-radius:50%; object-fit:cover;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      animation: sageGlow 3s ease-in-out infinite alternate;
+    }
+    #jb-chat .sage-name {
+      font-size:0.65rem; color:#16324f; margin-top:2px; font-weight:600; text-align:center;
+    }
     @keyframes sageGlow { from{box-shadow:0 0 5px rgba(255,255,255,.2);} to{box-shadow:0 0 15px rgba(255,255,255,.5);} }
 
     #jb-chat .jb-input { padding:0 .75rem .75rem; }
@@ -63,12 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     #jb-chat .btn:hover { transform: translateY(-1px); box-shadow:0 14px 30px rgba(255,140,96,.45); }
     #jb-chat .btn-ghost { background:#eef3f8; color:#123; box-shadow:none; }
-    #jb-chat .jb-check { display:flex; align-items:flex-start; gap:.5rem; }
 
     #jb-chat .jb-foot { padding:0 .75rem .9rem; border-top:1px solid #eef3f7; }
     #jb-chat .jb-foot small { color:#5b6e7f; display:block; }
 
-    /* Namespaced carousel & card */
+    /* Carousel */
     #jb-chat .jb-carousel { position: relative; width:100%; max-width:560px; }
     #jb-chat .jb-slide { display:none; }
     #jb-chat .jb-slide.active { display:block; animation: jbFade .25s ease; }
@@ -91,13 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(style);
 
-  // Launcher
+  // =========================
+  // Panel + launcher
+  // =========================
   const launcher=document.createElement('button');
   launcher.id='jb-chat-launcher';
   launcher.textContent="Let’s Chat";
   document.body.appendChild(launcher);
 
-  // Panel
   const panel=document.createElement('div');
   panel.id='jb-chat'; panel.className='is-hidden';
   panel.innerHTML = `
@@ -119,18 +129,48 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>`;
   document.body.appendChild(panel);
 
-  // Els
-  const closeBtn=panel.querySelector('.jb-close');
+  // Refs
   const messages=panel.querySelector('#jb-msgs');
   const form=panel.querySelector('#jb-form');
   const inputWrap=panel.querySelector('#jb-input');
   const backBtn=panel.querySelector('#jb-back');
   const nextBtn=panel.querySelector('#jb-next');
 
-  // Helpers
+  // =========================
+  // Inline Knowledge Base (simple, safe)
+  // =========================
+  const KB = [
+    { k:['hours','open','time','when'], a:'I’m available 9–5 MT, and I can schedule after 5 by appointment.' },
+    { k:['states','licensed','where','sell','available'], a:'I can help in MT, WA, ID, ND, AZ, and TN.' },
+    { k:['contact','phone','call','text'], a:'You can call or text 406-314-7878 or use the form here and I’ll reach out.' },
+    { k:['email','mail'], a:'My email is kendalljonesins@outlook.com.' },
+    { k:['privacy','sell data','data','sell my info'], a:'I don’t sell your data. Info is used only for quoting and service — you can opt out anytime.' },
+    { k:['quote','rate','price','bind','buy now','self quote'], a:'We can start a quick quote here, or you can self-serve for small business with the links below. I’ll still follow up to confirm discounts.' },
+    { k:['commercial','business','llc','contractor'], a:'For small business, I can help directly or you can use NEXT/Coterie quick-quote links. I’ll review if you prefer.' },
+    { k:['pet','pets','dog','cat','vet'], a:'For pets, Fetch Pet Insurance is a great option — I can share the link when you’re ready.' },
+    { k:['flood','hurricane','nhc','map'], a:'Flood is separate from homeowners. For Atlantic updates, you can check the NHC site from my Flood page.' },
+    { k:['life','mortgage','term','final expense'], a:'I can help with term life, mortgage protection, and more. A few details will let me tailor options.' }
+  ];
+  function isQuestion(txt){ return /[?]|^(who|what|when|where|why|how)\b/i.test(txt.trim()); }
+  function answerKB(q){
+    if(!q) return null;
+    const t=q.toLowerCase();
+    let best=null, score=0;
+    KB.forEach(entry=>{
+      const s = entry.k.reduce((acc,kw)=> acc + (t.includes(kw) ? 1 : 0), 0);
+      if(s>score){ score=s; best=entry.a; }
+    });
+    return score>0 ? best : null;
+  }
+
+  // =========================
+  // BOT / USER bubbles (with Sage name below avatar)
+  // =========================
   const bot = t => {
     const wrap=document.createElement('div'); wrap.className='jb-bubble jb-bot';
-    const av=document.createElement('div'); av.className='sage-avatar'; av.innerHTML='<img src="img/sage.jpg" alt="Sage">';
+    const av=document.createElement('div');
+    av.className='sage-avatar';
+    av.innerHTML='<img src="img/sage.jpg" alt="Sage"><div class="sage-name">Sage</div>';
     const msg=document.createElement('div'); msg.textContent=t;
     wrap.appendChild(av); wrap.appendChild(msg);
     messages.appendChild(wrap); messages.scrollTop=messages.scrollHeight;
@@ -140,29 +180,24 @@ document.addEventListener('DOMContentLoaded', () => {
     messages.appendChild(d); messages.scrollTop=messages.scrollHeight;
   };
 
-  // Steps
-  const steps=[
-    { key:'name', label:'What’s your name?', type:'text', placeholder:'Full name', validate:v=>v.trim().length>1 },
-    { key:'email', label:'What’s the best email?', type:'email', placeholder:'you@email.com', validate:v=>/^\S+@\S+\.\S+$/.test(v) },
-    { key:'phone', label:'And a phone number?', type:'tel', placeholder:'406-555-1234', validate:v=>v.replace(/\D/g,'').length>=10 },
-    { key:'line', label:'Which line are you interested in?', type:'select', options:['Auto','Home','Renters','Life','Commercial','Flood','Pets','Other'] },
-    { key:'zip', label:'What ZIP code is this for?', type:'text', placeholder:'e.g., 59901', validate:v=>/^\d{5}$/.test(v) },
-    { key:'notes', label:'Anything else I should know?', type:'textarea', placeholder:'Optional notes' },
-    { key:'consent', label:'Please confirm you consent to be contacted (you can opt out anytime).', type:'checkbox', required:true }
-  ];
-  let idx=0; const data={};
-
-  const carrierLinks={
-    NEXT:{ bind:'https://track.nextinsurance.com/links?agent_affiliation=dVEVbUfFPrNPRrRM&serial=992855993&channel=affiliation',
-           review:'https://track.nextinsurance.com/links?agent_affiliation=xX3E6j8HoQF3aATU&serial=992855993&channel=affiliation' },
-    COTERIE:{ quote:'https://app.coterieinsurance.com/quote?p=nussygobyebye%40gmail.com' },
-    FETCH:{ pets:'https://www.fetchpet.com/mypet?a=KendallJonesIns&utm_source=firstconnect&utm_medium=brokerportal&utm_campaign=firstconnect_email&c=firstconnect&p=firstconnect' }
+  // =========================
+  // Links for self-serve
+  // =========================
+  const LINKS = {
+    NEXT_BIND:   'https://track.nextinsurance.com/links?agent_affiliation=dVEVbUfFPrNPRrRM&serial=992855993&channel=affiliation',
+    NEXT_REVIEW: 'https://track.nextinsurance.com/links?agent_affiliation=xX3E6j8HoQF3aATU&serial=992855993&channel=affiliation',
+    COTERIE:     'https://app.coterieinsurance.com/quote?p=nussygobyebye%40gmail.com',
+    FETCH:       'https://www.fetchpet.com/mypet?a=KendallJonesIns&utm_source=firstconnect&utm_medium=brokerportal&utm_campaign=firstconnect_email&c=firstconnect&p=firstconnect'
   };
 
-  // Carousel
+  // =========================
+  // Carousel (Commercial & Pets)
+  // =========================
   function botCarousel(items=[]){
     const wrap=document.createElement('div'); wrap.className='jb-bubble jb-bot';
-    const av=document.createElement('div'); av.className='sage-avatar'; av.innerHTML='<img src="img/sage.jpg" alt="Sage">';
+    const av=document.createElement('div');
+    av.className='sage-avatar';
+    av.innerHTML='<img src="img/sage.jpg" alt="Sage"><div class="sage-name">Sage</div>';
     wrap.appendChild(av);
 
     const car=document.createElement('div'); car.className='jb-carousel';
@@ -200,44 +235,50 @@ document.addEventListener('DOMContentLoaded', () => {
     messages.appendChild(wrap); messages.scrollTop=messages.scrollHeight;
   }
 
-  // Offers
-  let offeredCommercial=false;
   function showCommercialOffers(){
-    if(offeredCommercial){ idx++; renderStep(); return; }
-    offeredCommercial=true;
-    bot('Great — here are quick self-serve options for small business coverage. Use the arrows to browse.');
+    bot('Here are quick self-serve options for small business. Use the arrows to browse, or continue with me.');
     botCarousel([
       { title:'NEXT Insurance — Bind Online',
-        body:'Confident and ready to purchase now? Start a secure quote and bind coverage yourself.',
-        actions:[{label:'Open NEXT – Bind Myself',href:carrierLinks.NEXT.bind},{label:'Continue Here with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] },
+        body:'Confident and ready to purchase now? Start a secure quote and bind yourself.',
+        actions:[{label:'Open NEXT – Bind Myself',href:LINKS.NEXT_BIND},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] },
       { title:'NEXT Insurance — Review First',
-        body:'Prefer Kendall to review before binding? Use this link — I’ll confirm details quickly.',
-        actions:[{label:'Open NEXT – Review First',href:carrierLinks.NEXT.review},{label:'Continue Here with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] },
+        body:'Prefer Kendall to review before binding? Use this link — we’ll confirm discounts.',
+        actions:[{label:'Open NEXT – Review First',href:LINKS.NEXT_REVIEW},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] },
       { title:'Coterie — Quick Business Quote',
-        body:'Fast, modern business quoting. Start now and I’ll follow up to make sure discounts apply.',
-        actions:[{label:'Open Coterie Quote',href:carrierLinks.COTERIE.quote},{label:'Continue Here with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
+        body:'Fast, modern quoting. Start now — I’ll follow up and make sure it fits.',
+        actions:[{label:'Open Coterie Quote',href:LINKS.COTERIE},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
     ]);
   }
 
-  let offeredPets=false;
   function showPetOffers(){
-    if(offeredPets){ idx++; renderStep(); return; }
-    offeredPets=true;
-    bot('Let’s protect your furry family! Swipe or use arrows to browse.');
+    bot('Let’s protect your furry family! You can explore an option below or continue with me.');
     botCarousel([
       { title:'Fetch Pet Insurance',
-        body:'Comprehensive coverage for dogs and cats — emergencies, illnesses, and more.',
-        actions:[{label:'Explore Fetch Pet Insurance',href:carrierLinks.FETCH.pets},{label:'Continue Here with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
+        body:'Comprehensive coverage for dogs and cats — emergencies, illnesses, more.',
+        actions:[{label:'Explore Fetch',href:LINKS.FETCH},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
     ]);
   }
 
-  // Flow
+  // =========================
+  // Dialog flow
+  // =========================
+  const steps=[
+    { key:'name',   label:'What’s your name?', type:'text',    placeholder:'Full name', validate:v=>v.trim().length>1 },
+    { key:'email',  label:'What’s the best email?', type:'email', placeholder:'you@email.com', validate:v=>/^\S+@\S+\.\S+$/.test(v) },
+    { key:'phone',  label:'And a phone number?', type:'tel',   placeholder:'406-555-1234', validate:v=>v.replace(/\D/g,'').length>=10 },
+    { key:'line',   label:'Which line are you interested in?', type:'select', options:['Auto','Home','Renters','Life','Commercial','Flood','Pets','Other'] },
+    { key:'zip',    label:'What ZIP code is this for?', type:'text', placeholder:'e.g., 59901', validate:v=>/^\d{5}$/.test(v) },
+    { key:'notes',  label:'Anything else I should know? (You can also ask me a question here.)', type:'textarea', placeholder:'Optional notes or a question' },
+    { key:'consent',label:'Please confirm you consent to be contacted (you can opt out anytime).', type:'checkbox', required:true }
+  ];
+  let idx=0; const data={};
+
   function openChat(){
     launcher.hidden=true;
     panel.classList.remove('is-hidden','fade-out');
     messages.innerHTML=''; inputWrap.innerHTML='';
     bot('Hello! I’m Sage 🌿, your digital assistant with Jewel Basin Insurance Solutions.');
-    setTimeout(()=>{ bot('Let’s go through a few quick questions to get your quote started.'); renderStep(); },800);
+    setTimeout(()=>{ bot('We’ll go through a few quick items to start your quote. If you have a question at any time, just type it with a “?” and I’ll answer.'); renderStep(); },700);
   }
   function closeChat(){
     panel.classList.add('fade-out');
@@ -275,9 +316,27 @@ document.addEventListener('DOMContentLoaded', () => {
     return v.trim().length>0;
   }
 
+  // Form handler with question interception
   form.addEventListener('submit', e=>{
     e.preventDefault();
     const v=currentValue();
+
+    // If user typed a question, answer from KB and stay on the same step
+    if (typeof v === 'string' && isQuestion(v)) {
+      user(v);
+      const a = answerKB(v);
+      if (a) {
+        bot(a);
+        // Smart nudges
+        if (/commercial|business|contractor/i.test(v)) showCommercialOffers();
+        if (/pet|dog|cat/i.test(v)) showPetOffers();
+      } else {
+        bot('I don’t want to guess. I can have Kendall follow up with a precise answer—shall we finish the quick details?');
+      }
+      return;
+    }
+
+    // Normal progression
     if(!isValid(v)){ bot('Oops — please enter a valid response.'); return; }
     user(typeof v==='string'?v:'✓');
     data[steps[idx].key]=v;
@@ -286,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(v==='Commercial'){ showCommercialOffers(); return; }
       if(v==='Pets'){ showPetOffers(); return; }
     }
+
     if(idx<steps.length-1){ idx++; renderStep(); } else { submitLead(); }
   });
 
@@ -298,10 +358,13 @@ document.addEventListener('DOMContentLoaded', () => {
     f.append('_template','table');
     Object.entries(data).forEach(([k,v])=>f.append(k,v));
     f.append('source_page',location.href);
+
     fetch('https://formsubmit.co/ajax/kendalljonesins@outlook.com',{method:'POST',body:f})
-      .then(()=>{ messages.innerHTML=''; bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply. It’s been a pleasure assisting you. — Sage 🌿'); inputWrap.innerHTML=''; nextBtn.disabled=true; backBtn.disabled=true; });
+      .then(()=>{ messages.innerHTML=''; bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply. It’s been a pleasure assisting you. — Sage 🌿'); inputWrap.innerHTML=''; nextBtn.disabled=true; backBtn.disabled=true; })
+      .catch(()=>{ bot('Hmm, I couldn’t send that just now. You can call/text 406-314-7878 or try again in a moment.'); });
   }
 
+  // Open/Close
   launcher.addEventListener('click',openChat);
   panel.querySelector('.jb-close').addEventListener('click',closeChat);
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!panel.classList.contains('is-hidden')) closeChat(); });
