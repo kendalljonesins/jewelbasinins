@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Specialty & Optional Coverages | Jewel Basin Insurance Solutions</title>
+  <meta name="description" content="Home & auto warranties, jewelry, drones, parametric weather, and more. Flexible add‑ons and specialty coverages tailored to your needs." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- =========================
+       HEADER / NAV (consistent)
+  ========================= -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo" aria-label="Jewel Basin Insurance Solutions LLC">
+        <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#services">Home</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="other.html" class="active">Other</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Call/Text chooser button -->
+      <button id="callTextBtn" class="btn-call" type="button">Call/Text Now</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================
+         HERO
+    ========================= -->
+    <section class="hero">
+      <div class="hero-inner container">
+        <div class="hero-text">
+          <h1>Specialty &amp; Optional Coverages</h1>
+          <p>
+            Beyond the basics — protect the gear, events, and valuables that don’t fit neatly into standard policies.
+            I’ll shop options and explain what’s worth adding (and what isn’t).
+          </p>
+          <a href="#quote" class="btn btn-primary">Get a Quote</a>
+        </div>
+        <div class="hero-photo">
+          <img src="img/other.jpg" alt="Optional and specialty coverage" />
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         COVERAGE CARDS
+    ========================= -->
+    <section class="section">
+      <div class="container">
+        <h2>Popular Optional Coverages</h2>
+        <p class="section__lead">Add to an existing policy or purchase stand‑alone depending on the carrier.</p>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <img src="img/home3.jpg" alt="Home Warranty" />
+            <div class="service-card__body">
+              <h3>Home Warranty</h3>
+              <p>Helps with appliance, HVAC, plumbing, and electrical system breakdowns.</p>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/auto2.jpg" alt="Vehicle Service Contract" />
+            <div class="service-card__body">
+              <h3>Vehicle Service Contract (VSC)</h3>
+              <p>Covers costly mechanical failures beyond factory warranty; deductible &amp; tier choices.</p>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/drone.jpg" alt="Drone Liability" />
+            <div class="service-card__body">
+              <h3>Drone Liability</h3>
+              <p>Recreational or commercial UAV liability options for damage or injury claims.</p>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/parametric.jpg" alt="Parametric Weather & Event" />
+            <div class="service-card__body">
+              <h3>Parametric Weather &amp; Event</h3>
+              <p>Fast payouts triggered by measured events (wind, hail, rainfall) or cancellations.</p>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/jewelry.jpg" alt="Jewelry and Scheduled Property" />
+            <div class="service-card__body">
+              <h3>Jewelry &amp; Scheduled Property</h3>
+              <p>Rings, watches, instruments, collections — broader causes of loss and travel coverage.</p>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="img/other2.jpg" alt="Other or Unlisted" />
+            <div class="service-card__body">
+              <h3>Other or Unlisted</h3>
+              <p>Don’t see it here? Tell me what you need; I’ll find markets that fit the risk.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         QUOTE FORM (standardized)
+    ========================= -->
+    <section id="quote" class="section section--muted">
+      <div class="container narrow">
+        <h2>Request Info on a Specialty Coverage</h2>
+        <p class="section__lead">Share the details and I’ll advise on the best program or carrier.</p>
+
+        <form action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST" class="quote-form">
+          <!-- hidden settings -->
+          <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thank-you.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="New Specialty / Other Coverage Request" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="Full name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="Email" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="Phone" />
+            </div>
+            <div class="form-group">
+              <label for="coverage">Which coverage are you asking about?</label>
+              <select id="coverage" name="Coverage type">
+                <option value="">Choose one…</option>
+                <option>Home Warranty</option>
+                <option>Auto Warranty / Service Contract</option>
+                <option>Drone Liability</option>
+                <option>Parametric Weather</option>
+                <option>Jewelry / Scheduled Property</option>
+                <option>Other / Not listed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="time">Preferred contact time</label>
+              <select id="time" name="Preferred contact time">
+                <option>9–12 MT</option>
+                <option>12–3 MT</option>
+                <option>3–5 MT</option>
+                <option>After 5 MT (by appt)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Details (item, value, use, business/personal, event date, etc.)</label>
+            <textarea id="notes" name="Notes" rows="4"></textarea>
+          </div>
+
+          <div class="consent-box">
+            <label class="checkbox-inline">
+              <input type="checkbox" name="Consent" value="Yes" required />
+              By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products
+              and services (message/data rates may apply). You may opt out of these communications at any time. Your information will never be sold or shared
+              outside of Jewel Basin Insurance Solutions LLC and is obtained solely for insurance quoting and policy servicing purposes. You acknowledge that
+              you have read and agree to our <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+            </label>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-submit">Submit Request</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+  <footer class="footer">
+    <p>
+      &copy; <span id="year"></span> Jewel Basin Insurance Solutions LLC. All rights reserved.
+      <a href="privacy.html">Privacy Policy</a> 
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </p>
+  </footer>
+
+  <!-- =========================
+       CHAT (unchanged IDs/classes)
+  ========================= -->
+  <script src="chat.js" defer></script>
+  <button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">Let’s Chat</button>
+  <div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
+    <div class="jb-chat__header">
+      <strong>JBIS</strong>
+      <button class="jb-chat__close" aria-label="Close chat">&times;</button>
+    </div>
+    <div id="jb-chat-messages" class="jb-chat__messages"></div>
+    <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
+      <div id="jb-chat-input"></div>
+      <div class="jb-chat__actions">
+        <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
+        <button type="submit" id="jb-chat-next" class="btn">Next</button>
+      </div>
+    </form>
+    <div class="jb-chat__footer">
+      <small>
+        By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply). You can opt out anytime.
+        We don’t sell your data; it’s used only to provide quotes. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        and <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+      </small>
+    </div>
+  </div>
+
+  <!-- =========================
+       JS: Call/Text chooser + year script
+  ========================= -->
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Call/Text popup
+    (function(){
+      const btn = document.getElementById('callTextBtn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,.35)';
+        overlay.style.zIndex = '9999';
+
+        const box = document.createElement('div');
+        box.style.position = 'fixed';
+        box.style.top = '50%';
+        box.style.left = '50%';
+        box.style.transform = 'translate(-50%, -50%)';
+        box.style.background = '#fff';
+        box.style.border = '2px solid #0d3b66';
+        box.style.borderRadius = '14px';
+        box.style.padding = '1.25rem 1.5rem';
+        box.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25)';
+        box.style.textAlign = 'center';
+        box.style.zIndex = '10000';
+
+        box.innerHTML = `
+          <p style="font-weight:700;color:#0d3b66;margin-bottom:1rem;">How would you like to connect?</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:4063147878" class="btn" style="text-decoration:none;">📞 Call</a>
+            <a href="sms:4063147878" class="btn" style="text-decoration:none;">💬 Text</a>
+          </div>
+          <button id="closeChoiceBox" style="margin-top:1.1rem;background:none;border:none;color:#555;font-size:.9rem;cursor:pointer;">Cancel</button>
+        `;
+
+        overlay.addEventListener('click', () => { overlay.remove(); box.remove(); });
+        document.body.appendChild(overlay);
+        document.body.appendChild(box);
+        document.getElementById('closeChoiceBox').addEventListener('click', () => { overlay.remove(); box.remove(); });
+      });
+    })();
+  </script>
+</body>
+</html>

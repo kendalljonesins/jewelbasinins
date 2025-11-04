@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Licenses | Jewel Basin Insurance Solutions</title>
+  <meta name="description" content="View Jewel Basin Insurance Solutions LLC licensing information for Montana, Washington, Idaho, North Dakota, Arizona, and Tennessee." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- =========================
+       HEADER / NAV (kept consistent with site)
+  ========================= -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo" aria-label="Jewel Basin Insurance Solutions LLC">
+        <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#services">Home</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="other.html">Other</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Call/Text chooser button -->
+      <button id="callTextBtn" class="btn-call" type="button">Call/Text Now</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================
+         HERO
+    ========================= -->
+    <section class="hero hero--page">
+      <div class="hero-inner container">
+        <div class="hero-text">
+          <h1>Licenses &amp; Credentials</h1>
+          <p>
+            Kendall Jones, owner of Jewel Basin Insurance Solutions LLC, is licensed and in good standing in the
+            states listed below. Use the links to view each official document.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         NOTICE
+    ========================= -->
+    <section class="section">
+      <div class="container narrow">
+        <h2>Important Contact & Address Notice</h2>
+        <div class="notice-card" style="background:#f7fbff;border:2px solid #0d3b66;border-radius:14px;padding:1rem 1.25rem;box-shadow:0 6px 24px rgba(0,0,0,.08);">
+          <p>While my licenses may publicly show a registered address and email address, <strong>please do not visit the physical address</strong> listed on those documents. It is my personal residence and not an appropriate location for client visits. I will have a physical office space for local, in‑person appointments in the future.</p>
+          <p><strong>Email:</strong> Please direct all policy‑related emails to <a href="mailto:kendalljonesins@outlook.com">kendalljonesins@outlook.com</a>. My personal email should not be used for insurance communications.</p>
+          <p style="margin:0.75rem 0 0 0;">Thank you,<br /><strong>Kendall Jones</strong><br />Owner, Jewel Basin Insurance Solutions LLC</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         LICENSE LIST
+    ========================= -->
+    <section class="section section--muted">
+      <div class="container narrow">
+        <h2>Current Active State Licenses</h2>
+        <p class="section__lead">Open a PDF copy of each license:</p>
+
+        <ul class="license-list">
+          <li><a href="img/MT.pdf" target="_blank" rel="noopener">Montana — Resident Producer</a></li>
+          <li><a href="img/WA.pdf" target="_blank" rel="noopener">Washington — Non‑Resident</a></li>
+          <li><a href="img/ID.pdf" target="_blank" rel="noopener">Idaho — Non‑Resident</a></li>
+          <li><a href="img/ND.pdf" target="_blank" rel="noopener">North Dakota — Non‑Resident</a></li>
+          <li><a href="img/AZ.pdf" target="_blank" rel="noopener">Arizona — Non‑Resident</a></li>
+          <li><a href="img/TN.pdf" target="_blank" rel="noopener">Tennessee — Non‑Resident</a></li>
+        </ul>
+
+        <p class="license-note">
+          License status can be verified any time via the
+          <a href="https://nipr.com/licensing-center/state-requirements" target="_blank" rel="noopener">National Insurance Producer Registry (NIPR)</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+  <footer class="footer">
+    <p>
+      &copy; <span id="year"></span> Jewel Basin Insurance Solutions LLC. All rights reserved.
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </p>
+  </footer>
+
+  <!-- =========================
+       CHAT (unchanged IDs/classes)
+  ========================= -->
+  <script src="chat.js" defer></script>
+  <button id="jb-chat-launcher" aria-controls="jb-chat" aria-expanded="false">Let’s Chat</button>
+  <div id="jb-chat" class="is-hidden" role="dialog" aria-label="Quote chat" aria-hidden="true">
+    <div class="jb-chat__header">
+      <strong>JBIS</strong>
+      <button class="jb-chat__close" aria-label="Close chat">&times;</button>
+    </div>
+    <div id="jb-chat-messages" class="jb-chat__messages"></div>
+    <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
+      <div id="jb-chat-input"></div>
+      <div class="jb-chat__actions">
+        <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
+        <button type="submit" id="jb-chat-next" class="btn">Next</button>
+      </div>
+    </form>
+    <div class="jb-chat__footer">
+      <small>
+        By continuing you agree JBIS may contact you about insurance products and services (message/data rates may apply). You can opt out anytime.
+        We don’t sell your data; it’s used only to provide quotes. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        and <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+      </small>
+    </div>
+  </div>
+
+  <!-- =========================
+       JS: Year + Call/Text chooser
+  ========================= -->
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Call/Text popup
+    (function(){
+      const btn = document.getElementById('callTextBtn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,.35)';
+        overlay.style.zIndex = '9999';
+
+        const box = document.createElement('div');
+        box.style.position = 'fixed';
+        box.style.top = '50%';
+        box.style.left = '50%';
+        box.style.transform = 'translate(-50%, -50%)';
+        box.style.background = '#fff';
+        box.style.border = '2px solid #0d3b66';
+        box.style.borderRadius = '14px';
+        box.style.padding = '1.25rem 1.5rem';
+        box.style.boxShadow = '0 12px 40px rgba(0,0,0,0.25)';
+        box.style.textAlign = 'center';
+        box.style.zIndex = '10000';
+
+        box.innerHTML = `
+          <p style="font-weight:700;color:#0d3b66;margin-bottom:1rem;">How would you like to connect?</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:4063147878" class="btn" style="text-decoration:none;">📞 Call</a>
+            <a href="sms:4063147878" class="btn" style="text-decoration:none;">💬 Text</a>
+          </div>
+          <button id="closeChoiceBox" style="margin-top:1.1rem;background:none;border:none;color:#555;font-size:.9rem;cursor:pointer;">Cancel</button>
+        `;
+
+        overlay.addEventListener('click', () => { overlay.remove(); box.remove(); });
+        document.body.appendChild(overlay);
+        document.body.appendChild(box);
+        document.getElementById('closeChoiceBox').addEventListener('click', () => { overlay.remove(); box.remove(); });
+      });
+    })();
+  </script>
+</body>
+</html>
