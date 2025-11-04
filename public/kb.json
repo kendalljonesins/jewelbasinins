@@ -1,0 +1,51 @@
+{
+  "agency": {
+    "name": "Jewel Basin Insurance Solutions LLC",
+    "phone": "406-314-7878",
+    "email": "kendalljonesins@outlook.com",
+    "hours": "9–5 MT; after 5 by appointment",
+    "states": ["MT","WA","ID","ND","AZ","TN"],
+    "privacy": "We don’t sell your data. Info is used only for quoting/service. Opt out anytime."
+  },
+  "links": {
+    "next_bind": "https://track.nextinsurance.com/links?agent_affiliation=dVEVbUfFPrNPRrRM&serial=992855993&channel=affiliation",
+    "next_review": "https://track.nextinsurance.com/links?agent_affiliation=xX3E6j8HoQF3aATU&serial=992855993&channel=affiliation",
+    "coterie": "https://app.coterieinsurance.com/quote?p=nussygobyebye%40gmail.com",
+    "fetch": "https://www.fetchpet.com/mypet?a=KendallJonesIns&utm_source=firstconnect&utm_medium=brokerportal&utm_campaign=firstconnect_email&c=firstconnect&p=firstconnect",
+    "nhc_atl": "https://www.nhc.noaa.gov/?atl"
+  },
+  "carrierFaqs": {
+    "PROGRESSIVE": {
+      "aliases": ["progressive"],
+      "faq": "https://www.progressive.com/support/",
+      "billing": "https://www.progressive.com/support/policy-service/billing-and-payments/",
+      "claims": "https://www.progressive.com/claims/"
+    },
+    "NEXT": {
+      "aliases": ["next"],
+      "faq": "https://www.nextinsurance.com/faq/",
+      "billing": "https://www.nextinsurance.com/help/billing/",
+      "claims": "https://www.nextinsurance.com/claims/"
+    },
+    "COTERIE": {
+      "aliases": ["coterie"],
+      "faq": "https://www.coterieinsurance.com/faq/",
+      "billing": "https://www.coterieinsurance.com/billing/",
+      "claims": "https://www.coterieinsurance.com/claims/"
+    },
+    "FETCH": {
+      "aliases": ["fetch"],
+      "faq": "https://www.fetchpet.com/faq",
+      "billing": "https://www.fetchpet.com/faq#billing",
+      "claims": "https://www.fetchpet.com/claims"
+    }
+  },
+  "faqs": [
+    { "q": "Where do you sell?", "a": "I can help in MT, WA, ID, ND, AZ, and TN." },
+    { "q": "Hours?", "a": "I’m available 9–5 MT, and I can schedule after 5 by appointment." },
+    { "q": "Do you sell data?", "a": "No—your information is used only for quoting/service. Opt out anytime." },
+    { "q": "Self-serve business insurance", "a": "You can start with NEXT or Coterie; I’ll still review to confirm discounts." },
+    { "q": "Flood basics", "a": "Flood is separate from homeowners; rates depend on zone/elevation. See the NHC for Atlantic updates." },
+    { "q": "Mortgage protection / life", "a": "I can help with term life and mortgage protection with a few basics about you." }
+  ]
+}
