@@ -32,3 +32,11 @@
     }
   ]
 }
+
+[
+  { "k": ["hours","open","time"], "a": "I’m available 9–5 MT, and after 5 by appointment." },
+  { "k": ["states","licensed","sell"], "a": "I can help in MT, WA, ID, ND, AZ, and TN." },
+  { "k": ["progressive","billing","payment"], "a": "For Progressive billing, visit their billing portal or call 1-800-876-5581." }
+  // …add more items here
+]
+
