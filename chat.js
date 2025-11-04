@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     panel.setAttribute('aria-hidden','false');
     messages.innerHTML=''; inputWrap.innerHTML='';
     bot('Hello! I’m Sage 🌿, your digital assistant with Jewel Basin Insurance Solutions.');
-    setTimeout(()=>{ bot('We’ll go through a few quick items to start your quote. If you have a question at any time, just type it with a “?” and I’ll answer.'); renderStep(); },700);
+    setTimeout(()=>{ bot('We’ll go through a few quick items to start your quote. If you have a question at any time, just type it with a “?” and I’ll answer.'); renderStep(); },1500);
   }
 
   function closeChat(){
