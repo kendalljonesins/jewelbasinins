@@ -1,67 +1,62 @@
-// /api/brain.ts  (Vercel Edge/Node runtime OK)
-import { NextResponse } from 'next/server';
+// api/brain.js — Sage's lightweight KB endpoint (Vercel)
+// Node 18+ (ESM) friendly
 
-function withCORS(res: NextResponse) {
-  res.headers.set('Access-Control-Allow-Origin', '*');
-  res.headers.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
-  return res;
-}
+export default async function handler(req, res) {
+  // CORS for cross-origin (your main site calling Vercel)
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-export async function OPTIONS() {
-  return withCORS(new NextResponse(null, { status: 204 }));
-}
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  if (req.method !== 'POST') {
+    return res.status(200).json({ ok: true, tip: "POST {question} to this endpoint." });
+  }
 
-export async function GET(req: Request) {
-  return withCORS(
-    NextResponse.json({ ok: true, tip: 'POST {question} to this endpoint.' })
-  );
-}
-
-export async function POST(req: Request) {
   try {
-    const { question } = await req.json();
+    // Load kb.json that sits in the SAME folder as this file
+    const kb = (await import('./kb.json', { assert: { type: 'json' } })).default;
 
-    // Build the public URL to kb.json using the same host
-    const url = new URL(req.url);
-    const kbUrl = `${url.origin}/kb.json`;
+    const { question } = req.body || {};
+    if (!question) return res.status(400).json({ error: 'Missing question' });
 
-    const kb = await fetch(kbUrl, { cache: 'no-store' }).then((r) => r.json());
-    // Very simple keyword match against `kb` (array of { k: string[], a: string })
-    let best: string | null = null;
-    let score = 0;
+    const q = String(question).toLowerCase();
 
-    for (const entry of kb as Array<{ k: string[]; a: string }>) {
-      const s = entry.k.reduce(
-        (acc, kw) =>
-          acc + (String(question || '').toLowerCase().includes(kw) ? 1 : 0),
-        0
-      );
-      if (s > score) {
-        score = s;
-        best = entry.a;
+    // 1) Carrier matches
+    for (const carrier of kb.carriers || []) {
+      if (carrier.keywords?.some(k => q.includes(k))) {
+        return res.json({
+          text: `Here’s what ${carrier.name} can help you with directly:`,
+          intent: 'route_carrier_faq',
+          carrier: carrier.name,
+          link: carrier.link
+        });
       }
     }
 
-    const resp = best
-      ? { text: best, intent: 'kb_answer' }
-      : {
-          text:
-            "I don't want to guess. I can have Kendall follow up with a precise answer—shall we finish the quick details?",
-          intent: 'handoff_human',
-        };
+    // 2) Simple intents
+    if (/pet|dog|cat/.test(q)) {
+      return res.json({
+        text: 'Fetch Pet Insurance can help cover your furry family for accidents, illnesses, and more.',
+        intent: 'route_carrier_quote',
+        carrier: 'FETCH'
+      });
+    }
+    if (/business|contractor|commercial/.test(q)) {
+      return res.json({
+        text: 'For business insurance, NEXT and Coterie provide quick quote options I can review with you.',
+        intent: 'route_carrier_quote',
+        carrier: 'NEXT'
+      });
+    }
 
-    return withCORS(NextResponse.json(resp));
+    // 3) Handoff fallback
+    return res.json({
+      text: "I couldn’t find an exact match in my knowledge base. Want me to have Kendall follow up personally?",
+      intent: 'handoff_human'
+    });
   } catch (e) {
-    return withCORS(
-      NextResponse.json(
-        {
-          text:
-            "I couldn’t reach my knowledge base just now. Want me to have Kendall follow up?",
-          intent: 'handoff_human',
-        },
-        { status: 200 }
-      )
-    );
+    return res.status(500).json({ error: 'KB load failed', detail: String(e) });
   }
 }
