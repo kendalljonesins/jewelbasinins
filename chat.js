@@ -1,13 +1,13 @@
 // Sage chat — CSS-based version (no inline <style>)
+// Adds: Voice-to-Text & Paper-Plane Send, removes Next/Prev buttons
 // Relies on styles in styles.css (#jb-chat, #jb-chat-launcher, .jb-chat__header, etc.)
-// Keeps the same flow, KB, and carousels.
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Clean up any legacy instances the page may have shipped with
+  // Clean up any legacy instances
   ['jb-chat-launcher','jb-chat'].forEach(id => { const el=document.getElementById(id); if(el) el.remove(); });
 
   // =========================
-  // Panel + launcher (no style injection)
+  // Panel + launcher
   // =========================
   const launcher=document.createElement('button');
   launcher.id='jb-chat-launcher';
@@ -29,8 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
     <form id="jb-chat-form" class="jb-chat__input" autocomplete="on">
       <div id="jb-chat-input"></div>
       <div class="jb-chat__actions">
-        <button type="button" id="jb-chat-back" class="btn btn-ghost" disabled>Back</button>
-        <button type="submit" id="jb-chat-next" class="btn">Next</button>
+        <button type="button" id="jb-chat-voice" class="btn btn-ghost" aria-label="Start voice input" title="Voice input (press to speak)">🎤</button>
+        <button type="submit" id="jb-chat-send" class="btn" aria-label="Send" title="Send">
+          <!-- paper plane -->
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 21l20-9L2 3v7l15 2-15 2v7z" fill="currentColor"/>
+          </svg>
+        </button>
       </div>
     </form>
     <div class="jb-chat__footer">
@@ -47,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const messages=panel.querySelector('#jb-chat-messages');
   const form=panel.querySelector('#jb-chat-form');
   const inputWrap=panel.querySelector('#jb-chat-input');
-  const backBtn=panel.querySelector('#jb-chat-back');
-  const nextBtn=panel.querySelector('#jb-chat-next');
+  const voiceBtn=panel.querySelector('#jb-chat-voice');
+  const sendBtn=panel.querySelector('#jb-chat-send');
 
   // =========================
   // Inline Knowledge Base
@@ -65,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { k:['flood','hurricane','nhc','map'], a:'Flood is separate from homeowners. For Atlantic updates, you can check the NHC site from my Flood page.' },
     { k:['life','mortgage','term','final expense'], a:'I can help with term life, mortgage protection, and more. A few details will let me tailor options.' },
     // Tend / Home Warranty quick reply
-    { k:['tend','home warranty','warranty','home protection'], 
+    { k:['tend','home warranty','warranty','home protection'],
       a:'If you’re exploring Home Warranty, here’s my Tend referral link: https://partner.mytend.com/first-connect?subproducerID=FC47881' },
     // Arkay / Auto Warranty quick reply
     { k:['arkay','auto warranty','vehicle service contract','vsc','extended warranty'],
@@ -185,13 +190,13 @@ document.addEventListener('DOMContentLoaded', () => {
     bot('Hello! I’m Sage 🌿, your digital assistant with Jewel Basin Insurance Solutions.');
     setTimeout(()=>{ bot('We’ll go through a few quick items to start your quote. If you have a question at any time, just type it with a “?” and I’ll answer.'); renderStep(); },1500);
   }
-
   function closeChat(){
     panel.classList.add('is-hidden');
     panel.setAttribute('aria-hidden','true');
     launcher.setAttribute('aria-expanded','false');
   }
 
+  // Render current step
   function renderStep(){
     const s=steps[idx]; inputWrap.innerHTML=''; bot(s.label);
     let el;
@@ -208,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     inputWrap.appendChild(el);
     (el.tagName==='LABEL'?el.querySelector('input'):el).focus();
-    backBtn.disabled=(idx===0);
   }
 
   function currentValue(){
@@ -223,12 +227,56 @@ document.addEventListener('DOMContentLoaded', () => {
     return (typeof v==='string' ? v.trim().length>0 : !!v);
   }
 
-  // Submit
+  // Voice-to-Text (Web Speech API)
+  let recognition=null, listening=false;
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SpeechRec) {
+    recognition = new SpeechRec();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.addEventListener('result', (e) => {
+      const txt = Array.from(e.results).map(r=>r[0].transcript).join(' ').trim();
+      const ctrl = activeControl();
+      if (ctrl && (ctrl.tagName === 'INPUT' || ctrl.tagName === 'TEXTAREA')) {
+        // Append with a space if needed
+        ctrl.value = (ctrl.value ? ctrl.value + ' ' : '') + txt;
+        ctrl.focus();
+      } else {
+        // If we're on a select/checkbox step, show as a user message
+        user(txt);
+      }
+    });
+    recognition.addEventListener('end', () => { listening=false; voiceBtn.classList.remove('is-recording'); voiceBtn.title='Voice input (press to speak)'; });
+  }
+  function activeControl(){
+    const s=steps[idx];
+    if(s.type==='checkbox') return inputWrap.querySelector('input');
+    return inputWrap.querySelector('textarea,select,.field');
+  }
+
+  voiceBtn.addEventListener('click', () => {
+    if (!recognition) {
+      bot('Voice input isn’t supported on this browser. You can type your response instead.');
+      return;
+    }
+    if (listening) {
+      recognition.stop();
+      return;
+    }
+    voiceBtn.classList.add('is-recording');
+    voiceBtn.title='Listening… click to stop';
+    listening = true;
+    try { recognition.start(); } catch(_) { /* start can throw if called twice quickly */ }
+  });
+
+  // Submit handler (Enter key or plane button)
   form.addEventListener('submit', e=>{
     e.preventDefault();
     const v=currentValue();
 
-    // Q&A on the fly
+    // Q&A path if user typed a question
     if (typeof v === 'string' && isQuestion(v)) {
       user(v);
       const a = answerKB(v);
@@ -251,16 +299,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if(steps[idx].key==='line'){
       if(v==='Commercial'){ showCommercialOffers(); return; }
       if(v==='Pets'){ showPetOffers(); return; }
-      if(v==='Other'){ showOtherOffers(); return; } // Tend + Arkay appear here
+      if(v==='Other'){ showOtherOffers(); return; }
     }
 
     if(idx<steps.length-1){ idx++; renderStep(); } else { submitLead(); }
   });
 
-  backBtn.addEventListener('click',()=>{ if(idx===0) return; idx--; renderStep(); });
-
   function submitLead(){
     bot('Sending your info…');
+    // Disable actions while sending
+    sendBtn.disabled = true;
+    voiceBtn.disabled = true;
+
     const f=new FormData();
     f.append('_subject','New Web Chat Lead');
     f.append('_template','table');
@@ -268,8 +318,9 @@ document.addEventListener('DOMContentLoaded', () => {
     f.append('source_page',location.href);
 
     fetch('https://formsubmit.co/ajax/kendalljonesins@outlook.com',{method:'POST',body:f})
-      .then(()=>{ messages.innerHTML=''; bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply. It’s been a pleasure assisting you. — Sage 🌿'); inputWrap.innerHTML=''; nextBtn.disabled=true; backBtn.disabled=true; })
-      .catch(()=>{ bot('Hmm, I couldn’t send that just now. You can call/text 406-314-7878 or try again in a moment.'); });
+      .then(()=>{ messages.innerHTML=''; bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply. It’s been a pleasure assisting you. — Sage 🌿'); inputWrap.innerHTML=''; })
+      .catch(()=>{ bot('Hmm, I couldn’t send that just now. You can call/text 406-314-7878 or try again in a moment.'); })
+      .finally(()=>{ sendBtn.disabled=false; voiceBtn.disabled=false; });
   }
 
   // Open/Close
