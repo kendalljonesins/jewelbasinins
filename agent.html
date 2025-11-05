@@ -1,3 +1,15 @@
+<script>
+  (function(){
+    const TOKEN_KEY='jbis_agent_token', EXP_KEY='jbis_agent_exp';
+    const token = localStorage.getItem(TOKEN_KEY);
+    const exp   = Number(localStorage.getItem(EXP_KEY)||0);
+    if(token!=='ok' || Date.now()>exp){
+      const next = encodeURIComponent(location.pathname.replace(/^\//,'') || 'agent.html');
+      location.href = 'agent-login.html?next=' + next;
+    }
+  })();
+</script>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -252,3 +264,4 @@
   </script>
 </body>
 </html>
+
