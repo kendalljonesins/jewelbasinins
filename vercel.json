@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/basic-auth.js": { "runtime": "edge" }
+  },
+  "routes": [
+    { "src": "^/agent$", "dest": "/api/basic-auth" },
+    { "src": "^/agent\\.html$", "dest": "/api/basic-auth" }
+  ]
+}
