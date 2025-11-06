@@ -1,14 +1,20 @@
 // /api/basic-auth.js
+// Vercel Edge Function: HTTP Basic Auth gate for the agent portal
+
 export const config = { runtime: 'edge' };
 
-const USER = 'yourusername';      // change these
-const PASS = 'yoursupersecretpw'; // keep private
+// 🔒 set your credentials
+const USER = 'kendall.jone9533';            // <-- change me
+const PASS = 'mountainfox2025';    // <-- change me
 
 export default async function handler(req) {
   const deny = () =>
     new Response('Unauthorized', {
       status: 401,
-      headers: { 'WWW-Authenticate': 'Basic realm="JBIS Agent Portal"' }
+      headers: {
+        'WWW-Authenticate': 'Basic realm="JBIS Agent Portal"',
+        'Cache-Control': 'no-store'
+      }
     });
 
   const auth = req.headers.get('authorization') || '';
@@ -21,7 +27,13 @@ export default async function handler(req) {
     return deny();
   }
 
+  // ✅ Auth OK: fetch and return the static page content (no redirect)
+  // This avoids any routing loops.
   const url = new URL(req.url);
   url.pathname = '/agent.html';
-  return Response.redirect(url, 302);
+  const res = await fetch(url.toString(), { headers: { 'Cache-Control': 'no-store' } });
+  return new Response(res.body, {
+    status: res.status,
+    headers: res.headers
+  });
 }
