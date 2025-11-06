@@ -1,5 +1,7 @@
+// /api/basic-auth.js  (Vercel Edge Function)
 export const config = { runtime: 'edge' };
 
+// 🔒 credentials
 const USER = 'kjones9533';
 const PASS = 'mountainfox2025';
 
@@ -13,6 +15,7 @@ export default async function handler(req) {
       }
     });
 
+  // Expect "Authorization: Basic base64(user:pass)"
   const auth = req.headers.get('authorization') || '';
   if (!auth.startsWith('Basic ')) return deny();
 
@@ -23,8 +26,14 @@ export default async function handler(req) {
     return deny();
   }
 
+  // ✅ Auth OK → redirect the browser to the real static page
   const url = new URL(req.url);
   url.pathname = '/agent.html';
-  const res = await fetch(url.toString(), { headers: { 'Cache-Control': 'no-store' } });
-  return new Response(res.body, { status: res.status, headers: res.headers });
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: url.toString(),
+      'Cache-Control': 'no-store'
+    }
+  });
 }
