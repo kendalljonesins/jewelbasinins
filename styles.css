@@ -102,11 +102,6 @@ header img[alt*="Jewel Basin"], header img[alt*="JBIS"]{
   box-shadow:0 0 12px rgba(255,185,100,.8), 0 0 25px rgba(255,160,70,.5);
   transform:translateY(-1px);
 }
-.btn:active{transform:translateY(1px);}
-
-.button + .button {
-  margin-left: 0.75rem; /* space between buttons */
-}
 
 /* =========================
    HERO
@@ -430,4 +425,5 @@ header img[alt*="Jewel Basin"], header img[alt*="JBIS"]{
   .btn, .btn-submit{width:100%;}
   .hero, .hero--home{text-align:left;}
 }
+
 
