@@ -3,8 +3,8 @@
   "functions": {
     "api/basic-auth.js": { "runtime": "edge" }
   },
-  "routes": [
-    { "src": "^/agent\\.html$", "dest": "/agent" },
-    { "src": "^/agent$", "dest": "/api/basic-auth" }
+  "rewrites": [
+    { "source": "/agent.html", "destination": "/agent" },
+    { "source": "/agent", "destination": "/api/basic-auth" }
   ]
 }
