@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carriers & Markets — JBIS</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="img/favicon.png" />
+  <style>
+
+    /* Scrollable list styling */
+    .carrier-list {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding: 1rem 1.25rem;
+      background: var(--bg-light, #f9f9fb);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      margin-top: 1rem;
+    }
+    .carrier-list h3 {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      color: var(--text-dark, #223);
+    }
+    .carrier-list ul {
+      list-style: none;
+      margin: 0.5rem 0 1rem 0;
+      padding: 0;
+      columns: 2;
+      column-gap: 2rem;
+    }
+    .carrier-list li {
+      margin: 0.35rem 0;
+      padding-left: 0.75rem;
+      text-indent: -0.75rem;
+    }
+    .carrier-list li::before {
+      content: "• ";
+      color: var(--accent, #005c97);
+    }
+    @media (max-width: 768px) {
+      .carrier-list ul { columns: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- FIXED HEADER BAR (matches index.html) -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo" aria-label="Jewel Basin Insurance Solutions LLC">
+        <img src="img/logo.png" alt="Jewel Basin Insurance Solutions LLC logo" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="life.html">Life</a>
+        <a href="commercial.html">Commercial</a>
+        <a href="pets.html">Pets</a>
+        <a href="flood.html">Flood</a>
+        <a href="other.html">Other</a>
+        <a class="active" href="carriers.html">Carriers</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <button id="callTextBtn" class="btn-call" type="button">Call/Text Now</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" style="margin-top: 100px;">
+      <div class="container">
+        <h1>Carriers &amp; Market Access</h1>
+        <p class="section__lead">
+          The following is a working list of carriers, MGAs, and market access platforms I’m able to quote or write through.  
+          Availability varies by carrier and by state. JBIS currently operates in <strong>MT, WA, ID, ND, AZ &amp; TN</strong>.
+        </p>
+
+        <div class="carrier-list">
+          <h3>Market Access &amp; MGA Platforms</h3>
+          <ul>
+            <li>First Connect</li>
+            <li>RPS — Risk Placement Services</li>
+            <li>Pathpoint</li>
+            <li>ISC (AMP)</li>
+            <li>Simply Business</li>
+            <li>Semsee</li>
+            <li>Attune</li>
+            <li>weSure</li>
+            <li>Steadily</li>
+          </ul>
+
+          <h3>Personal &amp; Commercial Carriers</h3>
+          <ul>
+            <li>AIG</li>
+            <li>Aegis</li>
+            <li>AmTrust</li>
+            <li>Assurity</li>
+            <li>BHHC — Berkshire Hathaway Homestate</li>
+            <li>Chubb / Westchester</li>
+            <li>CNA</li>
+            <li>Coterie</li>
+            <li>Employers</li>
+            <li>Foremost</li>
+            <li>GeoVera</li>
+            <li>Great American</li>
+            <li>Hagerty</li>
+            <li>The Hanover</li>
+            <li>The Hartford</li>
+            <li>Hiscox</li>
+            <li>Kelly Klee</li>
+            <li>Liberty Mutual</li>
+            <li>Main Street America</li>
+            <li>Markel</li>
+            <li>Merchants</li>
+            <li>Nationwide / Harleysville</li>
+            <li>NEXT</li>
+            <li>NatGen (National General)</li>
+            <li>Openly</li>
+            <li>Palomar</li>
+            <li>Pie Insurance</li>
+            <li>Progressive</li>
+            <li>RLI</li>
+            <li>Safeco</li>
+            <li>Seneca</li>
+            <li>ShoreOne</li>
+            <li>Stillwater</li>
+            <li>Travelers</li>
+            <li>USLI — United States Liability</li>
+            <li>Vacant Express</li>
+          </ul>
+
+          <h3>Specialty &amp; Niche Markets</h3>
+          <ul>
+            <li>Foxquilt</li>
+            <li>Thimble</li>
+            <li>SkyWatch.AI (Drone)</li>
+            <li>Wright Flood</li>
+            <li>Rainwalk (Pet)</li>
+            <li>Fetch (Pet)</li>
+            <li>ePremium</li>
+            <li>Cowbell (Cyber)</li>
+            <li>RLI Surety</li>
+            <li>Propeller (Surety)</li>
+            <li>Vortex (Weather / Specialty)</li>
+            <li>AonEdge (Private Flood)</li>
+            <li>Home Warranty (via partners)</li>
+            <li>Arkay — Auto Warranty / VSC</li>
+            <li>Tend — Home Warranty</li>
+          </ul>
+        </div>
+
+        <div class="note note--muted" style="margin-top:1rem">
+          <small>
+            Listing may change as carrier access expands. Some entries are market access partners that connect JBIS to underlying carriers.  
+            For details on eligibility, contact me directly.
+          </small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      &copy; <span id="year"></span> Jewel Basin Insurance Solutions LLC. All rights reserved.
+      <a href="privacy.html">Privacy Policy</a> 
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </p>
+  </footer>
+
+  <script src="chat.js" defer></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    document.getElementById("callTextBtn").addEventListener("click", function() {
+      const choiceBox = document.createElement("div");
+      choiceBox.style.position = "fixed";
+      choiceBox.style.top = "50%";
+      choiceBox.style.left = "50%";
+      choiceBox.style.transform = "translate(-50%, -50%)";
+      choiceBox.style.background = "white";
+      choiceBox.style.border = "2px solid #0d3b66";
+      choiceBox.style.borderRadius = "14px";
+      choiceBox.style.padding = "1.25rem 1.5rem";
+      choiceBox.style.boxShadow = "0 12px 40px rgba(0,0,0,0.25)";
+      choiceBox.style.zIndex = "10000";
+      choiceBox.style.textAlign = "center";
+      choiceBox.innerHTML = `
+        <p style="font-weight:600;color:#0d3b66;margin-bottom:1rem;">How would you like to connect?</p>
+        <div style="display:flex;gap:1rem;justify-content:center;">
+          <a href="tel:4063147878" class="btn" style="text-decoration:none;">📞 Call</a>
+          <a href="sms:4063147878" class="btn" style="text-decoration:none;">💬 Text</a>
+        </div>
+        <button id="closeChoiceBox" style="margin-top:1.25rem;background:none;border:none;color:#555;font-size:.9rem;cursor:pointer;">Cancel</button>
+      `;
+      document.body.appendChild(choiceBox);
+      document.getElementById("closeChoiceBox").addEventListener("click", () => choiceBox.remove());
+    });
+  </script>
+</body>
+</html>
