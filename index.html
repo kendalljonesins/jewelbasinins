@@ -53,66 +53,143 @@
       </div>
     </section>
 
-    <!-- SERVICES: Home & Auto spotlight -->
-    <section id="services" class="section">
-      <div class="container">
-        <h2>Home &amp; Auto coverage</h2>
-        <p class="section__lead">
-          Bundle or place individually — I’ll shop carriers to match your budget, property, and location.
-        </p>
 
-        <div class="spotlight-grid">
-          <article class="spotlight">
-            <img src="img/hero-home.jpg" alt="Home insurance" class="spotlight__img" />
-            <div class="spotlight__body">
-              <h3>Home, Renters &amp; MH</h3>
-              <p>Primary, seasonal, and manufactured homes common in Montana and surrounding states.</p>
-              <ul>
-                <li>Dwelling &amp; other structures</li>
-                <li>Liability &amp; medical</li>
-                <li>Rental / seasonal options</li>
-              </ul>
-            </div>
-          </article>
+<!-- =========================
+     COVERAGE CARDS (uses existing styles.css)
+========================= -->
+<section id="coverage" class="section">
+  <div class="container">
+    <h2>Coverage I Offer</h2>
+    <p class="section__lead">
+      I’m currently licensed in <strong>MT, WA, ID, ND, AZ &amp; TN</strong>. Availability may vary by location and carrier.
+      As I expand licensure, I’ll offer more options to more clients.
+    </p>
 
-          <article class="spotlight">
-            <img src="img/hero-auto.jpg" alt="Auto insurance" class="spotlight__img" />
-            <div class="spotlight__body">
-              <h3>Auto &amp; Recreational (Toys)</h3>
-              <p>Personal auto, plus options for pickups, newer drivers, and multi-vehicle households.</p>
-              <ul>
-                <li>Progressive &amp; other markets</li>
-                <li>SR-22 / higher-risk available</li>
-                <li>Multi-car &amp; bundle reviews</li>
-              </ul>
-            </div>
-          </article>
+    <div class="service-grid"><!-- uses .service-grid from styles.css -->
+      <!-- 1) P&C – Personal -->
+      <article class="service-card">
+        <img src="img/cov-personal.jpg" alt="Personal insurance lines: Home, Auto, Renters, Toys" />
+        <div class="service-card__body">
+          <h3>P&amp;C – Personal</h3>
+          <p>Home, MH, Renters, Auto, Rec Vehicles, Life, Umbrella.</p>
+          <ul class="spotlight__body">
+            <li>Home • Manufactured Home • Renters</li>
+            <li>Auto</li>
+            <li>Recreational: RVs, travel trailers, ATVs, boats, motorcycles</li>
+            <li>Life</li>
+            <li>Umbrella</li>
+          </ul>
+          <div class="service-card__actions">
+            <a href="#quote" class="btn btn-primary">Request Quote</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- LIFE INSURANCE PROMO (kept as a single card layout) -->
-    <section class="section section--muted">
-      <div class="container">
-        <div class="spotlight-grid" style="margin-top: 0.25rem;">
-          <article class="spotlight">
-            <img src="img/life.jpg" alt="Life insurance coverage" class="spotlight__img" />
-            <div class="spotlight__body">
-              <h3>Life Insurance</h3>
-              <p>
-                Protection designed around your goals — whether you’re safeguarding family income,
-                covering final expenses, or building legacy value.
-              </p>
-              <ul>
-                <li>Term, Whole, and Universal options</li>
-                <li>Mortgage protection &amp; income replacement</li>
-                <li>Final expense &amp; burial coverage</li>
-              </ul>
-            </div>
-          </article>
+      <!-- 2) P&C – Commercial -->
+      <article class="service-card">
+        <img src="img/cov-commercial.jpg" alt="Commercial insurance: BOP, GL, Tools, Commercial Auto" />
+        <div class="service-card__body">
+          <h3>P&amp;C – Commercial</h3>
+          <p>Protection for your business, tools, and vehicles.</p>
+          <ul class="spotlight__body">
+            <li>BOP (Business Owners Policy) • General Liability</li>
+            <li>Contractor Tools/Equipment</li>
+            <li>Commercial Auto</li>
+            <li>Employee Benefits &amp; Life</li>
+            <li>Commercial Umbrella</li>
+            <li>Surety (varies by market)</li>
+          </ul>
+          <div class="service-card__actions">
+            <a href="commercial.html" class="btn">Learn More</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </article>
+
+      <!-- 3) Life -->
+      <article class="service-card">
+        <img src="img/cov-life.jpg" alt="Life insurance plans" />
+        <div class="service-card__body">
+          <h3>Life Insurance</h3>
+          <p>Plans for income protection, legacy, and final expenses.</p>
+          <ul class="spotlight__body">
+            <li>Term: 10 / 20 / 30 year</li>
+            <li>Mortgage Protection</li>
+            <li>Whole Life</li>
+            <li>Universal (Fixed &amp; Indexed IULs)</li>
+            <li>Burial / Final Expense</li>
+          </ul>
+          <div class="service-card__actions">
+            <a href="life.html" class="btn">See Options</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4) Flood & Catastrophe -->
+      <article class="service-card">
+        <img src="img/cov-cat.jpg" alt="Flood and catastrophe coverages" />
+        <div class="service-card__body">
+          <h3>Flood &amp; Catastrophe</h3>
+          <p>Location-specific options (varies by state/market).</p>
+          <ul class="spotlight__body">
+            <li>Flood</li>
+            <li>Earthquake — <em>WA only (currently)</em></li>
+            <li>Tornado — <em>TN only (currently)</em></li>
+          </ul>
+          <div class="service-card__actions">
+            <a href="flood.html" class="btn">Check Options</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5) Pets -->
+      <article class="service-card">
+        <img src="img/cov-pets.jpg" alt="Pet insurance" />
+        <div class="service-card__body">
+          <h3>Pets</h3>
+          <p>Coverage for your four-legged coworkers.</p>
+          <ul class="spotlight__body">
+            <li>Accident &amp; Illness</li>
+            <li>Wellness (varies by carrier)</li>
+          </ul>
+          <div class="service-card__actions">
+            <a href="pets.html" class="btn">Explore Pets</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6) Other / Specialty Lines -->
+      <article class="service-card">
+        <img src="img/cov-specialty.jpg" alt="Specialty lines and warranties" />
+        <div class="service-card__body">
+          <h3>Other Coverage / Specialty Lines</h3>
+          <p>Hard-to-place and niche needs.</p>
+          <ul class="spotlight__body">
+            <li>Drone Liability &amp; Hull</li>
+            <li>Parametric Weather</li>
+            <li>Collectables / Valuables</li>
+            <li>Home Warranty</li>
+            <li>Auto Warranty &amp; Vehicle Service Contracts (VSCs)</li>
+          </ul>
+          <div class="service-card__actions">
+            <a href="other.html" class="btn">See Specialty</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Disclosure + Carriers link -->
+    <div class="note note--muted" style="margin-top:1rem">
+      <small>
+        Coverage availability and eligibility vary by location and carrier. JBIS currently operates in
+        <strong>MT, WA, ID, ND, AZ &amp; TN</strong>. As licensure expands, additional options will be available.
+      </small>
+    </div>
+    <p class="section__lead" style="margin-top:.75rem">
+      Want to see who I can place you with? <a href="carriers.html">View carrier list</a>.
+    </p>
+  </div>
+</section>
+
 
     <!-- QUOTE / CONTACT -->
     <section id="quote" class="section section--muted">
@@ -150,14 +227,15 @@
               <label for="line">Line of business</label>
               <select id="line" name="Line of business">
                 <option value="" selected>Choose one…</option>
-                <option>Home</option>
-                <option>Auto</option>
-                <option>Home + Auto</option>
+                <option>Home / Renters/MH</option>
+                <option>Auto / Recreational</option>
                 <option>Life / Mortgage protection</option>
                 <option>Commercial</option>
                 <option>Pets</option>
                 <option>Flood</option>
                 <option>Other</option>
+                <option>Bundle (please add notes)</option>
+
               </select>
             </div>
           </div>
@@ -284,10 +362,3 @@ document.getElementById("callTextBtn").addEventListener("click", function() {
 
 </body>
 </html>
-
-
-
-
-
-
-
