@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function currentValue(){
     const s=steps[idx];
     if(s.type==='checkbox') return inputWrap.querySelector('input').checked?'Yes':'';
+
     const el=inputWrap.querySelector('.field,select,textarea'); return el?el.value:'';
   }
   function isValid(v){
@@ -317,7 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.entries(data).forEach(([k,v])=>f.append(k,v));
     f.append('source_page',location.href);
 
-    fetch('https://formsubmit.co/ajax/kendalljonesins@outlook.com',{method:'POST',body:f})
+    // *** CHANGED ONLY THIS LINE: now posting to Formspree ***
+    fetch('https://formspree.io/f/xpwkzkpo',{method:'POST',body:f})
       .then(()=>{ messages.innerHTML=''; bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply. It’s been a pleasure assisting you. — Sage 🌿'); inputWrap.innerHTML=''; })
       .catch(()=>{ bot('Hmm, I couldn’t send that just now. You can call/text 406-314-7878 or try again in a moment.'); })
       .finally(()=>{ sendBtn.disabled=false; voiceBtn.disabled=false; });
