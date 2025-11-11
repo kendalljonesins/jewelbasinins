@@ -140,18 +140,57 @@ document.addEventListener('DOMContentLoaded', () => {
       { title:'Coterie — Quick Business Quote', body:'Fast, modern quoting. Start now — I’ll follow up and make sure it fits.', actions:[{label:'Open Coterie Quote',href:LINKS.COTERIE},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
     ]);
   }
+
   function showPetOffers(){
     bot('Let’s protect your furry family! You can explore an option below or continue with me.');
     botCarousel([
       { title:'Fetch Pet Insurance', body:'Comprehensive coverage for dogs and cats — emergencies, illnesses, more.', actions:[{label:'Explore Fetch',href:LINKS.FETCH},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
     ]);
   }
-  // Other Coverage (Home Warranty via Tend + Auto Warranty via Arkay)
+
+  // Renters options (ePremium)
+  function showRentersOffers(){
+    bot('For renters insurance, here’s a quick option you can explore, or we can keep going together.');
+    botCarousel([
+      {
+        title:'ePremium — Renters Insurance',
+        body:'Convenient renters coverage to help protect your personal belongings and personal liability.',
+        actions:[
+          {label:'Open ePremium — Renters',href:LINKS.EPREMIUM},
+          {label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}
+        ]
+      }
+    ]);
+  }
+
+  // Other Coverage (Home Warranty via Tend + Auto Warranty via Arkay + Umbrella via Coverage Cat)
   function showOtherOffers(){
     bot('Here are specialty options under Other Coverage. You can explore them now or continue with me.');
     botCarousel([
-      { title:'Other Coverage — Home Warranty (Tend)', body:'Tend offers Home Warranty options to help protect key systems and appliances, complementing your homeowners policy.', actions:[{label:'Open Tend — Home Warranty',href:LINKS.TEND},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] },
-      { title:'Other Coverage — Auto Warranty (Arkay)', body:'Arkay offers Auto Warranty (Vehicle Service Contracts) to cover major mechanical breakdowns beyond your standard auto policy.', actions:[{label:'Open Arkay — Auto Warranty',href:LINKS.ARKAY},{label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}] }
+      {
+        title:'Other Coverage — Home Warranty (Tend)',
+        body:'Tend offers Home Warranty options to help protect key systems and appliances, complementing your homeowners policy.',
+        actions:[
+          {label:'Open Tend — Home Warranty',href:LINKS.TEND},
+          {label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}
+        ]
+      },
+      {
+        title:'Other Coverage — Auto Warranty (Arkay)',
+        body:'Arkay offers Auto Warranty (Vehicle Service Contracts) to cover major mechanical breakdowns beyond your standard auto policy.',
+        actions:[
+          {label:'Open Arkay — Auto Warranty',href:LINKS.ARKAY},
+          {label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}
+        ]
+      },
+      {
+        title:'Other Coverage — Umbrella (Coverage Cat)',
+        body:'Coverage Cat offers personal umbrella protection that adds extra liability coverage on top of your underlying policies.',
+        actions:[
+          {label:'Open Coverage Cat — Umbrella',href:LINKS.COVERAGECAT},
+          {label:'Continue with Sage',ghost:true,onClick:()=>{idx++;renderStep();}}
+        ]
+      }
     ]);
   }
 
@@ -165,7 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
     FETCH:       'https://www.fetchpet.com/mypet?a=KendallJonesIns&utm_source=firstconnect&utm_medium=brokerportal&utm_campaign=firstconnect_email&c=firstconnect&p=firstconnect',
     // Other coverage referrals
     TEND:        'https://partner.mytend.com/first-connect?subproducerID=FC47881',
-    ARKAY:       'https://arkay.info/FC47881'
+    ARKAY:       'https://arkay.info/FC47881',
+    EPREMIUM:    'https://www.epremiuminsurance.com/DirectToConsumerPartner.aspx?TopLevelIRISAccountID=DKkpwg9hFl8%3d&IRISAccountID=LojLtZLd1uw%3d',
+    COVERAGECAT: 'https://www.coveragecat.com/umbrella?token=SFMyNTY.g2gDdAAAAAF3CGFnZW50X2lkYgAAAcRuBgAPSx91mgFiAAFRgA.zS6X5fq6FsJ-8uXwDKE9DXTKoOBjQ3ClOichLiEfUyY'
   };
 
   // =========================
@@ -287,6 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (/pet|dog|cat/i.test(v)) showPetOffers();
         if (/home\s*warranty|tend/i.test(v)) showOtherOffers();
         if (/auto\s*warranty|arkay|vehicle\s*service\s*contract|vsc|extended\s*warranty/i.test(v)) showOtherOffers();
+        if (/renters|epremium/i.test(v)) showRentersOffers();
+        if (/umbrella|coverage\s*cat/i.test(v)) showOtherOffers();
       } else {
         bot('I don’t want to guess. I can have Kendall follow up with a precise answer—shall we finish the quick details?');
       }
@@ -300,53 +343,53 @@ document.addEventListener('DOMContentLoaded', () => {
     if(steps[idx].key==='line'){
       if(v==='Commercial'){ showCommercialOffers(); return; }
       if(v==='Pets'){ showPetOffers(); return; }
+      if(v==='Renters'){ showRentersOffers(); return; }
       if(v==='Other'){ showOtherOffers(); return; }
     }
 
     if(idx<steps.length-1){ idx++; renderStep(); } else { submitLead(); }
   });
 
-function submitLead() {
-  bot('Sending your info…');
-  sendBtn.disabled = true;
-  voiceBtn.disabled = true;
+  function submitLead() {
+    bot('Sending your info…');
+    sendBtn.disabled = true;
+    voiceBtn.disabled = true;
 
-  const f = new FormData();
-  f.append('_subject', 'New Web Chat Lead');
-  f.append('_template', 'table');
-  Object.entries(data).forEach(([k, v]) => f.append(k, v));
-  f.append('source_page', location.href);
+    const f = new FormData();
+    f.append('_subject', 'New Web Chat Lead');
+    f.append('_template', 'table');
+    Object.entries(data).forEach(([k, v]) => f.append(k, v));
+    f.append('source_page', location.href);
 
-  fetch('https://formspree.io/f/xpwkzkpo', {
-    method: 'POST',
-    body: f,
-    headers: {
-      'Accept': 'application/json'
-    }
-  })
-    .then((res) => {
-      // Treat Formspree’s 200–299, 302, and 303 as success
-      if (res.ok || res.status === 302 || res.status === 303 || res.status === 204) {
-        messages.innerHTML = '';
-        bot("Thanks! I’ve sent your info to Kendall — he’ll reach out soon to go over your options. You can also call or text him directly at 406-314-7878. 💬");
-        inputWrap.innerHTML = '';
-      } else {
-        throw new Error('Unexpected response status: ' + res.status);
+    fetch('https://formspree.io/f/xpwkzkpo', {
+      method: 'POST',
+      body: f,
+      headers: {
+        'Accept': 'application/json'
       }
     })
-    .catch((err) => {
-      console.error('Error submitting lead:', err);
-      bot("Looks like I couldn’t confirm submission just now — but don’t worry, Kendall still received your info. You can also call/text 406-314-7878 anytime!");
-    })
-    .finally(() => {
-      sendBtn.disabled = false;
-      voiceBtn.disabled = false;
-    });
-}
+      .then((res) => {
+        // Treat Formspree’s 200–299, 302, and 303 as success
+        if (res.ok || res.status === 302 || res.status === 303 || res.status === 204) {
+          messages.innerHTML = '';
+          bot("Thanks! I’ve sent your info to Kendall — he’ll reach out soon to go over your options. You can also call or text him directly at 406-314-7878. 💬");
+          inputWrap.innerHTML = '';
+        } else {
+          throw new Error('Unexpected response status: ' + res.status);
+        }
+      })
+      .catch((err) => {
+        console.error('Error submitting lead:', err);
+        bot("Looks like I couldn’t confirm submission just now — but don’t worry, Kendall still received your info. You can also call/text 406-314-7878 anytime!");
+      })
+      .finally(() => {
+        sendBtn.disabled = false;
+        voiceBtn.disabled = false;
+      });
+  }
 
   // Open/Close
   launcher.addEventListener('click',()=>{ openChat(); });
   panel.querySelector('.jb-chat__close').addEventListener('click',()=>{ closeChat(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!panel.classList.contains('is-hidden')) closeChat(); });
 });
-
