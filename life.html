@@ -109,59 +109,60 @@
         <h2>Request a Life Insurance Quote</h2>
         <p class="section__lead">Share a few details and I’ll shop the carriers for you.</p>
 
-        <form class="quote-form" action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST">
-          <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thankyou.html" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_subject" value="New Life Insurance Request" />
+<form class="quote-form" action="https://formspree.io/f/manayavw" method="POST">
+  <input type="hidden" name="_subject" value="New Life Insurance Request" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="source_page" value="Life Insurance Page" />
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Full name</label>
-              <input id="name" name="Full name" type="text" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" name="Email" type="email" required />
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Full name</label>
+      <input id="name" name="name" type="text" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required />
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input id="phone" name="Phone" type="tel" />
-            </div>
-            <div class="form-group">
-              <label for="goal">Primary goal</label>
-              <select id="goal" name="Primary goal">
-                <option value="" selected>Choose one…</option>
-                <option>Income replacement</option>
-                <option>Mortgage protection</option>
-                <option>Final expense</option>
-                <option>Legacy / estate planning</option>
-              </select>
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="tel" />
+    </div>
+    <div class="form-group">
+      <label for="goal">Primary goal</label>
+      <select id="goal" name="primary_goal">
+        <option value="" selected>Choose one…</option>
+        <option>Income replacement</option>
+        <option>Mortgage protection</option>
+        <option>Final expense</option>
+        <option>Legacy / estate planning</option>
+      </select>
+    </div>
+  </div>
 
-          <div class="form-group">
-            <label for="notes">Notes (age, tobacco, coverage amount, health notes)</label>
-            <textarea id="notes" name="Notes" rows="4"></textarea>
-          </div>
+  <div class="form-group">
+    <label for="notes">Notes (age, tobacco, coverage amount, health notes)</label>
+    <textarea id="notes" name="notes" rows="4"></textarea>
+  </div>
 
-          <div class="form-agreement">
-            <label class="checkbox-inline">
-              <input type="checkbox" name="Consent" value="Yes" required />
-              By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding
-              insurance products and services (message/data rates may apply). You may opt out of these communications at any time. Your
-              information will never be sold or shared outside of Jewel Basin Insurance Solutions LLC and is obtained solely for insurance
-              quoting and policy servicing purposes. You acknowledge that you have read and agree to our <a href="privacy.html" target="_blank">Privacy Policy</a>
-              and <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
-            </label>
-          </div>
+  <div class="form-agreement">
+    <label class="checkbox-inline">
+      <input type="checkbox" name="consent" value="Yes" required />
+      By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding
+      insurance products and services (message/data rates may apply). You may opt out of these communications at any time. Your
+      information will never be sold or shared outside of Jewel Basin Insurance Solutions LLC and is obtained solely for insurance
+      quoting and policy servicing purposes. You acknowledge that you have read and agree to our
+      <a href="privacy.html" target="_blank">Privacy Policy</a> and
+      <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
+    </label>
+  </div>
 
-          <div class="form-submit">
-            <button type="submit" class="btn btn-submit">Submit Request</button>
-          </div>
-        </form>
+  <div class="form-submit">
+    <button type="submit" class="btn btn-submit">Submit Request</button>
+  </div>
+</form>
       </div>
     </section>
   </main>
@@ -254,3 +255,4 @@
 </body>
 
 </html>
+
