@@ -99,76 +99,41 @@
         <h2>Request a Pet Insurance Quote</h2>
         <p class="section__lead">Tell me about your pet(s) and I’ll send tailored options.</p>
 
-        <form action="https://formsubmit.co/kendalljonesins@outlook.com" method="POST" class="quote-form">
-          <input type="hidden" name="_next" value="https://www.jewelbasinins.com/thankyou.html" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_subject" value="New Pet Insurance Quote Request" />
+<form action="https://formspree.io/f/xldaeazd" method="POST" class="quote-form">
+  <input type="hidden" name="_subject" value="New Pet Insurance Quote Request" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="source_page" value="Pet Insurance Page" />
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Your name</label>
-              <input type="text" id="name" name="Full name" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" id="email" name="Email" required />
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Your name</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="Phone" />
-            </div>
-            <div class="form-group">
-              <label for="pet">Pet name &amp; type</label>
-              <input type="text" id="pet" name="Pet info" placeholder="Artemis — cat, 13 y/o" />
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" />
+    </div>
+    <div class="form-group">
+      <label for="pet">Pet name &amp; type</label>
+      <input type="text" id="pet" name="pet_info" placeholder="Artemis — cat, 13 y/o" />
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="time">Preferred contact time</label>
-              <select id="time" name="Preferred contact time">
-                <option>9–12 MT</option>
-                <option>12–3 MT</option>
-                <option>3–5 MT</option>
-                <option>After 5 MT (by appt)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="coverage">Coverage type</label>
-            <select id="coverage" name="Coverage type">
-              <option value="" selected>Choose one…</option>
-              <option>Accident only</option>
-              <option>Accident &amp; Illness</option>
-              <option>Accident, Illness &amp; Wellness</option>
-              <option>Multiple pets</option>
-              <option>Not sure — please advise</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="notes">Notes (breed, pre‑existing, indoor/outdoor, multi‑pet, etc.)</label>
-            <textarea id="notes" name="Notes" rows="4"></textarea>
-          </div>
-
-          <div class="consent-box">
-            <label class="checkbox-inline">
-              <input type="checkbox" name="Consent" value="Yes" required />
-              By checking this box, you agree that Jewel Basin Insurance Solutions LLC may contact you by phone, text, or email regarding insurance products
-              and services (message/data rates may apply). You may opt out of these communications at any time. Your information will never be sold or shared
-              outside of Jewel Basin Insurance Solutions LLC and is obtained solely for insurance quoting and policy servicing purposes. You acknowledge that
-              you have read and agree to our <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.
-            </label>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn btn-submit">Submit Request</button>
-          </div>
-        </form>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="time">Preferred contact time</label>
+      <select id="time" name="preferred_time">
+        <option>9–12 MT</option>
+        <option>12–3 MT</option>
+        <option>3–5 MT</option>
+        <option>After 5 MT (by a
       </div>
     </section>
   </main>
@@ -260,4 +225,5 @@
   </script>
 </body>
 </html>
+
 
