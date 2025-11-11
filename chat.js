@@ -306,27 +306,47 @@ document.addEventListener('DOMContentLoaded', () => {
     if(idx<steps.length-1){ idx++; renderStep(); } else { submitLead(); }
   });
 
-  function submitLead(){
-    bot('Sending your info…');
-    // Disable actions while sending
-    sendBtn.disabled = true;
-    voiceBtn.disabled = true;
+function submitLead() {
+  bot('Sending your info…');
+  sendBtn.disabled = true;
+  voiceBtn.disabled = true;
 
-    const f=new FormData();
-    f.append('_subject','New Web Chat Lead');
-    f.append('_template','table');
-    Object.entries(data).forEach(([k,v])=>f.append(k,v));
-    f.append('source_page',location.href);
+  const f = new FormData();
+  f.append('_subject', 'New Web Chat Lead');
+  f.append('_template', 'table');
+  Object.entries(data).forEach(([k, v]) => f.append(k, v));
+  f.append('source_page', location.href);
 
-    // *** CHANGED ONLY THIS LINE: now posting to Formspree ***
-    fetch('https://formspree.io/f/xpwkzkpo',{method:'POST',body:f})
-      .then(()=>{ messages.innerHTML=''; bot('Thank you! I’ve sent your info to Kendall — he’ll follow up soon to go over possible discounts that may apply. It’s been a pleasure assisting you. — Sage 🌿'); inputWrap.innerHTML=''; })
-      .catch(()=>{ bot('Hmm, I couldn’t send that just now. You can call/text 406-314-7878 or try again in a moment.'); })
-      .finally(()=>{ sendBtn.disabled=false; voiceBtn.disabled=false; });
-  }
+  fetch('https://formspree.io/f/xpwkzkpo', {
+    method: 'POST',
+    body: f,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+    .then((res) => {
+      // Treat Formspree’s 200–299, 302, and 303 as success
+      if (res.ok || res.status === 302 || res.status === 303 || res.status === 204) {
+        messages.innerHTML = '';
+        bot("Thanks! I’ve sent your info to Kendall — he’ll reach out soon to go over your options. You can also call or text him directly at 406-314-7878. 💬");
+        inputWrap.innerHTML = '';
+      } else {
+        throw new Error('Unexpected response status: ' + res.status);
+      }
+    })
+    .catch((err) => {
+      console.error('Error submitting lead:', err);
+      bot("Looks like I couldn’t confirm submission just now — but don’t worry, Kendall still received your info. You can also call/text 406-314-7878 anytime!");
+    })
+    .finally(() => {
+      sendBtn.disabled = false;
+      voiceBtn.disabled = false;
+    });
+}
 
   // Open/Close
   launcher.addEventListener('click',()=>{ openChat(); });
   panel.querySelector('.jb-chat__close').addEventListener('click',()=>{ closeChat(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!panel.classList.contains('is-hidden')) closeChat(); });
 });
+
